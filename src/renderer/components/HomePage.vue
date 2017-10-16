@@ -1,31 +1,19 @@
 <template>
-  <div id="wrapper">
-    <main>
-      <div class="left-side">
-        <span class="title">
-
-        </span>
+  <div class="container">
+    <section class="section">
+      <button @click="clickButton" class="button">Button</button>
+      <div>
+        Obj size: {{ objSize }}
       </div>
-
-      <div class="right-side">
-        <button @click="clickButton" class="button">Button</button>
-        <div>
-          Obj size: {{ objSize }}
-        </div>
-        <div>
-          {{ message }}
-        </div>
-        <div>
-          {{ page.sc.price }}
-        </div>
-        <ul>
-          <li v-for="entry in page.sc">
-            {{ entry }}
-          </li>
-        </ul>
+      <div>
+        {{ message }}
       </div>
-
-    </main>
+      <ul>
+        <li v-for="entry in page.sc">
+          {{ entry }}
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
