@@ -58,6 +58,7 @@
     "axios": "^0.16.1",
     "bulma": "^0.5.1",
     "font-awesome": "^4.7.0",
+    "lodash": "^4.17.4",
     "socket.io-client": "^2.0.3",
     "vue": "^2.3.3",
     "vue-electron": "^1.0.6",

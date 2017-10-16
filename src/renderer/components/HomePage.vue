@@ -10,7 +10,7 @@
       <div class="right-side">
         <button @click="clickButton" class="button">Button</button>
         <div>
-          Obj size: {{ page.sc.length}}
+          Obj size: {{ objSize }}
         </div>
         <div>
           {{ message }}
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+  import _ from 'lodash'
+
   export default {
     name: 'home-page',
     components: { },
@@ -56,6 +58,11 @@
       },
       open (link) {
         this.$electron.shell.openExternal(link)
+      }
+    },
+    computed: {
+      objSize: function () {
+        return _.size(this.page.sc)
       }
     }
   }
