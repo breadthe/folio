@@ -1,7 +1,9 @@
 <template>
   <div class="section">
     <section class="container">
-      <button @click="clickButton" class="button" :class="{ 'is-loading' : button.isLoading, 'is-disabled' : button.isDisabled }">Button</button>
+      <button @click="clickButton" class="button" :class="{ 'is-loading' : button.isLoading, 'is-disabled' : button.isDisabled }">
+        <i class="fa fa-circle-o-notch" aria-hidden="true"></i>&nbsp;Button
+      </button>
       <div>
         Obj size: {{ objSize }}
       </div>
