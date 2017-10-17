@@ -3,23 +3,42 @@
     <section class="container">
       <h1>{{ pageTitle }}</h1>
 
-      <button @click="clickButton" class="button" :class="{ 'is-loading' : button.isLoading, 'is-disabled' : button.isDisabled }">
+      <button @click="syncMap" class="button" :class="{ 'is-loading' : button.isLoading, 'is-disabled' : button.isDisabled }">
         <i class="fa fa-circle-o-notch" aria-hidden="true"></i>&nbsp;Sync
       </button>
       <div>
-        Map contains <strong>{{ objSize }}</strong> items
+        Map contains <strong>{{ map.size }}</strong> items
       </div>
       <div>
-        Last synched: {{ mapLastSynced || 'unknown' }}
+        Last synced: {{ map.lastSynced || 'unknown' }}
       </div>
       <div>
         {{ message }}
       </div>
-      <ul>
-        <li v-for="entry in map">
-          {{ entry }}
-        </li>
-      </ul>
+
+        <section v-if="map.size">
+            <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                <tr>
+                    <th><i class="fa fa-eye" aria-hidden="true" title="Watch this coin"></i></th>
+                    <th>symbol</th>
+                    <th>name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="entry in map.data">
+                    <td><input type="checkbox" v-model="entry.watch"></td>
+                    <td>{{ entry.symbol }}</td>
+                    <td>{{ entry.name }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section v-else>
+            <p>The coin map is empty. <a @click="syncMap">Sync now?</a></p>
+        </section>
+
     </section>
   </div>
 </template>
@@ -38,15 +57,18 @@
           isLoading: false,
           isDisabled: false
         },
-        mapLastSynced: '',
-        map: {},
+        map: {
+          size: 0,
+          lastSynced: '',
+          data: {}
+        },
         page: {
           sc: {}
         }
       }
     },
     methods: {
-      clickButton: function () {
+      syncMap: function () {
         // const url = 'http://socket.coincap.io/page/SC'
         const url = 'http://socket.coincap.io/map'
         this.message = 'Getting data'
@@ -62,32 +84,34 @@
               isDisabled: false
             }
             // this.page.sc = response.data
-            this.map = response.data
-            localStorage.setItem('map', JSON.stringify(this.map))
-            const now = new Date()
-            this.mapLastSynched = now
-            localStorage.setItem('mapLastSynced', now)
+            this.map.data = response.data
+            this.map.data.map(i => { i.watch = false })
+            this.map.size = this.mapSize
+            this.map.lastSynced = new Date()
+            window.localStorage.setItem('mapData', JSON.stringify(this.map.data))
+            window.localStorage.setItem('mapSize', this.map.size)
+            window.localStorage.setItem('mapLastSynced', this.map.lastSynced)
           })
           .catch((error) => {
             this.message = 'There was an error' + error
           })
-      },
-      open (link) {
-        this.$electron.shell.openExternal(link)
       }
     },
     computed: {
-      objSize: function () {
-        return _.size(this.map)
+      mapSize: function () {
+        return _.size(this.map.data)
       }
     },
     mounted: function () {
       // Get map of coins from local storage, if available
-      if (localStorage.getItem('map')) {
-        this.map = JSON.parse(localStorage.getItem('map'))
+      if (localStorage.getItem('mapData')) {
+        this.map.data = JSON.parse(localStorage.getItem('mapData'))
+      }
+      if (localStorage.getItem('mapSize')) {
+        this.map.size = localStorage.getItem('mapSize')
       }
       if (localStorage.getItem('mapLastSynced')) {
-        this.mapLastSynced = localStorage.getItem('mapLastSynced')
+        this.map.lastSynced = localStorage.getItem('mapLastSynced')
       }
     }
   }
