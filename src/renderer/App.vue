@@ -1,14 +1,14 @@
 <template>
     <div id="app">
-        <div class="container">
+        <div class="container is-fluid">
 
             <!--<the-header></the-header>-->
 
             <div class="columns">
-                <div class="column is-3 is-desktop is-gapless">
+                <div class="column is-3 is-gapless is-pulled-left">
                     <the-menu></the-menu>
                 </div>
-                <div class="column">
+                <div class="column is-9">
                     <router-view></router-view>
                 </div>
             </div>
