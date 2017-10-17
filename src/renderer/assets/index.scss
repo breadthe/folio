@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700');
+
+// 1. Import the initial variables
+@import "../../../node_modules/bulma/sass/utilities/initial-variables";
+
+// 2. Set your own initial variables
+$blue: #72d0eb;
+$pink: #ffb3b3;
+$pink-invert: #fff;
+$family-serif: "Merriweather", "Georgia", serif;
+$family-sans-serif: "Nunito", sans-serif;
+
+// 3. Set the derived variables
+$primary: $pink;
+$primary-invert: $pink-invert;
+$danger: $orange;
+$family-primary: $family-sans-serif;
+
+// 4. Import the rest of Bulma
+@import "../../../node_modules/bulma/bulma";
+
+// Import Font Awesome
+$fa-font-path: '../../node_modules/font-awesome/fonts/';
+@import '../../../node_modules/font-awesome/scss/font-awesome';
+
+// Import App-specific styling
+@import 'app';

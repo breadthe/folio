@@ -35,7 +35,7 @@
 </script>
 
 <style lang="sass">
-    @import "./assets/index"
+    @import "assets/index"
 </style>
 
 <style>
