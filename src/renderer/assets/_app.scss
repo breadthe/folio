@@ -16,3 +16,6 @@ aside {
     font-size: $size-2;
   }
 }
+.menu-list a.is-active {
+  background: $white;
+}
