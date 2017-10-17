@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
-    <section class="section">
-      <button @click="clickButton" class="button">Button</button>
+  <div class="section">
+    <section class="container">
+      <button @click="clickButton" class="button" :class="{ 'is-loading' : button.isLoading, 'is-disabled' : button.isDisabled }">Button</button>
       <div>
         Obj size: {{ objSize }}
       </div>
@@ -26,6 +26,10 @@
     data: function () {
       return {
         message: '',
+        button: {
+          isLoading: false,
+          isDisabled: false
+        },
         page: {
           sc: {}
         }
@@ -35,9 +39,17 @@
       clickButton: function () {
         const url = 'http://socket.coincap.io/page/SC'
         this.message = 'Getting data'
+        this.button = {
+          isLoading: true,
+          isDisabled: true
+        }
         this.$http.get(url)
           .then((response) => {
             this.message = 'Finished getting data'
+            this.button = {
+              isLoading: false,
+              isDisabled: false
+            }
             this.page.sc = response.data
           })
           .catch((error) => {

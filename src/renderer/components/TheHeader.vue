@@ -1,27 +1,31 @@
 <template>
-  <nav class="nav has-shadow">
-    <div class="nav-left">
-      <a class="nav-item">
-        <i class="fa fa-list" aria-hidden="true"></i>
-        &nbsp;
-        H
-      </a>
-    </div>
-    <!-- This "nav-toggle" hamburger menu is only visible on mobile -->
-    <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
-    <span class="nav-toggle" v-on:click="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </span>
+    <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+        <a class="navbar-item">
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;H
+        </a>
 
-    <!-- This "nav-menu" is hidden on mobile -->
-    <!-- Add the modifier "is-active" to display it on mobile -->
-    <div class="nav-right nav-menu" v-bind:class="{ 'is-active': menuIsActive }">
-      <a class="nav-item" href="/">Home</a>
-      <a class="nav-item" href="/#/ToDo">To-dos</a>
-    </div>
-  </nav>
+        <div class="navbar-item has-dropdown"><!-- is-active -->
+            <a class="navbar-link">
+                Docs
+            </a>
+
+            <div class="navbar-dropdown">
+                <a class="navbar-item">
+                    Overview
+                </a>
+                <a class="navbar-item is-active">
+                    Elements
+                </a>
+                <a class="navbar-item">
+                    Components
+                </a>
+                <hr class="navbar-divider">
+                <div class="navbar-item">
+                    Version 0.6.0
+                </div>
+            </div>
+        </div>
+    </nav>
 </template>
 
 <script>
@@ -39,3 +43,6 @@
     }
   }
 </script>
+
+<style>
+</style>
