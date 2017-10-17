@@ -1,7 +1,7 @@
 <template>
   <div class="section">
     <section class="container">
-      <h1>About</h1>
+        <h1>{{ pageTitle }}</h1>
     </section>
   </div>
 </template>
@@ -12,6 +12,7 @@
     components: { },
     data: function () {
       return {
+        pageTitle: 'About',
         message: '',
         button: {
           isLoading: false,
