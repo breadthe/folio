@@ -3,7 +3,7 @@
         <ul class="menu-list" v-if="menuItems.length">
             <li v-for="item in menuItems">
                 <a :href="item.path" @click="setMenuItemActive" ref="menuItem">
-                    <i :class="['fa', 'fa-' + item.logo]" aria-hidden="true"></i>&nbsp;{{ item.name }}
+                    <i :class="['fa', 'fa-' + item.logo]" aria-hidden="true"></i>&nbsp;&nbsp;{{ item.name }}
                 </a>
             </li>
         </ul>
@@ -17,6 +17,7 @@
       return {
         menuItems: [
           { path: '/#/', name: 'Home', logo: 'home', active: false },
+          { path: '/#/coin-map', name: 'Map', logo: 'map', active: false },
           { path: '/#/settings', name: 'Settings', logo: 'gear', active: false },
           { path: '/#/about', name: 'About', logo: 'question', active: false }
         ],
