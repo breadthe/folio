@@ -4,12 +4,18 @@
 
             <!--<the-header></the-header>-->
 
-            <div class="columns">
-                <div class="column is-3 is-gapless is-pulled-left">
-                    <the-menu></the-menu>
+            <div class="tile is-ancestor">
+                <div class="tile is-vertical is-parent is-3">
+                    <div class="tile is-child">
+                        <the-logo></the-logo>
+
+                        <the-menu></the-menu>
+                    </div>
                 </div>
-                <div class="column is-9">
-                    <router-view></router-view>
+                <div class="tile is-parent">
+                    <div class="tile is-child">
+                        <router-view></router-view>
+                    </div>
                 </div>
             </div>
 
@@ -22,6 +28,7 @@
 <script>
   // import TheHeader from './components/TheHeader.vue'
   // import TheFooter from './components/TheFooter.vue'
+  import TheLogo from './components/TheLogo.vue'
   import TheMenu from './components/TheMenu.vue'
 
   export default {
@@ -29,6 +36,7 @@
     components: {
       // 'the-header': TheHeader,
       // 'the-footer': TheFooter
+      'the-logo': TheLogo,
       'the-menu': TheMenu
     }
   }
