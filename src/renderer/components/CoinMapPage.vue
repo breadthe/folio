@@ -83,36 +83,41 @@
               isLoading: false,
               isDisabled: false
             }
-            // this.page.sc = response.data
-            this.map.data = response.data
-            this.map.data.map(i => { i.watch = false })
-            this.map.size = this.mapSize
-            this.map.lastSynced = new Date()
-            window.localStorage.setItem('mapData', JSON.stringify(this.map.data))
-            window.localStorage.setItem('mapSize', this.map.size)
-            window.localStorage.setItem('mapLastSynced', this.map.lastSynced)
+
+            this.saveMapToStore(response.data)
+
+            this.getMapFromStore()
           })
           .catch((error) => {
             this.message = 'There was an error' + error
           })
+      },
+      saveMapToStore: function (data) {
+        // Check this out for how to bind storage to input
+        // https://stackoverflow.com/questions/44456528/how-to-bind-input-field-and-update-vuex-state-at-same-time
+        data.map(i => { i.watch = false })
+        localStorage.setItem('mapData', JSON.stringify(data))
+        localStorage.setItem('mapSize', _.size(data))
+        localStorage.setItem('mapLastSynced', new Date())
+      },
+      getMapFromStore: function () {
+        // Get map of coins from local storage, if available
+        if (localStorage.getItem('mapData')) {
+          this.map.data = JSON.parse(localStorage.getItem('mapData'))
+        }
+        if (localStorage.getItem('mapSize')) {
+          this.map.size = localStorage.getItem('mapSize')
+        }
+        if (localStorage.getItem('mapLastSynced')) {
+          this.map.lastSynced = localStorage.getItem('mapLastSynced')
+        }
       }
     },
     computed: {
-      mapSize: function () {
-        return _.size(this.map.data)
-      }
     },
     mounted: function () {
       // Get map of coins from local storage, if available
-      if (localStorage.getItem('mapData')) {
-        this.map.data = JSON.parse(localStorage.getItem('mapData'))
-      }
-      if (localStorage.getItem('mapSize')) {
-        this.map.size = localStorage.getItem('mapSize')
-      }
-      if (localStorage.getItem('mapLastSynced')) {
-        this.map.lastSynced = localStorage.getItem('mapLastSynced')
-      }
+      this.getMapFromStore()
     }
   }
 </script>

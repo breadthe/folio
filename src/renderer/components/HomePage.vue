@@ -26,15 +26,15 @@
       }
     },
     mounted: function () {
-      if (localStorage.getItem('mapData')) {
-        this.map.data = JSON.parse(localStorage.getItem('mapData'))
-      }
+      // if (localStorage.getItem('mapData')) {
+      //   this.map.data = JSON.parse(localStorage.getItem('mapData'))
+      // }
       if (localStorage.getItem('mapSize')) {
         this.map.size = localStorage.getItem('mapSize')
       }
-      if (localStorage.getItem('mapLastSynced')) {
-        this.map.lastSynced = localStorage.getItem('mapLastSynced')
-      }
+      // if (localStorage.getItem('mapLastSynced')) {
+      //   this.map.lastSynced = localStorage.getItem('mapLastSynced')
+      // }
     }
   }
 </script>
