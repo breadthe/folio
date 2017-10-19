@@ -30,8 +30,16 @@ const actions = {
 }
 
 const getters = {
+  allCoins: state => state.mapData, // need to filter the rest of the getters by allCoins
   watchedCoins: state => state.mapData.filter(coin => coin.watch),
-  unwatchedCoins: state => state.mapData.filter(coin => !coin.watch)
+  unwatchedCoins: state => state.mapData.filter(coin => !coin.watch),
+  filteredCoins: (state, getters) => (filterStr, matchCase) => {
+    // Regex case sensitive/insensitive depending on the Match Case checkbox
+    const params = matchCase ? 'g' : 'ig'
+    const re = new RegExp(filterStr, params)
+    // return state.mapData.filter(coin => coin.name.match(re)) // name doesn't work for some reason
+    return state.mapData.filter(coin => coin.symbol.match(re))
+  }
 }
 
 export default {

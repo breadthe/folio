@@ -3,9 +3,11 @@
     <section class="container">
       <h1>{{ pageTitle }}</h1>
 
-      <button @click="syncMap" class="button" :class="{ 'is-loading' : button.isLoading, 'is-disabled' : button.isDisabled }">
-        <i class="fa fa-circle-o-notch" aria-hidden="true"></i>&nbsp;Sync
-      </button>
+        <button
+                @click="syncMap"
+                class="button"
+                :class="{ 'is-loading' : button.sync.loading, 'is-disabled' : button.sync.disabled }"
+                v-html="button.sync.icon + button.sync.label"></button>
       <div>
         Map contains <strong>{{ mapSize }}</strong> items
       </div>
@@ -15,6 +17,47 @@
       <div>
         {{ message }}
       </div>
+
+        <nav class="panel">
+            <div class="panel-heading">
+                <div class="columns level-item">
+                    <div class="column">Tasks</div>
+                    <div class="column is-half">
+                        <div class="field has-addons is-pulled-right">
+                            <p class="control">
+                                <input class="input" type="text" placeholder="Add a task">
+                            </p>
+                            <p class="control">
+                                <button class="button">butt</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-block">
+                <div class="field has-addons">
+                    <div class="control has-icons-left">
+                        <input class="input is-small" type="text" placeholder="Search" v-model="filterStr" size="30">
+                        <span class="icon is-small is-left">
+                                <i class="fa fa-search"></i>
+                            </span>
+                    </div>
+                    <div class="control level-item">
+                        <button
+                                :disabled="button.filter.disabled"
+                                class="button is-small"
+                                @click="removeFilter"
+                                v-html="button.filter.icon"></button>
+                        &nbsp;&nbsp;
+                        <label class="checkbox">
+                            <input v-model="button.filter.matchCase" type="checkbox"><span class="small-font">Match Case</span>
+                        </label>
+                    </div>
+                    <div class="control">
+                    </div>
+                </div>
+            </div>
+        </nav>
 
         <section v-if="mapSize">
             <table class="table is-striped is-hoverable is-fullwidth">
@@ -59,17 +102,32 @@
       return {
         pageTitle: 'Coin Map',
         message: '',
+        // button: {
+        //   isLoading: false,
+        //   isDisabled: false
+        // },
+        filterStr: '',
         button: {
-          isLoading: false,
-          isDisabled: false
-        },
-        map: {
-          size: 0,
-          lastSynced: '',
-          data: {}
-        },
-        page: {
-          sc: {}
+          sync: {
+            label: '&nbsp;&nbsp;Sync',
+            icon: `
+              <span class="icon is-small">
+                  <i class="fa fa-circle-o-notch"></i>
+              </span>
+            `,
+            disabled: false,
+            loading: false
+          },
+          filter: {
+            label: '',
+            icon: `
+              <span class="icon is-small">
+                  <i class="fa fa-remove"></i>
+              </span>
+            `,
+            disabled: true,
+            matchCase: false
+          }
         }
       }
     },
@@ -78,18 +136,14 @@
         // const url = 'http://socket.coincap.io/page/SC'
         const url = 'http://socket.coincap.io/map'
         this.message = 'Getting data'
-        this.button = {
-          isLoading: true,
-          isDisabled: true
-        }
+        this.button.sync.disabled = true
+        this.button.sync.loading = true
 
         this.$http.get(url)
           .then((response) => {
             this.message = 'Finished getting data'
-            this.button = {
-              isLoading: false,
-              isDisabled: false
-            }
+            this.button.sync.disabled = false
+            this.button.sync.loading = false
 
             this.saveMapToStore(response.data)
           })
@@ -105,6 +159,9 @@
       },
       toggleWatched: function (symbol) {
         store.dispatch('setWatchFlag', symbol)
+      },
+      removeFilter: function () {
+        this.filterStr = ''
       }
     },
     computed: {
@@ -113,6 +170,9 @@
       },
       unwatchedCoins: function () {
         return store.getters.unwatchedCoins
+      },
+      filteredCoins: function () {
+        return store.getters.filteredCoins(this.filterStr)
       },
       mapData: {
         get: function () {
@@ -137,6 +197,17 @@
         set: function (newValue) {
           store.commit('SET_MAP_LAST_SYNCED', newValue)
         }
+      }
+    },
+    watch: {
+      // Watch for text being entered in the Filter Task box
+      filterStr: function () {
+        this.button.filter.disabled = !this.filterStr.length
+        // if (this.filterStr.length) {
+        //   this.button.filter.disabled = false
+        // } else {
+        //   this.button.filter.disabled = true
+        // }
       }
     },
     mounted: function () {
