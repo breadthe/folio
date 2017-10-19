@@ -7,16 +7,16 @@
         <i class="fa fa-circle-o-notch" aria-hidden="true"></i>&nbsp;Sync
       </button>
       <div>
-        Map contains <strong>{{ map.size }}</strong> items
+        Map contains <strong>{{ mapSize }}</strong> items
       </div>
       <div>
-        Last synced: {{ map.lastSynced || 'unknown' }}
+        Last synced: {{ mapLastSynced || 'unknown' }}
       </div>
       <div>
         {{ message }}
       </div>
 
-        <section v-if="map.size">
+        <section v-if="mapSize">
             <table class="table is-striped is-hoverable is-fullwidth">
                 <thead>
                 <tr>
@@ -26,7 +26,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="entry in map.data">
+                <tr v-for="entry in mapData">
                     <td><input type="checkbox" v-model="entry.watch"></td>
                     <td>{{ entry.symbol }}</td>
                     <td>{{ entry.name }}</td>
@@ -45,6 +45,7 @@
 
 <script>
   import _ from 'lodash'
+  import store from '../store'
 
   export default {
     name: 'coin-map-page',
@@ -76,6 +77,7 @@
           isLoading: true,
           isDisabled: true
         }
+
         this.$http.get(url)
           .then((response) => {
             this.message = 'Finished getting data'
@@ -85,8 +87,6 @@
             }
 
             this.saveMapToStore(response.data)
-
-            this.getMapFromStore()
           })
           .catch((error) => {
             this.message = 'There was an error' + error
@@ -96,28 +96,39 @@
         // Check this out for how to bind storage to input
         // https://stackoverflow.com/questions/44456528/how-to-bind-input-field-and-update-vuex-state-at-same-time
         data.map(i => { i.watch = false })
-        localStorage.setItem('mapData', JSON.stringify(data))
-        localStorage.setItem('mapSize', _.size(data))
-        localStorage.setItem('mapLastSynced', new Date())
-      },
-      getMapFromStore: function () {
-        // Get map of coins from local storage, if available
-        if (localStorage.getItem('mapData')) {
-          this.map.data = JSON.parse(localStorage.getItem('mapData'))
-        }
-        if (localStorage.getItem('mapSize')) {
-          this.map.size = localStorage.getItem('mapSize')
-        }
-        if (localStorage.getItem('mapLastSynced')) {
-          this.map.lastSynced = localStorage.getItem('mapLastSynced')
-        }
+        this.mapData = JSON.stringify(data)
+        this.mapSize = _.size(data)
+        this.mapLastSynced = new Date()
       }
     },
     computed: {
+      mapData: {
+        get: function () {
+          return JSON.parse(store.state.Map.mapData)
+        },
+        set: function (newValue) {
+          store.commit('SET_MAP_DATA', newValue)
+        }
+      },
+      mapSize: {
+        get: function () {
+          return store.state.Map.mapSize
+        },
+        set: function (newValue) {
+          store.commit('SET_MAP_SIZE', newValue)
+        }
+      },
+      mapLastSynced: {
+        get: function () {
+          return store.state.Map.mapLastSynced
+        },
+        set: function (newValue) {
+          store.commit('SET_MAP_LAST_SYNCED', newValue)
+        }
+      }
     },
     mounted: function () {
-      // Get map of coins from local storage, if available
-      this.getMapFromStore()
+      /**/
     }
   }
 </script>
