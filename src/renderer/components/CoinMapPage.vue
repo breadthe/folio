@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="entry in mapData">
-                    <td><input type="checkbox" v-model="entry.watch"></td>
+                    <td><input type="checkbox" :checked="entry.watch" @change="toggleWatched(entry.symbol)" title="Watch this coin"></td>
                     <td>{{ entry.symbol }}</td>
                     <td>{{ entry.name }}</td>
                 </tr>
@@ -93,18 +93,19 @@
           })
       },
       saveMapToStore: function (data) {
-        // Check this out for how to bind storage to input
-        // https://stackoverflow.com/questions/44456528/how-to-bind-input-field-and-update-vuex-state-at-same-time
         data.map(i => { i.watch = false })
-        this.mapData = JSON.stringify(data)
+        this.mapData = data
         this.mapSize = _.size(data)
         this.mapLastSynced = new Date()
+      },
+      toggleWatched: function (symbol) {
+        store.dispatch('setWatchFlag', symbol)
       }
     },
     computed: {
       mapData: {
         get: function () {
-          return JSON.parse(store.state.Map.mapData)
+          return store.state.Map.mapData
         },
         set: function (newValue) {
           store.commit('SET_MAP_DATA', newValue)

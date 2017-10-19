@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const state = {
   mapSize: 0,
   mapLastSynced: '',
@@ -13,13 +15,17 @@ const mutations = {
   },
   SET_MAP_DATA (state, data) {
     state.mapData = data
+  },
+  SET_WATCH_FLAG (state, symbol) {
+    const itemIndex = _.findIndex(state.mapData, entry => entry.symbol === symbol)
+    state.mapData[itemIndex].watch = !state.mapData[itemIndex].watch
   }
 }
 
 const actions = {
-  someAsyncTask ({ commit }) {
-    // do something async
-    commit('SOME_MUTATION')
+  setWatchFlag ({ commit }, symbol) {
+    // do this async
+    commit('SET_WATCH_FLAG', symbol)
   }
 }
 
