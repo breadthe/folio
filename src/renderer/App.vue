@@ -7,7 +7,7 @@
             <div class="tile is-ancestor">
                 <div class="tile is-vertical is-parent is-3">
                     <div class="tile is-child">
-                        <the-logo></the-logo>
+                        <the-logo :theVersion="theVersion"></the-logo>
 
                         <the-menu></the-menu>
                     </div>
@@ -38,6 +38,11 @@
       // 'the-footer': TheFooter
       'the-logo': TheLogo,
       'the-menu': TheMenu
+    },
+    data: function () {
+      return {
+        theVersion: 'v0.0.2'
+      }
     }
   }
 </script>
