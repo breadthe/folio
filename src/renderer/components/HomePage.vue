@@ -4,7 +4,7 @@
         <h1>{{ pageTitle }}</h1>
 
         <div>
-            Map contains <strong>{{ this.map.size }}</strong> items
+            Map contains <strong>{{ mapSize }}</strong> items
         </div>
 
     </section>
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+  import store from '../store'
+
   export default {
     name: 'home-page',
     components: { },
@@ -25,16 +27,17 @@
         }
       }
     },
-    mounted: function () {
-      // if (localStorage.getItem('mapData')) {
-      //   this.map.data = JSON.parse(localStorage.getItem('mapData'))
-      // }
-      if (localStorage.getItem('mapSize')) {
-        this.map.size = localStorage.getItem('mapSize')
+    computed: {
+      mapSize: {
+        get: function () {
+          return store.state.Map.mapSize
+        },
+        set: function (newValue) {
+          store.commit('SET_MAP_SIZE', newValue)
+        }
       }
-      // if (localStorage.getItem('mapLastSynced')) {
-      //   this.map.lastSynced = localStorage.getItem('mapLastSynced')
-      // }
+    },
+    mounted: function () {
     }
   }
 </script>
