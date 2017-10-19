@@ -16,3 +16,4 @@
 #### BUGS
 - Sometimes when on a page the corresponding menu option is not highlighted, seems to occur when live-reloading. This should be set when mounted.
 - Date format for mapLastSynced retrieved from storage has wrong format
+- (v0.0.4) ~~Desktop app build - routes don't work~~

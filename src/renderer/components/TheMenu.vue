@@ -16,10 +16,10 @@
     data: function () {
       return {
         menuItems: [
-          { path: '/#/', name: 'Home', logo: 'home', active: false },
-          { path: '/#/coin-map', name: 'Map', logo: 'map', active: false },
-          { path: '/#/settings', name: 'Settings', logo: 'gear', active: false },
-          { path: '/#/about', name: 'About', logo: 'question', active: false }
+          { path: '#/', name: 'Home', logo: 'home', active: false },
+          { path: '#/coin-map', name: 'Map', logo: 'map', active: false },
+          { path: '#/settings', name: 'Settings', logo: 'gear', active: false },
+          { path: '#/about', name: 'About', logo: 'question', active: false }
         ],
         menuItemIsSelected: true
       }
