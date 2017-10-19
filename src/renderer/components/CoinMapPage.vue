@@ -26,11 +26,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="entry in mapData">
-                    <td><input type="checkbox" :checked="entry.watch" @change="toggleWatched(entry.symbol)" title="Watch this coin"></td>
-                    <td>{{ entry.symbol }}</td>
-                    <td>{{ entry.name }}</td>
-                </tr>
+                    <tr v-for="coin in watchedCoins">
+                        <td><input type="checkbox" :checked="coin.watch" @change="toggleWatched(coin.symbol)" title="Watch this coin"></td>
+                        <td>{{ coin.symbol }}</td>
+                        <td>{{ coin.name }}</td>
+                    </tr>
+                    <tr v-for="coin in unwatchedCoins">
+                        <td><input type="checkbox" :checked="coin.watch" @change="toggleWatched(coin.symbol)" title="Watch this coin"></td>
+                        <td>{{ coin.symbol }}</td>
+                        <td>{{ coin.name }}</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
@@ -103,6 +108,12 @@
       }
     },
     computed: {
+      watchedCoins: function () {
+        return store.getters.watchedCoins
+      },
+      unwatchedCoins: function () {
+        return store.getters.unwatchedCoins
+      },
       mapData: {
         get: function () {
           return store.state.Map.mapData

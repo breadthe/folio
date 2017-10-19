@@ -3,7 +3,7 @@ import _ from 'lodash'
 const state = {
   mapSize: 0,
   mapLastSynced: '',
-  mapData: {}
+  mapData: []
 }
 
 const mutations = {
@@ -29,8 +29,14 @@ const actions = {
   }
 }
 
+const getters = {
+  watchedCoins: state => state.mapData.filter(coin => coin.watch),
+  unwatchedCoins: state => state.mapData.filter(coin => !coin.watch)
+}
+
 export default {
   state,
   mutations,
-  actions
+  actions,
+  getters
 }
