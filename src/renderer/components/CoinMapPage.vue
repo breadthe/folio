@@ -3,14 +3,6 @@
     <section class="container">
       <h1>{{ pageTitle }}</h1>
 
-        <button
-                @click="syncMap"
-                class="button"
-                :class="{ 'is-loading' : button.sync.loading, 'is-disabled' : button.sync.disabled }"
-                v-html="button.sync.icon + button.sync.label"></button>
-      <div>
-        Map contains <strong>{{ mapSize }}</strong> items
-      </div>
       <div>
         Last synced: {{ mapLastSynced || 'unknown' }}
       </div>
@@ -21,14 +13,15 @@
         <nav class="panel">
             <div class="panel-heading">
                 <div class="columns level-item">
-                    <div class="column">Tasks</div>
+                    <div class="column"><strong>{{ mapSize }}</strong> items</div>
                     <div class="column is-half">
                         <div class="field has-addons is-pulled-right">
                             <p class="control">
-                                <input class="input" type="text" placeholder="Add a task">
-                            </p>
-                            <p class="control">
-                                <button class="button">butt</button>
+                                <button
+                                        @click="syncMap"
+                                        class="button"
+                                        :class="{ 'is-loading' : button.sync.loading, 'is-disabled' : button.sync.disabled }"
+                                        v-html="button.sync.icon + button.sync.label"></button>
                             </p>
                         </div>
                     </div>
@@ -166,10 +159,10 @@
     },
     computed: {
       watchedCoins: function () {
-        return store.getters.watchedCoins
+        return store.getters.watchedCoins(this.filterStr)
       },
       unwatchedCoins: function () {
-        return store.getters.unwatchedCoins
+        return store.getters.unwatchedCoins(this.filterStr)
       },
       filteredCoins: function () {
         return store.getters.filteredCoins(this.filterStr)
@@ -203,11 +196,6 @@
       // Watch for text being entered in the Filter Task box
       filterStr: function () {
         this.button.filter.disabled = !this.filterStr.length
-        // if (this.filterStr.length) {
-        //   this.button.filter.disabled = false
-        // } else {
-        //   this.button.filter.disabled = true
-        // }
       }
     },
     mounted: function () {
