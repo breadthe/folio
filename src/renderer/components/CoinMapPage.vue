@@ -62,12 +62,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="coin in watchedCoins">
+                    <tr v-for="coin in watchedCoins" :key="coin.symbol">
                         <td><input type="checkbox" :checked="coin.watch" @change="toggleWatched(coin.symbol)" title="Watch this coin"></td>
                         <td>{{ coin.symbol }}</td>
                         <td>{{ coin.name }}</td>
                     </tr>
-                    <tr v-for="coin in unwatchedCoins">
+                    <tr v-for="coin in unwatchedCoins" :key="coin.symbol">
                         <td><input type="checkbox" :checked="coin.watch" @change="toggleWatched(coin.symbol)" title="Watch this coin"></td>
                         <td>{{ coin.symbol }}</td>
                         <td>{{ coin.name }}</td>
@@ -151,21 +151,47 @@
         this.mapLastSynced = new Date()
       },
       toggleWatched: function (symbol) {
-        store.dispatch('setWatchFlag', symbol)
+        store.dispatch('toggleWatchFlag', symbol)
       },
       removeFilter: function () {
         this.filterStr = ''
       }
     },
     computed: {
+      allCoins: function () {
+        return store.getters.allCoins
+      },
       watchedCoins: function () {
-        return store.getters.watchedCoins(this.filterStr)
+        const watchedCoins = this.allCoins.filter(coin => coin.watch)
+        if (this.filterStr.length) {
+          // Regex case sensitive/insensitive depending on the Match Case checkbox
+          const params = this.button.filter.matchCase ? 'g' : 'ig'
+          const re = new RegExp(this.filterStr, params)
+          return watchedCoins.filter(coin => {
+            if (typeof coin.name !== 'undefined') {
+              return coin.name.match(re) || coin.symbol.match(re)
+            } else {
+              return coin.symbol.match(re)
+            }
+          })
+        }
+        return watchedCoins
       },
       unwatchedCoins: function () {
-        return store.getters.unwatchedCoins(this.filterStr)
-      },
-      filteredCoins: function () {
-        return store.getters.filteredCoins(this.filterStr)
+        const unwatchedCoins = this.allCoins.filter(coin => !coin.watch)
+        if (this.filterStr.length) {
+          // Regex case sensitive/insensitive depending on the Match Case checkbox
+          const params = this.button.filter.matchCase ? 'g' : 'ig'
+          const re = new RegExp(this.filterStr, params)
+          return unwatchedCoins.filter(coin => {
+            if (typeof coin.name !== 'undefined') {
+              return coin.name.match(re) || coin.symbol.match(re)
+            } else {
+              return coin.symbol.match(re)
+            }
+          })
+        }
+        return unwatchedCoins
       },
       mapData: {
         get: function () {
