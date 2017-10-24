@@ -86,6 +86,7 @@
 
 <script>
   import _ from 'lodash'
+  import moment from 'moment'
   import store from '../store'
 
   export default {
@@ -95,10 +96,6 @@
       return {
         pageTitle: 'Coin Map',
         message: '',
-        // button: {
-        //   isLoading: false,
-        //   isDisabled: false
-        // },
         filterStr: '',
         button: {
           sync: {
@@ -148,7 +145,7 @@
         data.map(i => { i.watch = false })
         this.mapData = data
         this.mapSize = _.size(data)
-        this.mapLastSynced = new Date()
+        this.mapLastSynced = moment().format('MMMM Do YYYY, h:mm:ss a')
       },
       toggleWatched: function (symbol) {
         store.dispatch('toggleWatchFlag', symbol)

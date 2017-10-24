@@ -30,7 +30,7 @@ const actions = {
 }
 
 const getters = {
-  allCoins: (state) => { return state.mapData },
+  allCoins: (state) => { return state.mapData }
 }
 
 export default {

@@ -41,7 +41,7 @@
     },
     data: function () {
       return {
-        theVersion: 'v0.0.2'
+        theVersion: 'v0.0.5'
       }
     }
   }
