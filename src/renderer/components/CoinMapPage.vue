@@ -1,14 +1,13 @@
 <template>
-  <div class="section">
-    <section class="container">
-      <h1>{{ pageTitle }}</h1>
+  <!--<section class="section">-->
 
-      <div>
-        Last synced: {{ mapLastSynced || 'unknown' }}
-      </div>
-      <div>
-        {{ message }}
-      </div>
+    <div class="container">
+
+        <the-hero :pageTitle="pageTitle" :mapLastSynced="mapLastSynced"></the-hero>
+
+        <div>
+            {{ message }}
+        </div>
 
         <nav class="panel">
             <div class="panel-heading">
@@ -80,18 +79,21 @@
             <p>The coin map is empty. <a @click="syncMap">Sync now?</a></p>
         </section>
 
-    </section>
-  </div>
+    </div>
+  <!--</section>-->
 </template>
 
 <script>
   import _ from 'lodash'
   import moment from 'moment'
   import store from '../store'
+  import TheHero from './TheHero'
 
   export default {
     name: 'coin-map-page',
-    components: { },
+    components: {
+      TheHero
+    },
     data: function () {
       return {
         pageTitle: 'Coin Map',

@@ -7,7 +7,6 @@ aside {
     min-height: $app-height ;
   }
 }
-
 .app-logo {
   background: $grey-lighter;
   padding: $panel-heading-padding;
@@ -18,4 +17,14 @@ aside {
 }
 .menu-list a.is-active {
   background: $white;
+}
+.hero {
+  h1, h2 {
+    font-weight: 300;
+  }
+  &.small-section {
+    margin: 0;
+    margin-bottom: 1.5em;
+    padding: 0;
+  }
 }
