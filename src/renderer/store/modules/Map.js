@@ -22,7 +22,7 @@ const mutations = {
     state.mapData = JSON.parse(window.localStorage.getItem('mapData'))
   },
   SET_MAP_SIZE (state) {
-    state.mapSize = _.size(state.mapData)
+    state.mapSize = state.mapData.length
   },
   TOGGLE_WATCH_FLAG (state, symbol) {
     const itemIndex = _.findIndex(state.mapData, entry => entry.symbol === symbol)

@@ -85,7 +85,6 @@
 </template>
 
 <script>
-  import _ from 'lodash'
   import moment from 'moment'
   import store from '../store'
 
@@ -144,7 +143,6 @@
       saveMapToStore: function (data) {
         data.map(i => { i.watch = false })
         this.mapData = data
-        this.mapSize = _.size(data)
         this.mapLastSynced = moment().format('MMMM Do YYYY, h:mm:ss a')
       },
       toggleWatched: function (symbol) {
