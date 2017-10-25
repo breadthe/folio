@@ -211,7 +211,7 @@
           return store.state.Map.mapLastSynced
         },
         set: function (newValue) {
-          store.commit('SET_MAP_LAST_SYNCED', newValue)
+          store.dispatch('setMapLastSynced', newValue)
         }
       }
     },

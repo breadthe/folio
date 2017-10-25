@@ -30,6 +30,8 @@
   // import TheFooter from './components/TheFooter.vue'
   import TheLogo from './components/TheLogo.vue'
   import TheMenu from './components/TheMenu.vue'
+  import _ from 'lodash'
+  import store from './store'
 
   export default {
     name: 'ledger',
@@ -39,10 +41,23 @@
       'the-logo': TheLogo,
       'the-menu': TheMenu
     },
-    data: function () {
+    data () {
       return {
         theVersion: 'v0.0.5'
       }
+    },
+    mounted () {
+      console.log('app mounted ' + this.theVersion)
+
+      const mapLastSynced = window.localStorage.getItem('mapLastSynced')
+      // retrieve map data from localStorage, unserialize it
+      const mapData = JSON.parse(window.localStorage.getItem('mapData'))
+      const mapSize = _.size(mapData)
+
+      // async write map data to Vuex store
+      store.dispatch('setMapLastSynced', mapLastSynced)
+      store.dispatch('setMapData', mapData)
+      store.dispatch('setMapSize', mapSize)
     }
   }
 </script>
