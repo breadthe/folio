@@ -1,21 +1,30 @@
 @import "./_vars";
 
-aside {
-  &.menu {
-    background: $grey-lighter;
-    height: 100%;
-    min-height: $app-height ;
+.ledger {
+  .tile {
+    & > .section {
+      padding: 0;
+      padding-right: 1.5rem;
+    }
   }
-}
 
-.app-logo {
-  background: $grey-lighter;
-  padding: $panel-heading-padding;
-  padding-bottom: 1em;
-  h1 {
-    font-size: $size-2;
+  aside {
+    &.menu {
+      background: $grey-lighter;
+      height: 100%;
+      min-height: $app-height ;
+    }
   }
-}
-.menu-list a.is-active {
-  background: $white;
+
+  .app-logo {
+    background: $grey-lighter;
+    padding: $panel-heading-padding;
+    padding-bottom: 1em;
+    h1 {
+      font-size: $size-2;
+    }
+  }
+  .menu-list a.is-active {
+    background: $white;
+  }
 }
