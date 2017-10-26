@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" class="ledger">
         <div class="container is-fluid">
 
             <!--<the-header></the-header>-->
@@ -30,7 +30,6 @@
   // import TheFooter from './components/TheFooter.vue'
   import TheLogo from './components/TheLogo.vue'
   import TheMenu from './components/TheMenu.vue'
-  import _ from 'lodash'
   import store from './store'
 
   export default {
@@ -43,7 +42,7 @@
     },
     data () {
       return {
-        theVersion: 'v0.0.5'
+        theVersion: 'v0.0.6'
       }
     },
     mounted () {
@@ -52,12 +51,15 @@
       const mapLastSynced = window.localStorage.getItem('mapLastSynced')
       // retrieve map data from localStorage, unserialize it
       const mapData = JSON.parse(window.localStorage.getItem('mapData'))
-      const mapSize = _.size(mapData)
 
       // async write map data to Vuex store
-      store.dispatch('setMapLastSynced', mapLastSynced)
-      store.dispatch('setMapData', mapData)
-      store.dispatch('setMapSize', mapSize)
+      if (mapLastSynced !== null && mapLastSynced.length) {
+        store.dispatch('setMapLastSynced', mapLastSynced)
+      }
+      if (mapData) {
+        store.dispatch('setMapData', mapData)
+        store.dispatch('setMapSize', mapData.length)
+      }
     }
   }
 </script>

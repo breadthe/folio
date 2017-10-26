@@ -1,10 +1,30 @@
 <template>
   <div class="section">
     <section class="container">
-        <h1>{{ pageTitle }}</h1>
 
-        <div>
-            Map contains <strong>{{ mapSize }}</strong> items
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        {{ pageTitle }}
+                    </h1>
+                    <h2 class="subtitle">
+                        Hero subtitle
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <div class="tile is-ancestor">
+            <div class="tile notification is-primary is-6">
+                <article class="tile is-child notification is-primary">
+                    <p class="title">Map contains</p>
+                    <p class="subtitle"><strong>{{ mapSize }}</strong> items</p>
+                </article>
+            </div>
+            <div class="tile">
+                <!-- Add content or other tiles -->
+            </div>
         </div>
 
     </section>

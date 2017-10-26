@@ -193,15 +193,16 @@
           return store.state.Map.mapData
         },
         set: function (newValue) {
-          store.commit('SET_MAP_DATA', newValue)
+          // store.commit('SET_MAP_DATA', newValue)
+          store.dispatch('setMapData', newValue)
         }
       },
       mapSize: {
         get: function () {
           return store.state.Map.mapSize
         },
-        set: function (newValue) {
-          store.commit('SET_MAP_SIZE', newValue)
+        set: function () {
+          store.dispatch('setMapSize')
         }
       },
       mapLastSynced: {
