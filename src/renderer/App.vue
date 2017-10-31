@@ -31,6 +31,7 @@
   import TheLogo from './components/TheLogo.vue'
   import TheMenu from './components/TheMenu.vue'
   import store from './store'
+  import localStorage from './store/localStorage'
 
   export default {
     name: 'ledger',
@@ -42,15 +43,14 @@
     },
     data () {
       return {
-        theVersion: 'v0.0.6'
+        theVersion: 'v0.0.7'
       }
     },
     mounted () {
       console.log('app mounted ' + this.theVersion)
 
-      const mapLastSynced = window.localStorage.getItem('mapLastSynced')
-      // retrieve map data from localStorage, unserialize it
-      const mapData = JSON.parse(window.localStorage.getItem('mapData'))
+      const mapLastSynced = localStorage.mapLastSynced.get()
+      const mapData = localStorage.mapData.get()
 
       // async write map data to Vuex store
       if (mapLastSynced !== null && mapLastSynced.length) {

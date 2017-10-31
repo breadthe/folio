@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import localStorage from '../localStorage'
 
 const state = {
   mapLastSynced: '',
@@ -9,17 +10,17 @@ const state = {
 const mutations = {
   SET_MAP_LAST_SYNCED (state, date) {
     // save to localStorage
-    window.localStorage.setItem('mapLastSynced', date)
+    localStorage.mapLastSynced.set(date)
 
     // get from local storage, set it in store
-    state.mapLastSynced = window.localStorage.getItem('mapLastSynced')
+    state.mapLastSynced = localStorage.mapLastSynced.get()
   },
   SET_MAP_DATA (state, data) {
     // save to localStorage
-    window.localStorage.setItem('mapData', JSON.stringify(data))
+    localStorage.mapData.set(data)
 
     // get from local storage, set it in store
-    state.mapData = JSON.parse(window.localStorage.getItem('mapData'))
+    state.mapData = localStorage.mapData.get()
   },
   SET_MAP_SIZE (state) {
     state.mapSize = state.mapData.length
@@ -27,6 +28,9 @@ const mutations = {
   TOGGLE_WATCH_FLAG (state, symbol) {
     const itemIndex = _.findIndex(state.mapData, entry => entry.symbol === symbol)
     state.mapData[itemIndex].watch = !state.mapData[itemIndex].watch
+
+    // save to localStorage
+    localStorage.mapData.set(state.mapData)
   }
 }
 
