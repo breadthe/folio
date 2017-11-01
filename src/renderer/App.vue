@@ -7,7 +7,7 @@
             <div class="tile is-ancestor">
                 <div class="tile is-vertical is-parent is-3">
                     <div class="tile is-child">
-                        <the-logo :theVersion="theVersion"></the-logo>
+                        <the-logo :the-version="theVersion"></the-logo>
 
                         <the-menu></the-menu>
                     </div>

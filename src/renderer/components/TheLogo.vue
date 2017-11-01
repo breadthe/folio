@@ -11,7 +11,13 @@
 <script>
   export default {
     name: 'the-logo',
-    props: [ 'theVersion' ]
+    props: {
+      theVersion: {
+        type: String,
+        required: true,
+        default: 'v0.0.0'
+      }
+    }
   }
 </script>
 
