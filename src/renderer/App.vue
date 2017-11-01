@@ -26,20 +26,20 @@
 </template>
 
 <script>
-  // import TheHeader from './components/TheHeader.vue'
-  // import TheFooter from './components/TheFooter.vue'
-  import TheLogo from './components/TheLogo.vue'
-  import TheMenu from './components/TheMenu.vue'
+  // import theHeader from './components/TheHeader.vue'
+  // import theFooter from './components/TheFooter.vue'
+  import theLogo from './components/TheLogo.vue'
+  import theMenu from './components/TheMenu.vue'
   import store from './store'
   import localStorage from './store/localStorage'
 
   export default {
     name: 'ledger',
     components: {
-      // 'the-header': TheHeader,
-      // 'the-footer': TheFooter
-      'the-logo': TheLogo,
-      'the-menu': TheMenu
+      // 'the-header': theHeader,
+      // 'the-footer': theFooter
+      theLogo,
+      theMenu
     },
     data () {
       return {
