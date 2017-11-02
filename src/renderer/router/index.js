@@ -16,6 +16,11 @@ export default new Router({
       component: require('@/components/CoinMapPage')
     },
     {
+      path: '/news',
+      name: 'news-page',
+      component: require('@/components/NewsPage')
+    },
+    {
       path: '/settings',
       name: 'settings-page',
       component: require('@/components/SettingsPage')

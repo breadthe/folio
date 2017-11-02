@@ -18,6 +18,7 @@
         menuItems: [
           { path: '#/', name: 'Home', logo: 'home', active: false },
           { path: '#/coin-map', name: 'Map', logo: 'map', active: false },
+          { path: '#/news', name: 'News', logo: 'newspaper-o', active: false },
           { path: '#/settings', name: 'Settings', logo: 'gear', active: false },
           { path: '#/about', name: 'About', logo: 'question', active: false }
         ],
