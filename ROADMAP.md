@@ -1,5 +1,12 @@
 # Roadmap / wishlist
 
+#### Watchlist
+
+- Attach socket data to Vuex store
+- Separate coin details (price, etc) by exchange
+- (MAYBE) Save (latest) socket data in localStorage
+- (NICE TO HAVE) Socket connectivity status
+
 #### Map syncing
 
 - (v0.0.2) ~~Use Vuex store instead of localStorage~~

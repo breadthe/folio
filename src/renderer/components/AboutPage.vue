@@ -17,6 +17,7 @@
     data: function () {
       return {
         pageTitle: 'About',
+        pageSubTitle: '',
         message: '',
         button: {
           isLoading: false,

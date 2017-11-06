@@ -17,6 +17,7 @@
     data: function () {
       return {
         pageTitle: 'Settings',
+        pageSubTitle: 'Settings',
         message: '',
         button: {
           isLoading: false,

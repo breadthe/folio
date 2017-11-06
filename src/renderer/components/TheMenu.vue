@@ -17,6 +17,7 @@
       return {
         menuItems: [
           { path: '#/', name: 'Home', logo: 'home', active: false },
+          { path: '#/watch-list', name: 'Watchlist', logo: 'area-chart', active: false },
           { path: '#/coin-map', name: 'Map', logo: 'map', active: false },
           { path: '#/settings', name: 'Settings', logo: 'gear', active: false },
           { path: '#/about', name: 'About', logo: 'question', active: false }

@@ -11,6 +11,11 @@ export default new Router({
       component: require('@/components/HomePage')
     },
     {
+      path: '/watch-list',
+      name: 'watch-list-page',
+      component: require('@/components/WatchListPage')
+    },
+    {
       path: '/coin-map',
       name: 'coin-map-page',
       component: require('@/components/CoinMapPage')
