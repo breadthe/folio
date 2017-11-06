@@ -5,14 +5,17 @@
         <the-hero :page-title="pageTitle" :page-sub-title="pageSubTitle"></the-hero>
 
         <div class="tile is-ancestor">
-            <div class="tile notification is-6">
+            <div class="tile is-parent is-6">
                 <article class="tile is-child notification is-light">
-                    <p class="title">Map contains</p>
-                    <p class="subtitle"><strong>{{ mapSize }}</strong> items</p>
+                    <p class="subtitle">Map</p>
+                    <p><strong>{{ mapSize }}</strong> items</p>
                 </article>
             </div>
-            <div class="tile">
-                <!-- Add content or other tiles -->
+            <div class="tile is-parent is-6">
+                <article class="tile is-child notification is-light">
+                    <p class="subtitle">Watching</p>
+                    <p><strong>{{ watchedCoinsCount }}</strong> items</p>
+                </article>
             </div>
         </div>
 
@@ -46,6 +49,9 @@
         set: function (newValue) {
           store.commit('SET_MAP_SIZE', newValue)
         }
+      },
+      watchedCoinsCount: function () {
+        return store.getters.watchedCoins.length
       }
     },
     mounted: function () {

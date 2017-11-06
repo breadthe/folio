@@ -52,7 +52,8 @@ const actions = {
 }
 
 const getters = {
-  allCoins: (state) => { return state.mapData }
+  allCoins: (state) => { return state.mapData },
+  watchedCoins: (state) => { return state.mapData.filter(coin => coin.watch) }
 }
 
 export default {
