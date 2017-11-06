@@ -7,12 +7,12 @@
       <p v-if="isConnected">We're connected to the server!</p>
     </div>
 
-    <section class="section" v-if="watchedCoins">
+    <section class="section" v-if="watchedCoins && trades">
         <div class="tile is-ancestor">
             <div class="tile is-parent is-vertical" v-for="coin in trades" :key="coin.coin">
                 <article class="tile is-child notification is-light">
                     <p class="subtitle" :title="coin.details.long">{{ coin.coin }}</p>
-                    <p>${{ coin.details.price }}</p>
+                    <p>${{ coin.details.price.toFixed(2) }}</p>
                     <p><strong>24h:</strong>&nbsp;
                         <span
                             :class="{
@@ -126,7 +126,7 @@
     },
     mounted: function () {
       /**/
-      console.log('watchlist mounted')
+      // console.log('watchlist mounted')
       // this.$socket.connect()
       // this.$socket.emit('ping', 'PING')
       // this.$socket.emit('page', 'BTC')
