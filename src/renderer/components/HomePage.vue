@@ -2,22 +2,11 @@
   <div class="section">
     <section class="container">
 
-        <section class="hero">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">
-                        {{ pageTitle }}
-                    </h1>
-                    <h2 class="subtitle">
-                        Hero subtitle
-                    </h2>
-                </div>
-            </div>
-        </section>
+        <the-hero :page-title="pageTitle" :page-sub-title="pageSubTitle"></the-hero>
 
         <div class="tile is-ancestor">
-            <div class="tile notification is-primary is-6">
-                <article class="tile is-child notification is-primary">
+            <div class="tile notification is-6">
+                <article class="tile is-child notification is-light">
                     <p class="title">Map contains</p>
                     <p class="subtitle"><strong>{{ mapSize }}</strong> items</p>
                 </article>
@@ -33,13 +22,15 @@
 
 <script>
   import store from '../store'
+  import TheHero from './TheHero'
 
   export default {
     name: 'home-page',
-    components: { },
+    components: { TheHero },
     data: function () {
       return {
         pageTitle: 'Home',
+        pageSubTitle: 'Home subtitle',
         map: {
           size: 0,
           lastSynced: '',

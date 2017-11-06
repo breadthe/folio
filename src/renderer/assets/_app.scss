@@ -1,6 +1,10 @@
 @import "./_vars";
 
 .ledger {
+  .hero-body {
+    padding: 1.5rem;
+  }
+
   .tile {
     & > .section {
       padding: 0;

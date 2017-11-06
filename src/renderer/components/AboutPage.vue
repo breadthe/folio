@@ -1,15 +1,19 @@
 <template>
   <div class="section">
     <section class="container">
-        <h1>{{ pageTitle }}</h1>
+
+        <the-hero :page-title="pageTitle" :page-sub-title="pageSubTitle"></the-hero>
+
     </section>
   </div>
 </template>
 
 <script>
+  import TheHero from './TheHero'
+
   export default {
     name: 'about-page',
-    components: { },
+    components: { TheHero },
     data: function () {
       return {
         pageTitle: 'About',
