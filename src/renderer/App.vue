@@ -43,7 +43,7 @@
     },
     data () {
       return {
-        theVersion: 'v0.0.7'
+        theVersion: 'v0.0.8'
       }
     },
     mounted () {

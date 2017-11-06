@@ -13,7 +13,7 @@
 - (v0.0.5) ~~Filtering~~
 - (LOW PRIORITY if filtering is implemented) Alphabetic sorting of coins
 - (NICE TO HAVE) Drag-sorting watched coins
-- Show count of filtered coins
+- (v0.0.8) ~~Show count of filtered coins~~
 
 #### BUGS
 - Sometimes when on a page the corresponding menu option is not highlighted, seems to occur when live-reloading. This should be set when mounted.

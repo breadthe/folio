@@ -10,7 +10,10 @@
     <nav class="panel">
         <div class="panel-heading">
             <div class="columns level-item">
-                <div class="column"><strong>{{ mapSize }}</strong> items</div>
+                <div class="column">
+                    <strong>{{ mapSize }}</strong> items
+                    <em class="is-size-7" v-if="filteredCount && filteredCount !== mapSize">(showing {{ filteredCount }})</em>
+                </div>
                 <div class="column is-half">
                     <div class="field has-addons is-pulled-right">
                         <p class="control">
@@ -212,6 +215,9 @@
         set: function (newValue) {
           store.dispatch('setMapLastSynced', newValue)
         }
+      },
+      filteredCount () {
+        return this.watchedCoins.length + this.unwatchedCoins.length
       }
     },
     watch: {
