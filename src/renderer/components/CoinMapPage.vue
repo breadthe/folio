@@ -122,7 +122,6 @@
     },
     methods: {
       syncMap: function () {
-        // const url = 'http://socket.coincap.io/page/SC'
         const url = 'http://socket.coincap.io/map'
         this.message = 'Getting data'
         this.button.sync.disabled = true
@@ -196,7 +195,6 @@
           return store.state.Map.mapData
         },
         set: function (newValue) {
-          // store.commit('SET_MAP_DATA', newValue)
           store.dispatch('setMapData', newValue)
         }
       },

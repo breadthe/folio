@@ -14,6 +14,13 @@ Vue.config.productionTip = false
 
 export const SocketInstance = socketio('http://socket.coincap.io')
 Vue.use(VueSocketIO, SocketInstance)
+SocketInstance.on('connect', function () {
+  // SocketInstance.disconnect() // instantly disconnect
+  store.dispatch('socket_connect', true)
+})
+SocketInstance.on('disconnect', function () {
+  store.dispatch('socket_connect', false)
+})
 
 /* eslint-disable no-new */
 new Vue({

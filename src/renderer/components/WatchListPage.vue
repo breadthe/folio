@@ -4,7 +4,8 @@
     <the-hero :page-title="pageTitle"></the-hero>
 
     <div>
-      <p v-if="isConnected">We're connected to the server!</p>
+      <p v-if="isConnected"><i class="fa fa-circle has-text-success" aria-hidden="true"></i>&nbsp;Connected</p>
+      <p v-else><i class="fa fa-circle has-text-danger" aria-hidden="true"></i>&nbsp;Not Connected</p>
     </div>
 
     <section class="section" v-if="watchedCoins && trades">
@@ -97,14 +98,12 @@
     },
     sockets: {
       // Fired when the socket connects.
-      // connect () {
-      //   this.isConnected = true
-      //   console.log('socket connected')
-      // },
-      // disconnect () {
-      //   this.isConnected = false
-      //   console.log('socket disconnected')
-      // },
+      connect () {
+        this.isConnected = true
+      },
+      disconnect () {
+        this.isConnected = false
+      },
       trades (tradeMsg) {
         // push only the watched coins
         if (_.find(this.watchedCoins, function (o) { return o.symbol === tradeMsg.message.coin })) {

@@ -34,7 +34,25 @@ const mapData = {
   }
 }
 
+const trades = {
+  key: 'trades',
+  /**
+   * @param {object} data
+   * @returns {void}
+   */
+  set: (data) => {
+    window.localStorage.setItem('trades', JSON.stringify(data))
+  },
+  /**
+   * @returns {array}
+   */
+  get: () => {
+    return JSON.parse(window.localStorage.getItem('trades'))
+  }
+}
+
 export default ({
   mapLastSynced,
-  mapData
+  mapData,
+  trades
 })
