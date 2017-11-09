@@ -48,7 +48,7 @@
         pageTitle: 'Watchlist',
         isConnected: false,
         socketMessage: '',
-        trades: [],
+        // trades: [],
         message: '',
         filterStr: '',
         button: {
@@ -89,11 +89,8 @@
       }
     },
     computed: {
-      allCoins: function () {
-        return store.getters.allCoins
-      },
-      watchedCoins: function () {
-        return store.getters.watchedCoins
+      trades: function () {
+        return store.getters.trades
       }
     },
     sockets: {
@@ -105,22 +102,28 @@
         this.isConnected = false
       },
       trades (tradeMsg) {
+        // get trades from Vuex
+        const trades = this.store.getters.trades
+
         // push only the watched coins
         if (_.find(this.watchedCoins, function (o) { return o.symbol === tradeMsg.message.coin })) {
           // if the coin is not yet in the array, insert it
-          if (!_.find(this.trades, function (o) { return o.coin === tradeMsg.message.coin })) {
-            this.trades.push({
+          if (!_.find(trades, function (o) { return o.coin === tradeMsg.message.coin })) {
+            trades.push({
               coin: tradeMsg.message.coin,
               exchange: tradeMsg.exchange_id,
               details: tradeMsg.message.msg
             })
           // if the coin is in the array, update the details
           } else {
-            const idx = _.findIndex(this.trades, o => o.coin === tradeMsg.message.coin)
-            this.trades[idx].details = tradeMsg.message.msg
-            this.trades[idx].exchange = tradeMsg.exchange_id
+            const idx = _.findIndex(trades, o => o.coin === tradeMsg.message.coin)
+            trades[idx].details = tradeMsg.message.msg
+            trades[idx].exchange = tradeMsg.exchange_id
           }
         }
+
+        // set trades to Vuex
+        this.store.dispatch('setTrades', trades)
       }
     },
     mounted: function () {

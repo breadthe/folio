@@ -13,8 +13,8 @@ const mutations = {
   SOCKET_USER_MESSAGE: (state, message) => {
     state.message = message
   },
-  SET_TRADES: (state, data) => {
-    localStorage.trades.set(data)
+  SET_TRADES: (state, trades) => {
+    localStorage.trades.set(trades)
 
     state.trades = localStorage.trades.get()
   }
@@ -23,6 +23,9 @@ const mutations = {
 const actions = {
   socket_connect ({ commit }, status) {
     commit('SOCKET_CONNECT', status)
+  },
+  setTrades ({ commit }, trades) {
+    commit('SET_TRADES', trades)
   }
 }
 
