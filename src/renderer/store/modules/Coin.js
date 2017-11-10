@@ -30,12 +30,8 @@ const actions = {
 }
 
 const getters = {
-  trades: (state) => {
-    return state.trades
-  },
-  connect: (state) => {
-    return state.connect
-  }
+  trades: (state) => { return state.trades },
+  connect: (state) => { return state.connect }
 }
 
 export default {

@@ -9,10 +9,12 @@
 
 #### Watchlist
 
-- (v0.0.10) Attach socket data to Vuex store
+- Retrieve last coin details from localStorage when mounting the app
 - Separate coin details (price, etc) by exchange
-- (v0.0.10) Save (latest) socket data in localStorage
-- (v0.0.10) Socket connectivity status
+- ~~(v0.0.10) Attach socket data to Vuex store~~
+- ~~(v0.0.10) Save (latest) socket data in localStorage~~
+- ~~(v0.0.10) Socket connectivity status~~
+- (NICE TO HAVE) Button to connect to socket (disconnected by default)
 
 #### Map syncing
 

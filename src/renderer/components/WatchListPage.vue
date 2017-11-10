@@ -23,6 +23,8 @@
                             }">{{ coin.details.cap24hrChange }}%</span>
                     </p>
                     <p>{{ coin.exchange }}</p>
+                    <p class="is-size-7">{{ coin.timestamp.date }}</p>
+                    <p class="is-size-7">{{ coin.timestamp.time }}</p>
                 </article>
             </div>
         </div>
@@ -36,7 +38,7 @@
 
 <script>
   import _ from 'lodash'
-  // import moment from 'moment'
+  import moment from 'moment'
   import store from '../store'
   import TheHero from './TheHero'
 
@@ -80,7 +82,7 @@
     },
     computed: {
       trades: function () {
-        return store.getters.trades
+        return store.getters.trades.slice()
       },
       watchedCoins: function () {
         return store.getters.watchedCoins
@@ -98,21 +100,29 @@
       trades (tradeMsg) {
         // get trades from Vuex
         let trades = this.trades
+        const date = moment().format('MMMM Do YYYY')
+        const time = moment().format('h:mm:ss a')
+
+        const newTrade = {
+          timestamp: {
+            date: date,
+            time: time
+          },
+          coin: tradeMsg.message.coin,
+          exchange: tradeMsg.exchange_id,
+          details: tradeMsg.message.msg
+        }
 
         // push only the watched coins
         if (_.find(this.watchedCoins, function (o) { return o.symbol === tradeMsg.message.coin })) {
+          const idx = _.findIndex(trades, o => o.coin === tradeMsg.message.coin)
+
           // if the coin is not yet in the array, insert it
-          if (!_.find(trades, function (o) { return o.coin === tradeMsg.message.coin })) {
-            trades.push({
-              coin: tradeMsg.message.coin,
-              exchange: tradeMsg.exchange_id,
-              details: tradeMsg.message.msg
-            })
+          if (idx === -1) {
+            trades.push(newTrade)
           // if the coin is in the array, update the details
           } else {
-            const idx = _.findIndex(trades, o => o.coin === tradeMsg.message.coin)
-            trades[idx].details = tradeMsg.message.msg
-            trades[idx].exchange = tradeMsg.exchange_id
+            trades[idx] = newTrade
           }
         }
 
