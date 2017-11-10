@@ -36,7 +36,7 @@
 
 <script>
   import _ from 'lodash'
-  import moment from 'moment'
+  // import moment from 'moment'
   import store from '../store'
   import TheHero from './TheHero'
 
@@ -46,9 +46,7 @@
     data: function () {
       return {
         pageTitle: 'Watchlist',
-        isConnected: false,
         socketMessage: '',
-        // trades: [],
         message: '',
         filterStr: '',
         button: {
@@ -76,14 +74,6 @@
       }
     },
     methods: {
-      saveMapToStore: function (data) {
-        data.map(i => { i.watch = false })
-        this.mapData = data
-        this.mapLastSynced = moment().format('MMMM Do YYYY, h:mm:ss a')
-      },
-      toggleWatched: function (symbol) {
-        store.dispatch('toggleWatchFlag', symbol)
-      },
       removeFilter: function () {
         this.filterStr = ''
       }
@@ -91,19 +81,23 @@
     computed: {
       trades: function () {
         return store.getters.trades
+      },
+      watchedCoins: function () {
+        return store.getters.watchedCoins
+      },
+      isConnected: function () {
+        return store.getters.connect
       }
     },
     sockets: {
       // Fired when the socket connects.
       connect () {
-        this.isConnected = true
       },
       disconnect () {
-        this.isConnected = false
       },
       trades (tradeMsg) {
         // get trades from Vuex
-        const trades = this.store.getters.trades
+        let trades = this.trades
 
         // push only the watched coins
         if (_.find(this.watchedCoins, function (o) { return o.symbol === tradeMsg.message.coin })) {
@@ -123,7 +117,7 @@
         }
 
         // set trades to Vuex
-        this.store.dispatch('setTrades', trades)
+        store.dispatch('setTrades', trades)
       }
     },
     mounted: function () {
