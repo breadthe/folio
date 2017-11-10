@@ -1,5 +1,12 @@
 # Roadmap / wishlist
 
+#### Layout
+- Improve layout for Watchlist coin cards
+- Find a way to pin left nav and make content scroll independently
+- Pin the title/hero/menu/toolbar to the top of each page
+- (NICE TO HAVE) Collapse left nav down to icons only. Put an arrow "<<" button pinned to the bottom of the nav that collapses/expands the menu.
+- (IF ABOVE) Tooltips for icons in collapsed nav
+
 #### Watchlist
 
 - (v0.0.10) Attach socket data to Vuex store
