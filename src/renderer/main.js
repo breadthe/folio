@@ -8,8 +8,8 @@ import store from './store'
 import socketio from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
 
-import tailwind from 'tailwindcss'
-import tailwindcss from '@/assets/tailwind.css'
+import Tailwind from 'tailwindcss'
+import TailwindComponents from '@/assets/tailwind-components.css'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
@@ -30,7 +30,7 @@ new Vue({
   components: { App },
   router,
   store,
-  tailwind,
-  tailwindcss,
+  Tailwind,
+  TailwindComponents,
   template: '<App/>'
 }).$mount('#app')
