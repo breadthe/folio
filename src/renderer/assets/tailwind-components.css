@@ -2,10 +2,10 @@
 @import "tailwind-utilities.css";
 
 .watchlist-card-wrapper {
-    @apply .tw-w-full;
+    @apply .tw-w-1/2 .tw-float-left .tw-p-1;
 }
 .watchlist-card {
-    @apply .tw-float-left .tw-w-auto .tw-max-w-xs .tw-overflow-hidden .tw-m-1 .tw-bg-grey-lightest .tw-shadow .tw-rounded-sm .tw-text-xs;
+    @apply .tw-w-full .tw-overflow-hidden .tw-bg-grey-lightest .tw-shadow .tw-rounded-sm .tw-text-xs;
 }
 .watchlist-card-thumb {
     @apply .tw-float-left .tw-px-4 .tw-py-6 .tw-mr-2 .tw-bg-grey-lighter;

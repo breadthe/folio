@@ -8,32 +8,34 @@
       <p v-else><i class="fa fa-circle has-text-danger" aria-hidden="true"></i>&nbsp;Not Connected</p>
     </div>
 
-    <div class="tw-container tw-clearfix watchlist-card-wrapper tw-bg-red-lightest" v-if="watchedCoins && trades">
-        <div class="watchlist-card" v-for="coin in trades" :key="coin.coin">
-            <div class="watchlist-card-thumb">
-                <p :title="coin.details.long">{{ coin.coin }}</p>
-            </div>
-            <div class="watchlist-card-details">
-                <p>${{ coin.details.price.toFixed(2) }}</p>
-                <p><strong>24h:</strong>&nbsp;
-                    <span
-                            :class="{
-                                'has-text-danger': (coin.details.cap24hrChange < 0),
-                                'has-text-success': (coin.details.cap24hrChange > 0),
-                                'has-text-primary': (coin.details.cap24hrChange === 0)
-                            }">{{ coin.details.cap24hrChange }}%</span>
-                </p>
-                <p>{{ coin.exchange }}</p>
-            </div>
-            <div class="tw-bg-grey-light">
-                <p>{{ coin.timestamp.date }}</p>
-                <p>{{ coin.timestamp.time }}</p>
+    <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins && trades">
+        <div class="watchlist-card-wrapper" v-for="coin in trades" :key="coin.coin">
+            <div class="watchlist-card">
+                <div class="watchlist-card-thumb">
+                    <p :title="coin.details.long">{{ coin.coin }}</p>
+                </div>
+                <div class="watchlist-card-details">
+                    <p>${{ coin.details.price.toFixed(2) }}</p>
+                    <p><strong>24h:</strong>&nbsp;
+                        <span
+                                :class="{
+                                    'has-text-danger': (coin.details.cap24hrChange < 0),
+                                    'has-text-success': (coin.details.cap24hrChange > 0),
+                                    'has-text-primary': (coin.details.cap24hrChange === 0)
+                                }">{{ coin.details.cap24hrChange }}%</span>
+                    </p>
+                    <p>{{ coin.exchange }}</p>
+                </div>
+                <div class="tw-bg-grey-light tw-px-1">
+                    <p class="tw-float-right">{{ coin.timestamp.date }}</p>
+                    <p class="tw-float-left">{{ coin.timestamp.time }}</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="section" v-else>
+    </section>
+    <section class="section" v-else>
         Watchlist is empty
-    </div>
+    </section>
 
   </div>
 </template>
