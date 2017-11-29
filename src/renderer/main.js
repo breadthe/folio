@@ -8,6 +8,9 @@ import store from './store'
 import socketio from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
 
+import tailwind from 'tailwindcss'
+import tailwindcss from '@/assets/tailwind.css'
+
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
@@ -27,5 +30,7 @@ new Vue({
   components: { App },
   router,
   store,
+  tailwind,
+  tailwindcss,
   template: '<App/>'
 }).$mount('#app')
