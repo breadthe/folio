@@ -1,0 +1,15 @@
+@import "tailwind-preflight.css";
+@import "tailwind-utilities.css";
+
+.watchlist-card-wrapper {
+    @apply .tw-w-full;
+}
+.watchlist-card {
+    @apply .tw-float-left .tw-w-auto .tw-max-w-xs .tw-overflow-hidden .tw-m-1 .tw-bg-grey-lightest .tw-shadow .tw-rounded-sm .tw-text-xs;
+}
+.watchlist-card-thumb {
+    @apply .tw-float-left .tw-px-4 .tw-py-6 .tw-mr-2 .tw-bg-grey-lighter;
+}
+.watchlist-card-details {
+    @apply .tw-p-2;
+}

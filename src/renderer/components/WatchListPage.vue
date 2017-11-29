@@ -8,30 +8,32 @@
       <p v-else><i class="fa fa-circle has-text-danger" aria-hidden="true"></i>&nbsp;Not Connected</p>
     </div>
 
-    <section class="section" v-if="watchedCoins && trades">
-        <div class="tile is-ancestor">
-            <div class="tile is-parent is-vertical" v-for="coin in trades" :key="coin.coin">
-                <article class="tile is-child notification is-light">
-                    <p class="subtitle" :title="coin.details.long">{{ coin.coin }}</p>
-                    <p>${{ coin.details.price.toFixed(2) }}</p>
-                    <p><strong>24h:</strong>&nbsp;
-                        <span
+    <div class="tw-container tw-clearfix watchlist-card-wrapper tw-bg-red-lightest" v-if="watchedCoins && trades">
+        <div class="watchlist-card" v-for="coin in trades" :key="coin.coin">
+            <div class="watchlist-card-thumb">
+                <p :title="coin.details.long">{{ coin.coin }}</p>
+            </div>
+            <div class="watchlist-card-details">
+                <p>${{ coin.details.price.toFixed(2) }}</p>
+                <p><strong>24h:</strong>&nbsp;
+                    <span
                             :class="{
                                 'has-text-danger': (coin.details.cap24hrChange < 0),
                                 'has-text-success': (coin.details.cap24hrChange > 0),
                                 'has-text-primary': (coin.details.cap24hrChange === 0)
                             }">{{ coin.details.cap24hrChange }}%</span>
-                    </p>
-                    <p>{{ coin.exchange }}</p>
-                    <p class="is-size-7">{{ coin.timestamp.date }}</p>
-                    <p class="is-size-7">{{ coin.timestamp.time }}</p>
-                </article>
+                </p>
+                <p>{{ coin.exchange }}</p>
+            </div>
+            <div class="tw-bg-grey-light">
+                <p>{{ coin.timestamp.date }}</p>
+                <p>{{ coin.timestamp.time }}</p>
             </div>
         </div>
-    </section>
-    <section class="section" v-else>
+    </div>
+    <div class="section" v-else>
         Watchlist is empty
-    </section>
+    </div>
 
   </div>
 </template>
