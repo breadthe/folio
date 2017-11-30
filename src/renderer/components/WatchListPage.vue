@@ -3,11 +3,6 @@
 
     <the-hero :page-title="pageTitle"></the-hero>
 
-    <div>
-      <p v-if="isConnected"><i class="fa fa-circle has-text-success" aria-hidden="true"></i>&nbsp;Connected</p>
-      <p v-else><i class="fa fa-circle has-text-danger" aria-hidden="true"></i>&nbsp;Not Connected</p>
-    </div>
-
     <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins && trades">
         <div class="watchlist-card-wrapper" v-for="coin in trades" :key="coin.coin">
             <div class="watchlist-card">
@@ -90,9 +85,6 @@
       },
       watchedCoins: function () {
         return store.getters.watchedCoins
-      },
-      isConnected: function () {
-        return store.getters.connect
       }
     },
     sockets: {

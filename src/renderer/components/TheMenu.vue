@@ -7,10 +7,16 @@
                 </a>
             </li>
         </ul>
+        <div class="conn-status">
+            <p v-if="isConnected"><i class="fa fa-circle has-text-success" aria-hidden="true"></i>&nbsp;Connected</p>
+            <p v-else><i class="fa fa-circle has-text-danger" aria-hidden="true"></i>&nbsp;Not Connected</p>
+        </div>
     </aside>
 </template>
 
 <script>
+  import store from '../store'
+
   export default {
     name: 'the-menu',
     data: function () {
@@ -35,6 +41,9 @@
       }
     },
     computed: {
+      isConnected: function () {
+        return store.getters.connect
+      }
     },
     mounted: function () {
       // Check if the current route is Home, in which case make the Home menu entry active
