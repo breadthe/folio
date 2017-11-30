@@ -10,12 +10,15 @@
 
 #### Watchlist
 
-- ~~(v0.0.13) Retrieve last coin details from localStorage when mounting the app~~
+- Animate coin bubble when a trade updates (green/red depending on +/- then fade back to gray)
 - Separate coin details (price, etc) by exchange
+- ~~(v0.0.13) Retrieve last coin details from localStorage when mounting the app~~
 - ~~(v0.0.10) Attach socket data to Vuex store~~
 - ~~(v0.0.10) Save (latest) socket data in localStorage~~
 - ~~(v0.0.10) Socket connectivity status~~
-- (NICE TO HAVE) Button to connect to socket (disconnected by default)
+
+#### Menu / Sidebar
+- (NICE TO HAVE) Button to connect to socket (disconnected by default -- not sure about this)
 
 #### Map syncing
 
