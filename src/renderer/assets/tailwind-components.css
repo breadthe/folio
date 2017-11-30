@@ -4,6 +4,7 @@
 .conn-status {
     @apply .tw-pin-b .tw-fixed .tw-w-full .tw-ml-2 .tw-mb-1 .tw-text-xs;
 }
+
 .watchlist-card-wrapper {
     @apply .tw-w-1/2 .tw-float-left .tw-p-1;
 }
@@ -11,7 +12,7 @@
     @apply .tw-w-full .tw-overflow-hidden .tw-bg-grey-lightest .tw-shadow .tw-rounded-sm .tw-text-xs;
 }
 .watchlist-card-thumb {
-    @apply .tw-float-left .tw-px-4 .tw-py-6 .tw-mr-2 .tw-bg-grey-lighter;
+    @apply .tw-float-left .tw-p-4 .tw-mr-2 .tw-bg-grey-lighter;
 }
 .watchlist-card-details {
     @apply .tw-p-2;
