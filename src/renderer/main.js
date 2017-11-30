@@ -15,7 +15,7 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
-export const SocketInstance = socketio('http://socket.coincap.io')
+export const SocketInstance = socketio('//socket.coincap.io')
 Vue.use(VueSocketIO, SocketInstance)
 SocketInstance.on('connect', function () {
   // SocketInstance.disconnect() // instantly disconnect

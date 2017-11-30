@@ -43,7 +43,7 @@
 - History page
 
 #### BUGS
-- Sometimes when on a page the corresponding menu option is not highlighted, seems to occur when live-reloading. This should be set when mounted.
+- Sometimes when on a page the corresponding menu option is not highlighted, seems to occur when live-reloading. This can be fixed by saving/retriving the selected menu from Vuex. No need for localStorage - this will reset the position to Home every time the app is started.
 - Refactor `watchedCoins`/`unwatchedCoins` to work off of `filteredCoins` ??
 - (v0.0.5) ~~Date format for mapLastSynced retrieved from storage has wrong format~~
 - (v0.0.4) ~~Desktop app build - routes don't work~~
