@@ -5,14 +5,14 @@
 
     <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins && trades">
         <div class="watchlist-card-wrapper" v-for="coin in trades" :key="coin.coin">
-            <div class="watchlist-card">
+            <div :id="coin.coin" class="watchlist-card">
                 <div class="tw-clearfix">
                     <div class="watchlist-card-thumb">
-                        <p :title="coin.details.long"><strong>{{ coin.coin }}</strong></p>
+                        <p :title="coin.details.long" class="tw-text-base"><strong>{{ coin.coin }}</strong></p>
                         <p>{{ coin.exchange }}</p>
                     </div>
                     <div class="watchlist-card-details">
-                        <p>${{ coin.details.price.toFixed(2) }}</p>
+                        <p class="tw-text-lg">${{ coin.details.price.toFixed(2) }}</p>
                         <p><strong>24h:</strong>&nbsp;
                             <span
                                     :class="{
@@ -25,7 +25,7 @@
                 </div>
                 <div class="tw-bg-grey-light tw-px-1">
                     <p class="tw-float-right tw-mr-1">{{ coin.timestamp.date }}</p>
-                    <p class="tw-float-left tw-ml-1">{{ coin.timestamp.time }}</p>
+                    <p class="tw-float-left tw-ml-1" title="Last trade">{{ coin.timestamp.time }}</p>
                 </div>
             </div>
         </div>
@@ -42,6 +42,7 @@
   import moment from 'moment'
   import store from '../store'
   import TheHero from './TheHero'
+  import { TweenLite } from 'gsap'
 
   export default {
     name: 'watch-list-page',
@@ -107,6 +108,7 @@
             time: time
           },
           coin: tradeMsg.message.coin,
+          market: tradeMsg.market_id,
           exchange: tradeMsg.exchange_id,
           details: tradeMsg.message.msg
         }
@@ -122,6 +124,15 @@
           } else {
             trades[idx] = newTrade
           }
+
+          // animate border of specific traded coin
+          const coinId = document.getElementById(newTrade.coin)
+          const blueBorderColor = '#3490dc'
+          const originalBorderColor = 'rgb(218, 228, 233)'
+
+          // If this proves to be buggy (stuck blue border), might want to try TimelineLite to create a sequence
+          TweenLite.to(coinId, 0, { borderColor: blueBorderColor })
+          TweenLite.to(coinId, 2, { borderColor: originalBorderColor })
         }
 
         // set trades to Vuex
