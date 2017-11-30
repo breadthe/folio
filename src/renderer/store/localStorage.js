@@ -41,7 +41,9 @@ const trades = {
    * @returns {void}
    */
   set: (data) => {
-    window.localStorage.setItem('trades', JSON.stringify(data))
+    if (data.length) {
+      window.localStorage.setItem('trades', JSON.stringify(data))
+    }
   },
   /**
    * @returns {array}

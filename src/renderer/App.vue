@@ -51,6 +51,7 @@
 
       const mapLastSynced = localStorage.mapLastSynced.get()
       const mapData = localStorage.mapData.get()
+      const trades = localStorage.trades.get()
 
       // async write map data to Vuex store
       if (mapLastSynced !== null && mapLastSynced.length) {
@@ -59,6 +60,9 @@
       if (mapData) {
         store.dispatch('setMapData', mapData)
         store.dispatch('setMapSize', mapData.length)
+      }
+      if (trades.length) {
+        store.dispatch('setTrades', trades)
       }
     }
   }
