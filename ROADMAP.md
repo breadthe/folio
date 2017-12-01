@@ -1,10 +1,10 @@
 # Roadmap / wishlist
 
 #### Layout
-- Pin left nav and let content area independently
 - Pin the title/hero/menu/toolbar to the top of each page
 - (NICE TO HAVE) Collapse left nav down to icons only. Put an arrow "<<" button pinned to the bottom of the nav that collapses/expands the menu.
 - (IF ABOVE) Tooltips for icons in collapsed nav
+- (v0.0.16) Pin left nav and let content area scroll independently
 - ~~(v0.0.12) Improve layout for Watchlist coin cards~~
 - ~~(v0.0.13) Move socket status to bottom of left-side menu~~
 

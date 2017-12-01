@@ -1,5 +1,7 @@
 <template>
-    <aside class="menu">
+    <aside class="menu tw-fixed tw-w-1/5">
+        <the-logo :the-version="theVersion"></the-logo>
+
         <ul class="menu-list" v-if="menuItems.length">
             <li v-for="item in menuItems">
                 <a :href="item.path" @click="setMenuItemActive(item.name)" :class="item.active ? 'is-active' : ''">
@@ -17,9 +19,18 @@
 <script>
   import store from '../store'
   import _ from 'lodash'
+  import theLogo from '@/components/TheLogo.vue'
 
   export default {
     name: 'the-menu',
+    components: { theLogo },
+    props: {
+      theVersion: {
+        type: String,
+        required: true,
+        default: 'v0.0.0'
+      }
+    },
     data: function () {
       return {
         menuItems: [

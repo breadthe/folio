@@ -5,14 +5,12 @@
             <!--<the-header></the-header>-->
 
             <div class="tile is-ancestor">
-                <div class="tile is-vertical is-parent is-3">
+                <div class="tile is-vertical is-parent">
                     <div class="tile is-child">
-                        <the-logo :the-version="theVersion"></the-logo>
-
-                        <the-menu></the-menu>
+                        <the-menu :the-version="theVersion"></the-menu>
                     </div>
                 </div>
-                <div class="tile is-parent">
+                <div class="tile is-parent is-9">
                     <div class="tile is-child">
                         <router-view></router-view>
                     </div>
@@ -28,7 +26,6 @@
 <script>
   // import theHeader from './components/TheHeader.vue'
   // import theFooter from './components/TheFooter.vue'
-  import theLogo from './components/TheLogo.vue'
   import theMenu from './components/TheMenu.vue'
   import store from './store'
   import localStorage from './store/localStorage'
@@ -38,7 +35,6 @@
     components: {
       // 'the-header': theHeader,
       // 'the-footer': theFooter
-      theLogo,
       theMenu
     },
     data () {

@@ -1,6 +1,6 @@
 <template>
     <div class="app-logo has-text-centered">
-        <i class="fa fa-book fa-4x" aria-hidden="true"></i>
+        <i class="fa fa-book fa-4x tw-text-grey-lightest" aria-hidden="true"></i>
         <div class="tags has-addons">
             <span class="tag is-light">alpha</span>
             <span class="tag is-white">{{ theVersion }}</span>
