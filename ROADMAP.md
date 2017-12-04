@@ -43,6 +43,7 @@
 #### History
 - Save tracked coin price history in localStorage for each market/exchange
 - History page
+- Show history entries (later replaced or augmented by charts), tracked since, last price, low, high, trend
 
 #### BUGS
 - Refactor `watchedCoins`/`unwatchedCoins` to work off of `filteredCoins` ??
