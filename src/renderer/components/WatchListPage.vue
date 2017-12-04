@@ -54,26 +54,6 @@
         message: '',
         filterStr: '',
         button: {
-          sync: {
-            label: '&nbsp;&nbsp;Sync',
-            icon: `
-              <span class="icon is-small">
-                  <i class="fa fa-circle-o-notch"></i>
-              </span>
-            `,
-            disabled: false,
-            loading: false
-          },
-          filter: {
-            label: '',
-            icon: `
-              <span class="icon is-small">
-                  <i class="fa fa-remove"></i>
-              </span>
-            `,
-            disabled: true,
-            matchCase: false
-          }
         }
       }
     },
