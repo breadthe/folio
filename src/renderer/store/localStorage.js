@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 const mapLastSynced = {
   key: 'mapLastSynced',
   /**
@@ -26,18 +24,6 @@ const mapData = {
    * @returns {void}
    */
   set: (data) => {
-    // 1. Get the list of watched coins from the "old" map data (from localStorage)
-    const oldMapData = mapData.get()
-    const watchedCoins = oldMapData.filter(i => i.watch)
-
-    // 2. Iterate through watched coins
-    watchedCoins.map(coin => {
-      // 3. Find the index in data (the coin map) matching the symbol of the watched coin
-      const ix = _.findIndex(data, ['symbol', coin.symbol])
-      // 4. Set that object to watched
-      data[ix].watch = true
-    })
-
     // Store the data object in localStorage
     window.localStorage.setItem('mapData', JSON.stringify(data))
   },

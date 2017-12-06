@@ -35,6 +35,7 @@
 - (v0.0.3) ~~2-way binding between watch view <-> storage using computed getter/setter~~
 
 #### Map view
+- Messages for map sync should integrate better with the UI and disappear after a few seconds
 - (v0.0.3) ~~Use computed view of watched/unwatched coins to display watched ones at the top by default~~
 - (v0.0.5) ~~Filtering~~
 - (v0.0.8) ~~Show count of filtered coins~~
@@ -46,7 +47,10 @@
 - Show history entries (later replaced or augmented by charts), tracked since, last price, low, high, trend
 
 #### BUGS
+- Un-watching coins should remove them from the Watchlist
+- .../ledger/node_modules/gsap/TweenMax.js:6907 Uncaught Cannot tween a null target. Seemed to occur right after watching a new coin when it started ticking.
 - Refactor `watchedCoins`/`unwatchedCoins` to work off of `filteredCoins` ??
+- (v0.0.18) ~~Regression introduced when preserving watched coins while syncing the map~~
 - (v0.0.15) ~~Sometimes when on a page the corresponding menu option is not highlighted, seems to occur when live-reloading. This can be fixed by saving/retriving the selected menu from Vuex. No need for localStorage - this will reset the position to Home every time the app is started.~~
 - (v0.0.5) ~~Date format for mapLastSynced retrieved from storage has wrong format~~
 - (v0.0.4) ~~Desktop app build - routes don't work~~

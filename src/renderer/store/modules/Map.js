@@ -16,6 +16,18 @@ const mutations = {
     state.mapLastSynced = localStorage.mapLastSynced.get()
   },
   SET_MAP_DATA (state, data) {
+    // 1. Get the list of watched coins from the "old" map data
+    const oldMapData = state.mapData
+    const watchedCoins = oldMapData.filter(i => i.watch)
+
+    // 2. Iterate through watched coins
+    watchedCoins.map(coin => {
+      // 3. Find the index in data (the coin map) matching the symbol of the watched coin
+      const ix = _.findIndex(data, ['symbol', coin.symbol])
+      // 4. Set that object to watched
+      data[ix].watch = true
+    })
+
     // save to localStorage
     localStorage.mapData.set(data)
 
@@ -31,6 +43,9 @@ const mutations = {
 
     // save to localStorage
     localStorage.mapData.set(state.mapData)
+
+    // get from local storage, set it in store
+    state.mapData = localStorage.mapData.get()
   }
 }
 
