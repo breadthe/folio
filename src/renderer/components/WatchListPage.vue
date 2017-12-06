@@ -4,7 +4,7 @@
     <the-hero :page-title="pageTitle"></the-hero>
 
     <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins && trades">
-        <div class="watchlist-card-wrapper" v-for="coin in trades" :key="coin.coin">
+        <div class="watchlist-card-wrapper" v-for="coin in trades" :key="coin.coin" v-if="isWatched(coin.coin)">
             <div :id="coin.coin" class="watchlist-card">
                 <div class="tw-clearfix">
                     <div class="watchlist-card-thumb">
@@ -60,6 +60,11 @@
     methods: {
       removeFilter: function () {
         this.filterStr = ''
+      },
+      // Determines if the passed symbol/coin is watched
+      isWatched: function (symbol) {
+        // TODO: revisit this and see if it can be done better than with _.filter, maybe _.find
+        return _.filter(this.watchedCoins, _.matches({'symbol': symbol})).length
       }
     },
     computed: {
@@ -67,7 +72,18 @@
         return store.getters.trades.slice()
       },
       watchedCoins: function () {
-        return store.getters.watchedCoins
+        // TODO: revisit sorting as this doesn't seem to work
+        return store.getters.watchedCoins.sort((a, b) => {
+          if (a < b) {
+            return -1
+          }
+          if (a > b) {
+            return 1
+          }
+
+          // equal
+          return 0
+        })
       }
     },
     sockets: {
@@ -110,9 +126,12 @@
           const blueBorderColor = '#3490dc'
           const originalBorderColor = 'rgb(218, 228, 233)'
 
-          // If this proves to be buggy (stuck blue border), might want to try TimelineLite to create a sequence
-          TweenLite.to(coinId, 0, { borderColor: blueBorderColor })
-          TweenLite.to(coinId, 2, { borderColor: originalBorderColor })
+          // This fixes the "Uncaught Cannot tween a null target" error
+          if (coinId) {
+            // If this proves to be buggy (stuck blue border), might want to try TimelineLite to create a sequence
+            TweenLite.to(coinId, 0, { borderColor: blueBorderColor })
+            TweenLite.to(coinId, 2, { borderColor: originalBorderColor })
+          }
         }
 
         // set trades to Vuex

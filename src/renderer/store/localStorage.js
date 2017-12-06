@@ -50,7 +50,7 @@ const trades = {
    * @returns {array}
    */
   get: () => {
-    return JSON.parse(window.localStorage.getItem('trades'))
+    return JSON.parse(window.localStorage.getItem('trades')) || []
   }
 }
 

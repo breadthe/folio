@@ -84,6 +84,7 @@
 </template>
 
 <script>
+  import _ from 'lodash'
   import moment from 'moment'
   import store from '../store'
   import TheHero from './TheHero'
@@ -159,7 +160,7 @@
         return store.getters.allCoins
       },
       watchedCoins: function () {
-        const watchedCoins = this.allCoins.filter(coin => coin.watch)
+        const watchedCoins = _.sortBy(this.allCoins.filter(coin => coin.watch), ['symbol'])
         if (this.filterStr.length) {
           // Regex case sensitive/insensitive depending on the Match Case checkbox
           const params = this.button.filter.matchCase ? 'g' : 'ig'

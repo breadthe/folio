@@ -1,4 +1,3 @@
-// import _ from 'lodash'
 import localStorage from '../localStorage'
 
 const state = {
@@ -30,7 +29,7 @@ const actions = {
 }
 
 const getters = {
-  trades: (state) => { return state.trades },
+  trades: (state) => { return state.trades || [] },
   connect: (state) => { return state.connect }
 }
 
