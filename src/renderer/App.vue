@@ -49,6 +49,22 @@
       const mapData = localStorage.mapData.get()
       const trades = localStorage.trades.get()
 
+      // 1. Read exchanges from localStorage
+      // 2. If it exists, update the store
+      // 3. If it doesn't, read default exchanges from store, write to localStorage
+      // 2 & 3 are done in the store
+      const exchanges = localStorage.exchanges.get()
+      store.dispatch('setExchanges', exchanges)
+
+      // 1. Read coins from localStorage
+      // 2. If it exists, update the store
+      // 3. If it doesn't, read default coins from store, write to localStorage
+      // 2 & 3 are done in the store
+      const coins = localStorage.coins.get()
+      store.dispatch('setCoins', coins)
+
+      // const coins = localStorage.coins.get() || []
+
       // async write map data to Vuex store
       if (mapLastSynced !== null && mapLastSynced.length) {
         store.dispatch('setMapLastSynced', mapLastSynced)

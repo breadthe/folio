@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, nativeImage } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -19,6 +19,9 @@ function createWindow () {
   /**
    * Initial window options
    */
+  let image = nativeImage.createFromPath('../renderer/assets/logo.png')
+  console.log(image)
+
   mainWindow = new BrowserWindow({
     title: 'Folio',
     minHeight: 768,
@@ -26,7 +29,8 @@ function createWindow () {
     minWidth: 1024,
     maxWidth: 1280,
     maximizable: false,
-    resizable: false
+    resizable: false,
+    icon: '../renderer/assets/logo.png'
   })
 
   mainWindow.loadURL(winURL)

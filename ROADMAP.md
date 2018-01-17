@@ -25,6 +25,10 @@
 #### Menu / Sidebar
 - (NICE TO HAVE) Button to connect to socket (disconnected by default -- not sure about this)
 
+#### Settings
+- Option to switch between using the socket connection or the regular API for updating prices. API would update every X minutes.
+
+
 #### Map syncing
 
 - Allow other markets than USD (BTC-x, ETH-x, etc)
