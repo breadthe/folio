@@ -48,7 +48,7 @@
 
 #### BUGS
 - Refactor `watchedCoins`/`unwatchedCoins` to work off of `filteredCoins` ??
-- (v0.0.19) ~~.../ledger/node_modules/gsap/TweenMax.js:6907 Uncaught Cannot tween a null target. Seemed to occur right after watching a new coin when it started ticking.~~
+- (v0.0.19) ~~.../folio/node_modules/gsap/TweenMax.js:6907 Uncaught Cannot tween a null target. Seemed to occur right after watching a new coin when it started ticking.~~
 - (v0.0.19) ~~Un-watching coins should remove them from the Watchlist~~
 - (v0.0.18) ~~Regression introduced when preserving watched coins while syncing the map~~
 - (v0.0.15) ~~Sometimes when on a page the corresponding menu option is not highlighted, seems to occur when live-reloading. This can be fixed by saving/retriving the selected menu from Vuex. No need for localStorage - this will reset the position to Home every time the app is started.~~

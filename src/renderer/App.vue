@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="ledger">
+    <div id="app" class="folio">
         <div class="container is-fluid">
 
             <!--<the-header></the-header>-->
@@ -31,7 +31,7 @@
   import localStorage from './store/localStorage'
 
   export default {
-    name: 'ledger',
+    name: 'folio',
     components: {
       // 'the-header': theHeader,
       // 'the-footer': theFooter

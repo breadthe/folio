@@ -20,7 +20,7 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    title: 'Ledger',
+    title: 'Folio',
     minHeight: 768,
     maxHeight: 1024,
     minWidth: 1024,

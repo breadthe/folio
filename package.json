@@ -1,5 +1,5 @@
 {
-  "name": "ledger",
+  "name": "folio",
   "version": "0.0.0",
   "author": "breadthe <constantin.cojocaru@breaktech.com>",
   "description": "An electron-vue project",
@@ -21,7 +21,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "ledger",
+    "productName": "folio",
     "appId": "org.simulatedgreg.electron-vue",
     "directories": {
       "output": "build"
