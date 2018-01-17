@@ -26,9 +26,10 @@
 <script>
   // import theHeader from './components/TheHeader.vue'
   // import theFooter from './components/TheFooter.vue'
-  import theMenu from './components/TheMenu.vue'
-  import store from './store'
-  import localStorage from './store/localStorage'
+  import theMenu from '@/components/TheMenu.vue'
+  import store from '@/store'
+  import localStorage from '@/store/localStorage'
+  import permanentStorage from '@/store/permanentStorage'
 
   export default {
     name: 'ledger',
@@ -47,7 +48,7 @@
 
       const mapLastSynced = localStorage.mapLastSynced.get()
       const mapData = localStorage.mapData.get()
-      const trades = localStorage.trades.get()
+      const trades = permanentStorage.trades.get() || []
 
       // async write map data to Vuex store
       if (mapLastSynced !== null && mapLastSynced.length) {

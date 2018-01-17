@@ -1,4 +1,4 @@
-import localStorage from '../localStorage'
+import permanentStorage from '../permanentStorage'
 
 const state = {
   trades: [],
@@ -13,9 +13,9 @@ const mutations = {
     state.message = message
   },
   SET_TRADES: (state, trades) => {
-    localStorage.trades.set(trades)
+    permanentStorage.trades.set(trades)
 
-    state.trades = localStorage.trades.get()
+    state.trades = permanentStorage.trades.get()
   }
 }
 
