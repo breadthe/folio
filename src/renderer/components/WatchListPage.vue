@@ -3,7 +3,7 @@
 
     <the-hero :page-title="pageTitle"></the-hero>
 
-    <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins && trades">
+    <!--<section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins && trades">
         <div class="watchlist-card-wrapper" v-for="coin in trades" :key="coin.coin" v-if="isWatched(coin.coin)">
             <div :id="coin.coin" class="watchlist-card">
                 <div class="tw-clearfix">
@@ -26,6 +26,32 @@
                 <div class="tw-bg-grey-light tw-px-1">
                     <p class="tw-float-right tw-mr-1">{{ coin.timestamp.date }}</p>
                     <p class="tw-float-left tw-ml-1" title="Last trade">{{ coin.timestamp.time }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" v-else>
+        Watchlist is empty
+    </section>-->
+
+    <section class="tw-container tw-clearfix tw-w-full" v-if="coins">
+        <div class="watchlist-card-wrapper" v-for="coin in coins" :key="coin.market">
+            <div :id="coin.coin" class="watchlist-card">
+                <div class="tw-clearfix">
+                    <div class="watchlist-card-thumb">
+                        <p :title="coin.symbol" class="tw-text-base"><strong>{{ coin.name }}</strong></p>
+                        <p>exchange</p>
+                    </div>
+                    <div class="watchlist-card-details">
+                        <p class="tw-text-lg">$100.99</p>
+                        <p><strong>24h:</strong>&nbsp;
+                            <span>55%</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="tw-bg-grey-light tw-px-1">
+                    <p class="tw-float-right tw-mr-1">date</p>
+                    <p class="tw-float-left tw-ml-1" title="Last trade">time</p>
                 </div>
             </div>
         </div>
@@ -70,6 +96,10 @@
     computed: {
       trades: function () {
         return store.getters.trades.slice()
+      },
+      coins: function () {
+        // TODO: change this to watchedCoins later
+        return store.getters.coins.filter(c => c.watch)
       },
       watchedCoins: function () {
         // TODO: revisit sorting as this doesn't seem to work
