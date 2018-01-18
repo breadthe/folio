@@ -17,3 +17,7 @@
 .watchlist-card-details {
     @apply .tw-p-2;
 }
+
+h6.settings {
+    @apply .tw-mt-2 .tw-p-2 .tw-bg-grey-light .tw-text-black;
+}

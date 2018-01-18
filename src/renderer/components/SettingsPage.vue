@@ -5,24 +5,24 @@
         <the-hero :page-title="pageTitle" :page-sub-title="pageSubTitle"></the-hero>
 
     <section class="tw-container tw-clearfix tw-w-full">
-      <h6>Exchanges</h6>
+      <h6 class="settings">Exchanges</h6>
       <ul>
         <li v-for="exchange in exchanges" :key="exchange.name">
-          <input type="checkbox" :checked="exchange.watch">
+          <input type="checkbox" :checked="exchange.watch" @change="toggleWatchedExchange(exchange.name)">
           {{ exchange.name }}
         </li>
       </ul>
     </section>
   
     <section class="tw-container tw-clearfix tw-w-full">
-      <h6>Coins</h6>
+      <h6 class="settings">Coins</h6>
 
       <table class="table is-striped is-hoverable is-fullwidth">
           <thead>
           <tr>
               <th><i class="fa fa-eye" aria-hidden="true" title="Watch this coin"></i></th>
-              <th>market</th>
               <th>name</th>
+              <th>market</th>
           </tr>
           </thead>
           <tbody>
@@ -30,17 +30,17 @@
                   <td><input type="checkbox" :checked="coin.watch" @change="toggleWatchedCoin(coin.market)" title="Watch this coin"></td>
                   <td>
                     <div class="coin-sprite" :class="coin.symbol"></div>
-                    <span class="tw-ml-4 tw-text-sm">{{ coin.market }}</span>
+                    <span class="tw-ml-2 tw-text-sm">{{ coin.symbol }} {{ coin.name }}</span>
                   </td>
-                  <td>{{ coin.symbol }} {{ coin.name }}</td>
+                  <td>{{ coin.market }}</td>
               </tr>
               <tr v-for="coin in unwatchedCoins" :key="coin.market">
                   <td><input type="checkbox" :checked="coin.watch" @change="toggleWatchedCoin(coin.market)" title="Watch this coin"></td>
                   <td>
                     <div class="coin-sprite" :class="coin.symbol"></div>
-                    <span class="tw-ml-4 tw-text-sm">{{ coin.market }}</span>
+                    <span class="tw-ml-2 tw-text-sm">{{ coin.symbol }} {{ coin.name }}</span>
                   </td>
-                  <td>{{ coin.name }}</td>
+                  <td>{{ coin.market }}</td>
               </tr>
           </tbody>
       </table>

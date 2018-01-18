@@ -13,9 +13,10 @@ const state = {
       { name: 'kraken', watch: true }
     ],
     coins: [
-      { market: 'BTC-USD', symbol: 'BTC', name: 'BTC', watch: true, order: 1 },
+      { market: 'BTC-USD', symbol: 'BTC', name: 'Bitcoin', watch: true, order: 1 },
       { market: 'ETH-USD', symbol: 'ETH', name: 'Ethereum', watch: true, order: 2 },
-      { market: 'LTC-USD', symbol: 'LTC', name: 'LiteCoin', watch: true, order: 3 }
+      { market: 'LTC-USD', symbol: 'LTC', name: 'Litecoin', watch: true, order: 3 },
+      { market: 'BCH-USD', symbol: 'BCH', name: 'Bitcoin Cash', watch: true, order: 4 }
     ]
   },
   exchanges: [],

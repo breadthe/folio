@@ -39,9 +39,11 @@
     float: left;
     width: 16px;
     height: 16px;
+    line-height: 16px;
     &.BTC,
     &.ETH,
-    &.LTC {
+    &.LTC,
+    &.BCH {
       background-image: url('./assets/sprites/coins_0.png');
       background-size: 176px 158px;
     }
@@ -49,10 +51,13 @@
       background-position: 0 -142px;
     }
     &.ETH {
-      background-position: -128px -32px;
+      background-position: -128px -48px;
     }
     &.LTC {
-      background-position: -112px 0;
+      background-position: -112px -16px;
+    }
+    &.BCH {
+      background-position: -48px -142px;
     }
   }
 }
