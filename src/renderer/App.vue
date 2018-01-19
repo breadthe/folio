@@ -29,7 +29,7 @@
   import theMenu from './components/TheMenu.vue'
   import store from './store'
   import localStorage from './store/localStorage'
-  import deepDiff from 'deep-diff'
+  import _ from 'lodash'
 
   export default {
     name: 'folio',
@@ -62,12 +62,16 @@
       // 3. If it doesn't, read default coins from store, write to localStorage
       // 2 & 3 are done in the store
       const coins = localStorage.coins.get()
-      const defaultCoins = store.getters.defaultCoins
-      const diff = deepDiff(defaultCoins, coins)
-      console.log(diff)
-      store.dispatch('setCoins', coins)
 
-      // const coins = localStorage.coins.get() || []
+      // Check if new coins have been added to default coins (find diff)
+      const defaultCoins = store.getters.defaultCoins
+      defaultCoins.forEach(coin => {
+        if (!_.find(coins, {market: coin.market})) {
+          // Add the new coins to the existing coins in localStorage
+          coins.push(coin)
+        }
+      })
+      store.dispatch('setCoins', coins)
 
       // async write map data to Vuex store
       if (mapLastSynced !== null && mapLastSynced.length) {

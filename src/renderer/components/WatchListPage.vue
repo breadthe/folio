@@ -10,11 +10,14 @@
                     <div class="watchlist-card-thumb">
                         <div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>
                         <div :title="coin.symbol" class="tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
-                        <div>{{ coin.lastTrade.exchange }}</div>
+                        <div v-if="coin.lastTrade">{{ coin.lastTrade.exchange }}</div>
                     </div>
                     <div class="watchlist-card-details">
-                        <p class="tw-text-lg">${{ formatCurrency(coin.lastTrade.details.price) }}</p>
-                        <p><strong>24h:</strong>&nbsp;
+                        <div class="tw-text-lg" v-if="coin.lastTrade">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
+                        <div class="tw-text-lg" v-else>$--</div>
+
+                        <div v-if="coin.lastTrade">
+                            <strong>24h:</strong>&nbsp;
                             <span
                                 :class="{
                                     'has-text-danger': (coin.lastTrade.details.cap24hrChange < 0),
@@ -23,12 +26,16 @@
                                 }">
                               {{ coin.lastTrade.details.cap24hrChange }}%
                             </span>
-                        </p>
+                        </div>
+
                     </div>
                 </div>
                 <div class="tw-bg-grey-light tw-px-1">
-                    <p class="tw-float-right tw-mr-1">{{ coin.lastTrade.timestamp.date }}</p>
-                    <p class="tw-float-left tw-ml-1" title="Last trade">{{ coin.lastTrade.timestamp.time }}</p>
+                    <div class="tw-float-right tw-mr-1" v-if="coin.lastTrade">{{ coin.lastTrade.timestamp.date }}</div>
+                    <div class="tw-float-right tw-mr-1" v-else>--.--.----</div>
+
+                    <div class="tw-float-left tw-ml-1" title="Last trade" v-if="coin.lastTrade">{{ coin.lastTrade.timestamp.time }}</div>
+                    <div class="tw-float-left tw-ml-1" title="Last trade" v-else>--:--:--</div>
                 </div>
             </div>
         </div>
