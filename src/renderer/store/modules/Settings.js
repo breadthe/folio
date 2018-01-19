@@ -17,7 +17,9 @@ const state = {
       { market: 'ETH_USD', symbol: 'ETH', name: 'Ethereum', watch: true, lastTrade: null, order: 2 },
       { market: 'LTC_USD', symbol: 'LTC', name: 'Litecoin', watch: true, lastTrade: null, order: 3 },
       { market: 'BCH_USD', symbol: 'BCH', name: 'Bitcoin Cash', watch: true, lastTrade: null, order: 4 },
-      { market: 'SC_BTC', symbol: 'SC', name: 'SiaCoin', watch: true, lastTrade: null, order: 5 }
+      { market: 'SC_BTC', symbol: 'SC', name: 'Siacoin', watch: true, lastTrade: null, order: 5 },
+      { market: 'MONA_BTC', symbol: 'MONA', name: 'MonaCoin', watch: true, lastTrade: null, order: 6 },
+      { market: 'ZEN_BTC', symbol: 'ZEN', name: 'ZenCash', watch: true, lastTrade: null, order: 6 }
     ]
   },
   exchanges: [],

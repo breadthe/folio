@@ -43,21 +43,24 @@
     &.BTC,
     &.ETH,
     &.LTC,
-    &.BCH {
+    &.BCH,
+    &.SC,
+    &.MONA {
       background-image: url('./assets/sprites/coins_0.png');
       background-size: 176px 158px;
     }
-    &.BTC {
-      background-position: 0 -142px;
+    &.BTC { background-position: 0 -142px; }
+    &.ETH { background-position: -128px -48px; }
+    &.LTC { background-position: -112px -16px; }
+    &.BCH { background-position: -48px -142px; }
+    &.SC { background-position: -32px -110px; }
+    &.MONA { background-position: -48px -94px; }
+
+    &.ZEN {
+      background-image: url('./assets/sprites/coins_1.png');
+      background-size: 176px 164px;
     }
-    &.ETH {
-      background-position: -128px -48px;
-    }
-    &.LTC {
-      background-position: -112px -16px;
-    }
-    &.BCH {
-      background-position: -48px -142px;
-    }
+    &.ZEN { background-position: 0 0; }
+
   }
 }
