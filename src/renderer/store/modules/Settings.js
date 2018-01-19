@@ -13,10 +13,11 @@ const state = {
       { name: 'kraken', watch: true }
     ],
     coins: [
-      { market: 'BTC-USD', symbol: 'BTC', name: 'Bitcoin', watch: true, order: 1 },
-      { market: 'ETH-USD', symbol: 'ETH', name: 'Ethereum', watch: true, order: 2 },
-      { market: 'LTC-USD', symbol: 'LTC', name: 'Litecoin', watch: true, order: 3 },
-      { market: 'BCH-USD', symbol: 'BCH', name: 'Bitcoin Cash', watch: true, order: 4 }
+      { market: 'BTC_USD', symbol: 'BTC', name: 'Bitcoin', watch: true, lastTrade: null, order: 1 },
+      { market: 'ETH_USD', symbol: 'ETH', name: 'Ethereum', watch: true, lastTrade: null, order: 2 },
+      { market: 'LTC_USD', symbol: 'LTC', name: 'Litecoin', watch: true, lastTrade: null, order: 3 },
+      { market: 'BCH_USD', symbol: 'BCH', name: 'Bitcoin Cash', watch: true, lastTrade: null, order: 4 },
+      { market: 'SC_BTC', symbol: 'SC', name: 'SiaCoin', watch: true, lastTrade: null, order: 5 }
     ]
   },
   exchanges: [],
@@ -37,6 +38,17 @@ const mutations = {
     localStorage.coins.set(coins.length ? coins : state.default.coins)
 
     state.coins = localStorage.coins.get()
+  },
+  SET_TRADE: (state, newTrade) => {
+    const itemIndex = _.findIndex(state.coins, coin => coin.market === newTrade.market)
+
+    // The new trade's market (eg. BTC_USD) is not found in the list of coins
+    // TODO: search only in watched coins
+    if (itemIndex > -1) {
+      state.coins[itemIndex].lastTrade = newTrade
+      // save to localStorage
+      localStorage.coins.set(state.coins)
+    }
   },
   TOGGLE_WATCHED_EXCHANGE: (state, name) => {
     const itemIndex = _.findIndex(state.exchanges, entry => entry.name === name)
@@ -69,6 +81,9 @@ const actions = {
   setCoins ({ commit }, coins) {
     commit('SET_COINS', coins)
   },
+  setTrade ({ commit }, newTrade) {
+    commit('SET_TRADE', newTrade)
+  },
   toggleWatchedExchange ({ commit }, name) {
     // do this async
     commit('TOGGLE_WATCHED_EXCHANGE', name)
@@ -81,7 +96,8 @@ const actions = {
 
 const getters = {
   exchanges: (state) => { return state.exchanges || [] },
-  coins: (state) => { return state.coins || [] }
+  coins: (state) => { return state.coins || [] },
+  defaultCoins: (state) => { return state.default.coins || [] }
 }
 
 export default {

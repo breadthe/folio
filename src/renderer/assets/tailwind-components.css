@@ -12,7 +12,7 @@
     @apply .tw-w-full .tw-overflow-hidden .tw-bg-grey-lightest .tw-shadow .tw-border .tw-rounded-sm .tw-text-xs;
 }
 .watchlist-card-thumb {
-    @apply .tw-float-left .tw-p-4 .tw-mr-2 .tw-bg-grey-lighter;
+    @apply .tw-float-left .tw-p-2 .tw-mr-2 .tw-bg-grey-lighter;
 }
 .watchlist-card-details {
     @apply .tw-p-2;

@@ -29,18 +29,18 @@
               <tr v-for="coin in watchedCoins" :key="coin.market">
                   <td><input type="checkbox" :checked="coin.watch" @change="toggleWatchedCoin(coin.market)" title="Watch this coin"></td>
                   <td>
-                    <div class="coin-sprite" :class="coin.symbol"></div>
+                    <div class="coin-sprite tw-mt-1" :class="coin.symbol"></div>
                     <span class="tw-ml-2 tw-text-sm">{{ coin.symbol }} {{ coin.name }}</span>
                   </td>
-                  <td>{{ coin.market }}</td>
+                  <td class="tw-text-sm">{{ coin.market }}</td>
               </tr>
               <tr v-for="coin in unwatchedCoins" :key="coin.market">
                   <td><input type="checkbox" :checked="coin.watch" @change="toggleWatchedCoin(coin.market)" title="Watch this coin"></td>
                   <td>
-                    <div class="coin-sprite" :class="coin.symbol"></div>
+                    <div class="coin-sprite tw-mt-1" :class="coin.symbol"></div>
                     <span class="tw-ml-2 tw-text-sm">{{ coin.symbol }} {{ coin.name }}</span>
                   </td>
-                  <td>{{ coin.market }}</td>
+                  <td class="tw-text-sm">{{ coin.market }}</td>
               </tr>
           </tbody>
       </table>

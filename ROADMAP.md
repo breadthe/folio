@@ -27,6 +27,8 @@
 
 #### Settings
 - Option to switch between using the socket connection or the regular API for updating prices. API would update every X minutes.
+- When new coins are added to the default coins array, they should automatically be synced with the store/localStorage
+- Allow assignment of different background colors for watched coins
 
 
 #### Map syncing

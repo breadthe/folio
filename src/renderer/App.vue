@@ -29,6 +29,7 @@
   import theMenu from './components/TheMenu.vue'
   import store from './store'
   import localStorage from './store/localStorage'
+  import deepDiff from 'deep-diff'
 
   export default {
     name: 'folio',
@@ -61,6 +62,9 @@
       // 3. If it doesn't, read default coins from store, write to localStorage
       // 2 & 3 are done in the store
       const coins = localStorage.coins.get()
+      const defaultCoins = store.getters.defaultCoins
+      const diff = deepDiff(defaultCoins, coins)
+      console.log(diff)
       store.dispatch('setCoins', coins)
 
       // const coins = localStorage.coins.get() || []
