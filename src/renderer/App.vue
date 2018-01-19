@@ -4,16 +4,12 @@
 
             <!--<the-header></the-header>-->
 
-            <div class="tile is-ancestor">
-                <div class="tile is-vertical is-parent">
-                    <div class="tile is-child">
-                        <the-menu :the-version="theVersion"></the-menu>
-                    </div>
+            <div class="columns">
+                <div class="column is-2">
+                    <the-menu :the-version="theVersion"></the-menu>
                 </div>
-                <div class="tile is-parent is-9">
-                    <div class="tile is-child">
-                        <router-view></router-view>
-                    </div>
+                <div class="column is-10">
+                    <router-view></router-view>
                 </div>
             </div>
 
