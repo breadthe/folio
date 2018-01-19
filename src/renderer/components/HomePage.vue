@@ -2,8 +2,6 @@
   <div class="section">
     <section class="container">
 
-        <the-hero :page-title="pageTitle" :page-sub-title="pageSubTitle"></the-hero>
-
         <div class="tile is-ancestor">
             <div class="tile is-parent is-6">
                 <article class="tile is-child notification is-light">

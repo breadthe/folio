@@ -2,50 +2,48 @@
   <div class="section">
     <section class="container">
 
-        <the-hero :page-title="pageTitle" :page-sub-title="pageSubTitle"></the-hero>
+        <section class="tw-container tw-clearfix tw-w-full">
+          <h6 class="settings">Exchanges</h6>
+          <ul>
+            <li v-for="exchange in exchanges" :key="exchange.name">
+              <input type="checkbox" :checked="exchange.watch" @change="toggleWatchedExchange(exchange.name)">
+              {{ exchange.name }}
+            </li>
+          </ul>
+        </section>
+      
+        <section class="tw-container tw-clearfix tw-w-full">
+          <h6 class="settings">Coins</h6>
 
-    <section class="tw-container tw-clearfix tw-w-full">
-      <h6 class="settings">Exchanges</h6>
-      <ul>
-        <li v-for="exchange in exchanges" :key="exchange.name">
-          <input type="checkbox" :checked="exchange.watch" @change="toggleWatchedExchange(exchange.name)">
-          {{ exchange.name }}
-        </li>
-      </ul>
-    </section>
-  
-    <section class="tw-container tw-clearfix tw-w-full">
-      <h6 class="settings">Coins</h6>
-
-      <table class="table is-striped is-hoverable is-fullwidth">
-          <thead>
-          <tr>
-              <th><i class="fa fa-eye" aria-hidden="true" title="Watch this coin"></i></th>
-              <th>name</th>
-              <th>market</th>
-          </tr>
-          </thead>
-          <tbody>
-              <tr v-for="coin in watchedCoins" :key="coin.market">
-                  <td><input type="checkbox" :checked="coin.watch" @change="toggleWatchedCoin(coin.market)" title="Watch this coin"></td>
-                  <td>
-                    <div class="coin-sprite tw-mt-1" :class="coin.symbol"></div>
-                    <span class="tw-ml-2 tw-text-sm">{{ coin.symbol }} {{ coin.name }}</span>
-                  </td>
-                  <td class="tw-text-sm">{{ coin.market }}</td>
+          <table class="table is-striped is-hoverable is-fullwidth">
+              <thead>
+              <tr>
+                  <th><i class="fa fa-eye" aria-hidden="true" title="Watch this coin"></i></th>
+                  <th>name</th>
+                  <th>market</th>
               </tr>
-              <tr v-for="coin in unwatchedCoins" :key="coin.market">
-                  <td><input type="checkbox" :checked="coin.watch" @change="toggleWatchedCoin(coin.market)" title="Watch this coin"></td>
-                  <td>
-                    <div class="coin-sprite tw-mt-1" :class="coin.symbol"></div>
-                    <span class="tw-ml-2 tw-text-sm">{{ coin.symbol }} {{ coin.name }}</span>
-                  </td>
-                  <td class="tw-text-sm">{{ coin.market }}</td>
-              </tr>
-          </tbody>
-      </table>
+              </thead>
+              <tbody>
+                  <tr v-for="coin in watchedCoins" :key="coin.market">
+                      <td><input type="checkbox" :checked="coin.watch" @change="toggleWatchedCoin(coin.market)" title="Watch this coin"></td>
+                      <td>
+                        <div class="coin-sprite tw-mt-1" :class="coin.symbol"></div>
+                        <span class="tw-ml-2 tw-text-sm">{{ coin.symbol }} {{ coin.name }}</span>
+                      </td>
+                      <td class="tw-text-sm">{{ coin.market }}</td>
+                  </tr>
+                  <tr v-for="coin in unwatchedCoins" :key="coin.market">
+                      <td><input type="checkbox" :checked="coin.watch" @change="toggleWatchedCoin(coin.market)" title="Watch this coin"></td>
+                      <td>
+                        <div class="coin-sprite tw-mt-1" :class="coin.symbol"></div>
+                        <span class="tw-ml-2 tw-text-sm">{{ coin.symbol }} {{ coin.name }}</span>
+                      </td>
+                      <td class="tw-text-sm">{{ coin.market }}</td>
+                  </tr>
+              </tbody>
+          </table>
 
-    </section>
+        </section>
   
   </section>
   </div>

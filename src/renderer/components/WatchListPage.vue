@@ -1,8 +1,6 @@
 <template>
   <div class="section">
 
-    <the-hero :page-title="pageTitle"></the-hero>
-
     <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins.length">
         <div class="watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">
             <div :id="coin.market" class="watchlist-card">

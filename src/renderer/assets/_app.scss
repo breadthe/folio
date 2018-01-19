@@ -2,13 +2,6 @@
 @import "./_sprites";
 
 .folio {
-  .hero-body {
-    padding: 1.5rem;
-    h1, h2 {
-     font-size: $size-7 !important;
-    }
-  }
-
   .tile {
     & > .section {
       padding: 0;

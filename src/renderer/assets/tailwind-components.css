@@ -19,5 +19,5 @@
 }
 
 h6.settings {
-    @apply .tw-mt-2 .tw-p-2 .tw-bg-grey-light .tw-text-black;
+    @apply .tw-mt-2 .tw-p-2 .tw-text-black .tw-border-b;
 }

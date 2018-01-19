@@ -1,8 +1,6 @@
 <template>
   <div class="section">
 
-    <the-hero :page-title="pageTitle" :page-sub-title="pageSubTitle"></the-hero>
-
     <div>
         {{ message }}
     </div>
