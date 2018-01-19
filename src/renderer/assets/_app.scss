@@ -1,4 +1,5 @@
 @import "./_vars";
+@import "./_sprites";
 
 .folio {
   .hero-body {
@@ -12,6 +13,9 @@
     & > .section {
       padding: 0;
       padding-right: 1.5rem;
+    }
+    &.is-parent{
+      padding: 0.75rem 0.5rem;
     }
   }
 
@@ -33,34 +37,5 @@
   }
   .menu-list a.is-active {
     background: $white;
-  }
-
-  .coin-sprite {
-    float: left;
-    width: 16px;
-    height: 16px;
-    line-height: 16px;
-    &.BTC,
-    &.ETH,
-    &.LTC,
-    &.BCH,
-    &.SC,
-    &.MONA {
-      background-image: url('./assets/sprites/coins_0.png');
-      background-size: 176px 158px;
-    }
-    &.BTC { background-position: 0 -142px; }
-    &.ETH { background-position: -128px -48px; }
-    &.LTC { background-position: -112px -16px; }
-    &.BCH { background-position: -48px -142px; }
-    &.SC { background-position: -32px -110px; }
-    &.MONA { background-position: -48px -94px; }
-
-    &.ZEN {
-      background-image: url('./assets/sprites/coins_1.png');
-      background-size: 176px 164px;
-    }
-    &.ZEN { background-position: 0 0; }
-
   }
 }

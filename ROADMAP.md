@@ -3,6 +3,9 @@
 #### App
 - Socket connection and sync should start when the app boots, not just the Watchlist page
 
+#### Dashboard
+- Show total $ value of portfolio, total BTC value, and pie chart for entire portfolio. Update this only when dashboard is entered.
+
 #### Layout
 - Pin the title/hero/menu/toolbar to the top of each page
 - Switch to TailwindCSS, or at the very least strip everything Bulma out, except for the layout stuff
