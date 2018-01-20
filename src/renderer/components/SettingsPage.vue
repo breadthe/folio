@@ -3,15 +3,26 @@
     <section class="container">
 
         <section class="tw-container tw-clearfix tw-w-full">
+          
+          <!-- ######## Theme ######## -->
+          <h6 class="settings">Theme</h6>
+          <div class="select tw-mt-1">
+            <select v-model="selectedTheme">
+              <option v-for="theme in themes" :key="theme" :selected="theme">{{theme}}</option>
+            </select>
+          </div>
+
+          <!-- ######## Exchanges ######## -->
           <h6 class="settings">Exchanges</h6>
           <ul>
-            <li v-for="exchange in exchanges" :key="exchange.name">
+            <li v-for="exchange in exchanges" :key="exchange.name" class="tw-p-1">
               <input type="checkbox" :checked="exchange.watch" @change="toggleWatchedExchange(exchange.name)">
               {{ exchange.name }}
             </li>
           </ul>
         </section>
       
+        <!-- ######## Coins ######## -->
         <section class="tw-container tw-clearfix tw-w-full">
           <h6 class="settings">Coins</h6>
 
@@ -66,7 +77,8 @@
         button: {
           isLoading: false,
           isDisabled: false
-        }
+        },
+        themes: ['light', 'dark']
       }
     },
     methods: {
@@ -78,6 +90,14 @@
       }
     },
     computed: {
+      selectedTheme: {
+        get: function () {
+          return store.getters.theme
+        },
+        set: function (theme) {
+          store.dispatch('setTheme', theme)
+        }
+      },
       exchanges: function () {
         return store.getters.exchanges
       },

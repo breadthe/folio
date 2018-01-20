@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <section class="container">
+    <section class="container tw-h-screen">
 
         <div class="tile is-ancestor">
             <div class="tile is-parent is-6">

@@ -1,5 +1,5 @@
 const state = {
-  selectedMenuItem: 'Home' // default view is the Home page
+  selectedMenuItem: 'Dashboard' // default view is the Home page
 }
 
 const mutations = {

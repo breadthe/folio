@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="folio">
+    <div id="app" class="folio" :class="selectedTheme">
         <div class="container is-fluid">
 
             <!--<the-header></the-header>-->
@@ -42,9 +42,12 @@
     mounted () {
       console.log('app mounted ' + this.theVersion)
 
-      const mapLastSynced = localStorage.mapLastSynced.get()
-      const mapData = localStorage.mapData.get()
-      const trades = localStorage.trades.get()
+      // Try to find settings in localStorage
+      const settings = localStorage.settings.get()
+      // If the selected theme is located in the saved settings, set it in Vuex
+      if (settings.theme) {
+        store.dispatch('setTheme', settings.theme)
+      }
 
       // 1. Read exchanges from localStorage
       // 2. If it exists, update the store
@@ -68,17 +71,10 @@
         }
       })
       store.dispatch('setCoins', coins)
-
-      // async write map data to Vuex store
-      if (mapLastSynced !== null && mapLastSynced.length) {
-        store.dispatch('setMapLastSynced', mapLastSynced)
-      }
-      if (mapData) {
-        store.dispatch('setMapData', mapData)
-        store.dispatch('setMapSize', mapData.length)
-      }
-      if (trades.length) {
-        store.dispatch('setTrades', trades)
+    },
+    computed: {
+      selectedTheme: function () {
+        return store.getters.theme
       }
     }
   }

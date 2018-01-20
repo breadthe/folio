@@ -1,8 +1,8 @@
 <template>
-  <div class="section">
+  <div class="section tw-h-screen">
     <section class="container">
 
-        <the-hero :page-title="pageTitle" :page-sub-title="pageSubTitle"></the-hero>
+      <h6>About</h6>
 
     </section>
   </div>
