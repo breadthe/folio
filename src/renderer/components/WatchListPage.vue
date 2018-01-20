@@ -1,5 +1,5 @@
 <template>
-  <div class="section">
+  <div class="section tw-h-screen">
 
     <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins.length">
         <div class="watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">

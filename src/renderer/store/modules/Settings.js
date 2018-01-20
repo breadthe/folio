@@ -7,6 +7,7 @@ import _ from 'lodash'
  */
 const state = {
   default: {
+    theme: 'light',
     exchanges: [
       { name: 'bittrex', watch: true },
       { name: 'bitfinex', watch: true },
@@ -22,11 +23,16 @@ const state = {
       { market: 'BTC_ZEN', symbol: 'ZEN', name: 'ZenCash', watch: true, lastTrade: null, order: 6 }
     ]
   },
+  theme: 'light',
   exchanges: [],
   coins: []
 }
 
 const mutations = {
+  SET_THEME: (state, theme) => {
+    localStorage.settings.set({ theme: theme })
+    state.theme = localStorage.settings.get().theme
+  },
   SET_EXCHANGES: (state, exchanges) => {
     // If exchanges exists, save it to localStorage
     // Othewise save the default exchanges to localStorage
@@ -77,6 +83,9 @@ const mutations = {
 }
 
 const actions = {
+  setTheme ({ commit }, theme) {
+    commit('SET_THEME', theme)
+  },
   setExchanges ({ commit }, exchanges) {
     commit('SET_EXCHANGES', exchanges)
   },
@@ -97,6 +106,8 @@ const actions = {
 }
 
 const getters = {
+  defaultTheme: (state) => { return state.default.theme || 'light' },
+  theme: (state) => { return state.theme || 'light' },
   exchanges: (state) => { return state.exchanges || [] },
   coins: (state) => { return state.coins || [] },
   defaultCoins: (state) => { return state.default.coins || [] }

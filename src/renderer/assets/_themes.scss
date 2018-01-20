@@ -1,0 +1,65 @@
+.folio {
+    &.light {
+        // color: $grey-dark;
+        background: $white;
+        aside {
+            &.menu {
+                background: $grey-lightest;
+                .app-logo {
+                    color: $grey;
+                    .tag {
+                        color: $grey;
+                        background: $white;
+                    }
+                }
+                .menu-list {
+                    a {
+                        color: $grey-dark;
+                        &:hover {
+                            background: $grey-lighter;
+                        }
+                        &.is-active {
+                            background: $white;
+                        }
+                    }
+                }
+                .conn-status {
+                    color: $grey-dark;
+                }
+            }
+        }
+    }
+    &.dark {
+        color: $grey-lightest;
+        background: $grey-dark;
+        h6 {
+            color: $white;
+        }
+        aside {
+            &.menu {
+                background: $grey-darker;
+                .app-logo {
+                    color: $grey-light;
+                    .tag {
+                        color: $grey-dark;
+                        background: $grey-light;
+                    }
+                }
+                .menu-list {
+                    a {
+                        color: $grey-lightest;
+                        &:hover {
+                            background: $grey-darkest;
+                        }
+                        &.is-active {
+                            background: $grey-dark;
+                        }
+                    }
+                }
+                .conn-status {
+                    color: $grey-lightest;
+                }
+            }
+        }
+    }
+}
