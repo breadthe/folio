@@ -1,5 +1,10 @@
 # Roadmap / wishlist
 
+#### Priorities
+1. Asset quantity
+2. Dashboard summary & pie chart
+3. List/Grid layout for watchlist
+
 #### App
 - Socket connection and sync should start when the app boots, not just the Watchlist page
 
@@ -8,10 +13,9 @@
 
 #### Layout
 - Pin the title/hero/menu/toolbar to the top of each page
-- Switch to TailwindCSS, or at the very least strip everything Bulma out, except for the layout stuff
-- (MAY NOT BE NEEDED IF ABOVE) Switch from Bulma to Vuetify while preserving TailwindCSS
 - (NICE TO HAVE) Collapse left nav down to icons only. Put an arrow "<<" button pinned to the bottom of the nav that collapses/expands the menu.
 - (IF ABOVE) Tooltips for icons in collapsed nav
+- (v0.1.2) ~~Switch to TailwindCSS, or at the very least strip everything Bulma out, except for the layout stuff~~
 - (v0.0.16) ~~Pin left nav and let content area scroll independently~~
 - (v0.0.12) ~~Improve layout for Watchlist coin cards~~
 - (v0.0.13) ~~Move socket status to bottom of left-side menu~~
@@ -19,11 +23,11 @@
 #### Watchlist
 
 - List/Grid view with icons to switch between them. Save view state in Vuex/localStorage
-- Display "bubbles" for each market (eg. BTC-USD, BTC-ETH, ETH-XMR, etc) instead of just the coins
 - Separate coin details (price, etc) by exchange
 - Compare current trade tick with history and color price green/red depending on +/- or black if no previous history
 - Alphabetic sorting of coins/markets
 - (NICE TO HAVE) Drag-sorting watched coins
+- (v0.1.2) ~~Display "bubbles" for each market (eg. BTC-USD, BTC-ETH, ETH-XMR, etc) instead of just the coins~~
 - (v0.0.14) ~~Animate coin bubble when a trade updates (green/red depending on +/- then fade back to gray)~~
 - (v0.0.13) ~~Retrieve last coin details from localStorage when mounting the app~~
 - (v0.0.10) ~~Attach socket data to Vuex store~~
@@ -34,27 +38,10 @@
 - (NICE TO HAVE) Button to connect to socket (disconnected by default -- not sure about this)
 
 #### Settings
-- Save settings in an object in localStorage and retrieve them when booting the app
 - Option to switch between using the socket connection or the regular API for updating prices. API would update every X minutes.
-- Allow assignment of different background colors for watched coins
+- Allow assignment of different background colors (or borders) for watched coins
+- (v0.1.2) ~~Save settings in an object in localStorage and retrieve them when booting the app~~
 - (v0.1.1) ~~When new coins are added to the default coins array, they should automatically be synced with the store/localStorage~~
-
-
-#### Map syncing
-
-- Add "My Asset" amount to watched coins
-- (v0.1.1) ~~Allow other markets than USD (BTC-x, ETH-x, etc)~~
-- (v0.0.17) ~~Store only diff between existing map in storage and new map (i.e. new coins only), don't touch existing items. This should preserve watched coins.~~
-- (v0.0.2) ~~Use Vuex store instead of localStorage~~
-- (v0.0.7) ~~Use localStorage to persist data, Vuex is for state management only~~
-- (v0.0.3) ~~2-way binding between watch view <-> storage using computed getter/setter~~
-
-#### Map view
-- N/A ~~Messages for map sync should integrate better with the UI and disappear after a few seconds~~
-- (v0.0.3) ~~Use computed view of watched/unwatched coins to display watched ones at the top by default~~
-- (v0.0.5) ~~Filtering~~
-- (v0.0.8) ~~Show count of filtered coins~~
-- (LOW PRIORITY if filtering is implemented) Alphabetic sorting of coins
 
 #### History
 - Save tracked coin price history to indexedDB for each market/exchange
@@ -71,3 +58,18 @@
 - (v0.0.4) ~~Desktop app build - routes don't work~~
 - (v0.0.6) ~~Desktop app build - Vuex storage doesn't persist thru closing/reopening app~~
 - (v0.0.5) ~~Match Case isn't working~~
+
+~~#### Map syncing~~
+- N/A ~~Add "My Asset" amount to watched coins~~
+- (v0.1.1) ~~Allow other markets than USD (BTC-x, ETH-x, etc)~~
+- (v0.0.17) ~~Store only diff between existing map in storage and new map (i.e. new coins only), don't touch existing items. This should preserve watched coins.~~
+- (v0.0.2) ~~Use Vuex store instead of localStorage~~
+- (v0.0.7) ~~Use localStorage to persist data, Vuex is for state management only~~
+- (v0.0.3) ~~2-way binding between watch view <-> storage using computed getter/setter~~
+
+~~#### Map view~~
+- N/A ~~Messages for map sync should integrate better with the UI and disappear after a few seconds~~
+- (v0.0.3) ~~Use computed view of watched/unwatched coins to display watched ones at the top by default~~
+- (v0.0.5) ~~Filtering~~
+- (v0.0.8) ~~Show count of filtered coins~~
+- (LOW PRIORITY if filtering is implemented) Alphabetic sorting of coins

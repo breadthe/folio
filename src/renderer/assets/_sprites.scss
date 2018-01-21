@@ -8,7 +8,9 @@
     &.LTC,
     &.BCH,
     &.SC,
-    &.MONA {
+    &.MONA,
+    &.XMR,
+    &.XRP {
         background-image: url('./assets/sprites/coins_0.png');
         background-size: 176px 158px;
     }
@@ -17,7 +19,9 @@
     &.LTC { background-position: -112px -16px; }
     &.BCH { background-position: -48px -142px; }
     &.SC { background-position: -32px -62px; }
-    &.MONA { background-position: -48px -94px; }
+    &.MONA { background-position: -64px -94px; }
+    &.XMR { background-position: -48px -94px; }
+    &.XRP { background-position: -64px -62px; }
 
     &.ZEN {
         background-image: url('./assets/sprites/coins_1.png');

@@ -20,7 +20,9 @@ const state = {
       { market: 'BCH_USD', symbol: 'BCH', name: 'Bitcoin Cash', watch: true, lastTrade: null, order: 4 },
       { market: 'BTC_SC', symbol: 'SC', name: 'Siacoin', watch: true, lastTrade: null, order: 5 },
       { market: 'BTC_MONA', symbol: 'MONA', name: 'MonaCoin', watch: true, lastTrade: null, order: 6 },
-      { market: 'BTC_ZEN', symbol: 'ZEN', name: 'ZenCash', watch: true, lastTrade: null, order: 6 }
+      { market: 'BTC_ZEN', symbol: 'ZEN', name: 'ZenCash', watch: true, lastTrade: null, order: 7 },
+      { market: 'BTC_XMR', symbol: 'XMR', name: 'Monero', watch: true, lastTrade: null, order: 8 },
+      { market: 'BTC_XRP', symbol: 'XRP', name: 'Ripple', watch: true, lastTrade: null, order: 9 }
     ]
   },
   theme: 'light',
