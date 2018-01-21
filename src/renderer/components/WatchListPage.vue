@@ -7,12 +7,12 @@
                 <div class="tw-clearfix">
                     <div class="watchlist-card-thumb">
                         <div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>
-                        <div :title="coin.symbol" class="tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
+                        <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
                         <div v-if="coin.lastTrade">{{ coin.lastTrade.exchange }}</div>
                     </div>
                     <div class="watchlist-card-details">
-                        <div class="tw-text-lg" v-if="coin.lastTrade">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
-                        <div class="tw-text-lg" v-else>$--</div>
+                        <div class="coin-price tw-text-lg" v-if="coin.lastTrade">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
+                        <div class="coin-price tw-text-lg" v-else>$--</div>
 
                         <div v-if="coin.lastTrade">
                             <strong>24h:</strong>&nbsp;
@@ -28,7 +28,7 @@
 
                     </div>
                 </div>
-                <div class="tw-bg-grey-light tw-px-1">
+                <div class="tw-px-1">
                     <div class="tw-float-right tw-mr-1" v-if="coin.lastTrade">{{ coin.lastTrade.timestamp.date }}</div>
                     <div class="tw-float-right tw-mr-1" v-else>--.--.----</div>
 
@@ -115,13 +115,14 @@
         // const coinId = document.getElementById(newTrade.coin)
         const marketId = document.getElementById(newTrade.market)
         const blueBorderColor = '#3490dc'
-        const originalBorderColor = 'rgb(218, 228, 233)'
+        const originalBorderColorLight = 'rgb(218, 228, 233)' // light theme
+        const originalBorderColorDark = 'rgb(0, 0, 0)' // dark theme
 
         // This fixes the "Uncaught Cannot tween a null target" error
         if (marketId) {
           // If this proves to be buggy (stuck blue border), might want to try TimelineLite to create a sequence
           TweenLite.to(marketId, 0, { borderColor: blueBorderColor })
-          TweenLite.to(marketId, 2, { borderColor: originalBorderColor })
+          TweenLite.to(marketId, 2, { borderColor: store.getters.theme === 'light' ? originalBorderColorLight : originalBorderColorDark })
         }
         // set trades to Vuex
         store.dispatch('setTrade', newTrade)

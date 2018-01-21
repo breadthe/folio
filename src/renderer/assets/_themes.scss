@@ -61,5 +61,56 @@
                 }
             }
         }
+        div {
+            &.select {
+                select {
+                    background: $grey-dark;
+                    color: $grey-lightest;
+                }
+            }
+        }
+        table {
+            background-color: $grey-dark;
+            color: $grey-lightest;
+            thead {
+                tr {
+                    th {
+                        border-color: $grey;
+                        color: $grey-lightest;
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        border-color: $grey;
+                    }
+                    &:not(.is-selected):nth-child(even) {
+                        background-color: $grey-darker;
+                    }
+                    &:hover {
+                        td {
+                            background-color: $grey;
+                        }
+                    }
+                }
+            }
+        }
+        .watchlist-card-wrapper {
+            color: $grey-lighter;
+            .watchlist-card {
+                strong {
+                    color: $white;
+                }
+                background-color: $grey-darker;
+                border-color: $black;
+            }
+            .watchlist-card-thumb {
+                background-color: $grey-darkest;
+                .coin-name {
+                    color: $white;
+                }
+            }
+        }
     }
 }
