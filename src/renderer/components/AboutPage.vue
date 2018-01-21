@@ -9,6 +9,7 @@
           <li><a class="storyblok-button blue tw-float-left tw-m-1" @click="open('https://bulma.io')">Bulma</a></li>
           <li><a class="storyblok-button blue tw-float-left tw-m-1" @click="open('https://tailwindcss.com')">TailwindCSS</a></li>
           <li><a class="storyblok-button blue tw-float-left tw-m-1" @click="open('https://socket.io')">Socket.io</a></li>
+          <li><a class="storyblok-button blue tw-float-left tw-m-1" @click="open('https://greensock.com')">Green Sock Animation Platform (GSAP)</a></li>
         </ul>
       </p>
 

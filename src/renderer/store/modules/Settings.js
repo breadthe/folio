@@ -22,7 +22,10 @@ const state = {
       { market: 'BTC_MONA', symbol: 'MONA', name: 'MonaCoin', watch: true, lastTrade: null, order: 6 },
       { market: 'BTC_ZEN', symbol: 'ZEN', name: 'ZenCash', watch: true, lastTrade: null, order: 7 },
       { market: 'BTC_XMR', symbol: 'XMR', name: 'Monero', watch: true, lastTrade: null, order: 8 },
-      { market: 'BTC_XRP', symbol: 'XRP', name: 'Ripple', watch: true, lastTrade: null, order: 9 }
+      { market: 'BTC_XRP', symbol: 'XRP', name: 'Ripple', watch: true, lastTrade: null, order: 9 },
+      { market: 'BTC_ZEC', symbol: 'ZEC', name: 'Zcash', watch: true, lastTrade: null, order: 10 },
+      { market: 'BTC_ZCL', symbol: 'ZCL', name: 'ZClassic', watch: true, lastTrade: null, order: 11 },
+      { market: 'BTC_DOGE', symbol: 'DOGE', name: 'Dogecoin', watch: true, lastTrade: null, order: 12 }
     ]
   },
   theme: 'light',

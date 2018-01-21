@@ -2,20 +2,7 @@
   <div class="section">
     <section class="container tw-h-screen">
 
-        <div class="tile is-ancestor">
-            <div class="tile is-parent is-6">
-                <article class="tile is-child notification is-light">
-                    <p class="subtitle">Map</p>
-                    <p><strong>{{ mapSize }}</strong> items</p>
-                </article>
-            </div>
-            <div class="tile is-parent is-6">
-                <article class="tile is-child notification is-light">
-                    <p class="subtitle">Watching</p>
-                    <p><strong>{{ watchedCoinsCount }}</strong> items</p>
-                </article>
-            </div>
-        </div>
+      <h6>Dashboard</h6>
 
     </section>
   </div>

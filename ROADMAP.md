@@ -22,6 +22,7 @@
 
 #### Watchlist
 
+- Format coin price up to 8 decimals, but trimming trailing zeros
 - List/Grid view with icons to switch between them. Save view state in Vuex/localStorage
 - Separate coin details (price, etc) by exchange
 - Compare current trade tick with history and color price green/red depending on +/- or black if no previous history
