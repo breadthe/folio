@@ -28,3 +28,35 @@
     }
   }
 }
+
+
+.storyblok-button {
+  border: none;
+  color: $white;
+  box-sizing: border-box;
+  padding: 0 28px;
+  line-height: 52px;
+  min-height: 52px;
+  font-size: 1.3rem;
+  text-decoration: none;
+  overflow: visible;
+  display: inline-block;
+  text-transform: none;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+  transition: all;
+  &.teal {
+    background-color: #09b3af;
+    background: -moz-linear-gradient(150deg, #0bceb7 10%, #09b3af 70%, #09b3af 94%);
+    background: -webkit-linear-gradient(150deg, #0bceb7 10%, #09b3af 70%, #09b3af 94%);
+    background: linear-gradient(150deg, #0bceb7 10%, #09b3af 70%, #09b3af 94%);
+  }
+  &.blue {
+    background-color: #1c67c9;
+    background: -moz-linear-gradient(150deg, #4292d3 10%, #1c67c9 70%, #1c67c9 94%);
+    background: -webkit-linear-gradient(150deg, #4292d3 10%, #1c67c9 70%, #1c67c9 94%);
+    background: linear-gradient(150deg, #4292d3 10%, #1c67c9 70%, #1c67c9 94%);
+  }
+}

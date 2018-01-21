@@ -19,5 +19,5 @@
 }
 
 h6.settings {
-    @apply .tw-mt-2 .tw-p-2 .tw-text-black .tw-border-b;
+    @apply .tw-mt-2 .tw-p-2 .tw-font-semibold;
 }
