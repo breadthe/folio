@@ -39,6 +39,11 @@
     &.dark {
         color: $grey-lightest;
         background: $grey-dark;
+        a {
+            &:hover {
+                color: $grey-lighter;
+            }
+        }
         h6 {
             color: $white;
         }
