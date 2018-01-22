@@ -8,8 +8,8 @@
                     <div class="watchlist-card-thumb">
                         <div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>
                         <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
-                        <div v-if="coin.qty" title="My quantity">{{ coin.qty }}</div>
-                        <div v-if="coin.lastTrade && coin.qty" title="Total USD value">${{ totalUSD(coin.lastTrade.details.price, coin.qty) }}</div>
+                        <div v-if="coin.qty && coin.qty > 0" title="My quantity">{{ coin.qty }}</div>
+                        <div v-if="coin.lastTrade && coin.qty && coin.qty > 0" title="Total USD value">${{ totalUSD(coin.lastTrade.details.price, coin.qty) }}</div>
                     </div>
                     <div class="watchlist-card-details tw-relative">
                         <div class="coin-price tw-text-lg" v-if="coin.lastTrade">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
