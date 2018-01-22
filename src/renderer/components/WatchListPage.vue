@@ -8,13 +8,14 @@
                     <div class="watchlist-card-thumb">
                         <div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>
                         <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
-                        <div v-if="coin.lastTrade">{{ coin.lastTrade.exchange }}</div>
+                        <div v-if="coin.qty" title="My quantity">{{ coin.qty }}</div>
+                        <div v-if="coin.lastTrade && coin.qty" title="Total USD value">${{ totalUSD(coin.lastTrade.details.price, coin.qty) }}</div>
                     </div>
                     <div class="watchlist-card-details tw-relative">
                         <div class="coin-price tw-text-lg" v-if="coin.lastTrade">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
                         <div class="coin-price tw-text-lg" v-else>$--</div>
 
-                        <i class="fa fa-gear edit-quantity" aria-hidden="true" title="Edit quantity" @click="editQuantity(coin.market)"></i>
+                        <i class="fa fa-gear edit-quantity" aria-hidden="true" title="Edit quantity" @click="openQtyModal(coin.market)"></i>
 
                         <div v-if="coin.lastTrade">
                             <strong>24h:</strong>&nbsp;
@@ -30,12 +31,19 @@
 
                     </div>
                 </div>
-                <div class="tw-px-1">
-                    <div class="tw-float-right tw-mr-1" v-if="coin.lastTrade">{{ coin.lastTrade.timestamp.date }}</div>
-                    <div class="tw-float-right tw-mr-1" v-else>--.--.----</div>
+                <div class="last-trade tw-px-1">
+                    <div class="tw-float-right tw-mr-1" title="Last trade" v-if="coin.lastTrade">
+                      <span>{{ coin.lastTrade.timestamp.date }}</span>
+                      &nbsp;
+                      <span>{{ coin.lastTrade.timestamp.time }}</span>
+                    </div>
+                    <div class="tw-float-right tw-mr-1" title="Last trade" v-else>
+                      <span>--.--.----</span>
+                      &nbsp;
+                      <span>--:--:--</span>
+                    </div>
 
-                    <div class="tw-float-left tw-ml-1" title="Last trade" v-if="coin.lastTrade">{{ coin.lastTrade.timestamp.time }}</div>
-                    <div class="tw-float-left tw-ml-1" title="Last trade" v-else>--:--:--</div>
+                    <div class="tw-float-left tw-ml-1" title="Exchange" v-if="coin.lastTrade">{{ coin.lastTrade.exchange }}</div>
                 </div>
             </div>
         </div>
@@ -48,14 +56,15 @@
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Update quantity</p>
+          <div class="coin-sprite tw-mt-1 tw-mr-1" :class="qtyModal.coinSymbol"></div>
+          <p class="modal-card-title">{{qtyModal.coinName}}</p>
           <button class="delete" aria-label="close" @click="closeQtyModal"></button>
         </header>
         <section class="modal-card-body">
-          <input type="text" :value="qtyModal.coinQty">
+          <input class="input" type="text" v-model="qtyModal.coinQty" placeholder="Asset quantity">
         </section>
         <footer class="modal-card-foot">
-          <button class="button is-success" @click="closeQtyModal">Save</button>
+          <button class="button is-success" @click="saveQty">Save</button>
           <button class="button" @click="closeQtyModal">Cancel</button>
         </footer>
       </div>
@@ -83,6 +92,8 @@
         qtyModal: {
           isOpen: false,
           coinName: '',
+          coinSymbol: '',
+          market: '',
           coinQty: 0
         }
       }
@@ -99,16 +110,24 @@
       formatCurrency: function (amount) {
         return amount.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
       },
-      editQuantity: function (coinMarket) {
+      openQtyModal: function (coinMarket) {
         const coin = this.watchedCoins.filter(coin => coin.market === coinMarket)[0]
+        this.qtyModal.coinName = coin.name
+        this.qtyModal.coinSymbol = coin.symbol
         this.qtyModal.coinQty = coin.qty
+        this.qtyModal.market = coin.market
         this.qtyModal.isOpen = !this.qtyModal.isOpen
       },
       saveQty: function () {
+        // TODO: validate qty
+        store.dispatch('updateQty', {'market': this.qtyModal.market, 'qty': this.qtyModal.coinQty})
         this.closeQtyModal()
       },
       closeQtyModal: function () {
         this.qtyModal.isOpen = false
+      },
+      totalUSD: function (price, qty) {
+        return (price > 0 && qty > 0) ? this.formatCurrency(price * qty) : 0
       }
     },
     computed: {

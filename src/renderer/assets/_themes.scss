@@ -28,6 +28,13 @@
                 }
             }
         }
+        .watchlist-card-wrapper {
+            .watchlist-card {
+                .last-trade {
+                    color: $grey-light;
+                }
+            }
+        }
     }
     &.dark {
         color: $grey-lightest;
@@ -99,14 +106,18 @@
         .watchlist-card-wrapper {
             color: $grey-lighter;
             .watchlist-card {
+                background-color: $grey-darker;
+                border-color: $black;
                 strong {
                     color: $white;
                 }
-                background-color: $grey-darker;
-                border-color: $black;
+                .last-trade {
+                    color: $grey;
+                    background-color: $grey-dark;
+                }
             }
             .watchlist-card-thumb {
-                background-color: $grey-darkest;
+                background-color: $grey-darker;
                 .coin-name {
                     color: $white;
                 }

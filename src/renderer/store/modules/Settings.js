@@ -84,6 +84,13 @@ const mutations = {
     // get from local storage, set it in store
     // This may not actually be needed
     // state.coins = localStorage.coins.get()
+  },
+  UPDATE_QTY: (state, obj) => {
+    const itemIndex = _.findIndex(state.coins, entry => entry.market === obj.market)
+    state.coins[itemIndex].qty = obj.qty
+
+    // save to localStorage
+    localStorage.coins.set(state.coins)
   }
 }
 
@@ -107,6 +114,17 @@ const actions = {
   toggleWatchedCoin ({ commit }, market) {
     // do this async
     commit('TOGGLE_WATCHED_COIN', market)
+  },
+  updateQty ({ commit }, obj) {
+    /**
+     * obj =
+     * {
+     *   'market': market,
+     *   'qty': qty
+     * }
+     */
+    // do this async
+    commit('UPDATE_QTY', obj)
   }
 }
 
