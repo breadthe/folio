@@ -10,9 +10,11 @@
                         <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
                         <div v-if="coin.lastTrade">{{ coin.lastTrade.exchange }}</div>
                     </div>
-                    <div class="watchlist-card-details">
+                    <div class="watchlist-card-details tw-relative">
                         <div class="coin-price tw-text-lg" v-if="coin.lastTrade">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
                         <div class="coin-price tw-text-lg" v-else>$--</div>
+
+                        <i class="fa fa-gear edit-quantity" aria-hidden="true" title="Edit quantity" @click="editQuantity(coin.market)"></i>
 
                         <div v-if="coin.lastTrade">
                             <strong>24h:</strong>&nbsp;
@@ -42,6 +44,23 @@
         Watchlist is empty
     </section>
 
+    <div class="modal" :class="{'is-active': qtyModal.isOpen}">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Update quantity</p>
+          <button class="delete" aria-label="close" @click="closeQtyModal"></button>
+        </header>
+        <section class="modal-card-body">
+          <input type="text" :value="qtyModal.coinQty">
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" @click="closeQtyModal">Save</button>
+          <button class="button" @click="closeQtyModal">Cancel</button>
+        </footer>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -61,7 +80,10 @@
         socketMessage: '',
         message: '',
         filterStr: '',
-        button: {
+        qtyModal: {
+          isOpen: false,
+          coinName: '',
+          coinQty: 0
         }
       }
     },
@@ -76,6 +98,17 @@
       },
       formatCurrency: function (amount) {
         return amount.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+      },
+      editQuantity: function (coinMarket) {
+        const coin = this.watchedCoins.filter(coin => coin.market === coinMarket)[0]
+        this.qtyModal.coinQty = coin.qty
+        this.qtyModal.isOpen = !this.qtyModal.isOpen
+      },
+      saveQty: function () {
+        this.closeQtyModal()
+      },
+      closeQtyModal: function () {
+        this.qtyModal.isOpen = false
       }
     },
     computed: {
@@ -129,6 +162,11 @@
       }
     },
     mounted: function () {
+      // this.qtyModal = {
+      //   isOpen: false,
+      //   coinName: '',
+      //   coinQty: 0
+      // }
       /**/
       // console.log('watchlist mounted')
       // this.$socket.connect()
