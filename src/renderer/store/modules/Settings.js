@@ -14,18 +14,18 @@ const state = {
       { name: 'kraken', watch: true }
     ],
     coins: [
-      { market: 'BTC_USD', symbol: 'BTC', name: 'Bitcoin', watch: true, lastTrade: null, order: 1 },
-      { market: 'ETH_USD', symbol: 'ETH', name: 'Ethereum', watch: true, lastTrade: null, order: 2 },
-      { market: 'LTC_USD', symbol: 'LTC', name: 'Litecoin', watch: true, lastTrade: null, order: 3 },
-      { market: 'BCH_USD', symbol: 'BCH', name: 'Bitcoin Cash', watch: true, lastTrade: null, order: 4 },
-      { market: 'BTC_SC', symbol: 'SC', name: 'Siacoin', watch: true, lastTrade: null, order: 5 },
-      { market: 'BTC_MONA', symbol: 'MONA', name: 'MonaCoin', watch: true, lastTrade: null, order: 6 },
-      { market: 'BTC_ZEN', symbol: 'ZEN', name: 'ZenCash', watch: true, lastTrade: null, order: 7 },
-      { market: 'BTC_XMR', symbol: 'XMR', name: 'Monero', watch: true, lastTrade: null, order: 8 },
-      { market: 'BTC_XRP', symbol: 'XRP', name: 'Ripple', watch: true, lastTrade: null, order: 9 },
-      { market: 'BTC_ZEC', symbol: 'ZEC', name: 'Zcash', watch: true, lastTrade: null, order: 10 },
-      { market: 'BTC_ZCL', symbol: 'ZCL', name: 'ZClassic', watch: true, lastTrade: null, order: 11 },
-      { market: 'BTC_DOGE', symbol: 'DOGE', name: 'Dogecoin', watch: true, lastTrade: null, order: 12 }
+      { market: 'BTC_USD', symbol: 'BTC', name: 'Bitcoin', watch: true, lastTrade: null, qty: 0, order: 1 },
+      { market: 'ETH_USD', symbol: 'ETH', name: 'Ethereum', watch: true, lastTrade: null, qty: 0, order: 2 },
+      { market: 'LTC_USD', symbol: 'LTC', name: 'Litecoin', watch: true, lastTrade: null, qty: 0, order: 3 },
+      { market: 'BCH_USD', symbol: 'BCH', name: 'Bitcoin Cash', watch: true, lastTrade: null, qty: 0, order: 4 },
+      { market: 'BTC_SC', symbol: 'SC', name: 'Siacoin', watch: true, lastTrade: null, qty: 0, order: 5 },
+      { market: 'BTC_MONA', symbol: 'MONA', name: 'MonaCoin', watch: true, lastTrade: null, qty: 0, order: 6 },
+      { market: 'BTC_ZEN', symbol: 'ZEN', name: 'ZenCash', watch: true, lastTrade: null, qty: 0, order: 7 },
+      { market: 'BTC_XMR', symbol: 'XMR', name: 'Monero', watch: true, lastTrade: null, qty: 0, order: 8 },
+      { market: 'BTC_XRP', symbol: 'XRP', name: 'Ripple', watch: true, lastTrade: null, qty: 0, order: 9 },
+      { market: 'BTC_ZEC', symbol: 'ZEC', name: 'Zcash', watch: true, lastTrade: null, qty: 0, order: 10 },
+      { market: 'BTC_ZCL', symbol: 'ZCL', name: 'ZClassic', watch: true, lastTrade: null, qty: 0, order: 11 },
+      { market: 'BTC_DOGE', symbol: 'DOGE', name: 'Dogecoin', watch: true, lastTrade: null, qty: 0, order: 12 }
     ]
   },
   theme: 'light',
@@ -84,6 +84,13 @@ const mutations = {
     // get from local storage, set it in store
     // This may not actually be needed
     // state.coins = localStorage.coins.get()
+  },
+  UPDATE_QTY: (state, obj) => {
+    const itemIndex = _.findIndex(state.coins, entry => entry.market === obj.market)
+    state.coins[itemIndex].qty = obj.qty
+
+    // save to localStorage
+    localStorage.coins.set(state.coins)
   }
 }
 
@@ -107,6 +114,17 @@ const actions = {
   toggleWatchedCoin ({ commit }, market) {
     // do this async
     commit('TOGGLE_WATCHED_COIN', market)
+  },
+  updateQty ({ commit }, obj) {
+    /**
+     * obj =
+     * {
+     *   'market': market,
+     *   'qty': qty
+     * }
+     */
+    // do this async
+    commit('UPDATE_QTY', obj)
   }
 }
 

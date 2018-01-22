@@ -9,10 +9,10 @@
     @apply .tw-w-1/2 .tw-float-left .tw-p-1;
 }
 .watchlist-card {
-    @apply .tw-w-full .tw-overflow-hidden .tw-bg-grey-lightest .tw-shadow .tw-border .tw-rounded-sm .tw-text-xs;
+    @apply .tw-w-full .tw-overflow-hidden .tw-shadow .tw-border .tw-rounded-sm .tw-text-xs;
 }
 .watchlist-card-thumb {
-    @apply .tw-float-left .tw-p-2 .tw-mr-2 .tw-bg-grey-lighter;
+    @apply .tw-float-left .tw-p-2 .tw-mr-2;
 }
 .watchlist-card-details {
     @apply .tw-p-2;
@@ -20,4 +20,9 @@
 
 h6.settings {
     @apply .tw-mt-2 .tw-p-2 .tw-font-semibold;
+}
+
+.edit-quantity {
+    cursor: pointer;
+    @apply .tw-absolute .tw-pin-t .tw-pin-r .tw-mt-1 .tw-mr-1;
 }
