@@ -188,19 +188,6 @@
         gutter: 5,
         fitWidth: true
       })
-      // this.qtyModal = {
-      //   isOpen: false,
-      //   coinName: '',
-      //   coinQty: 0
-      // }
-      /**/
-      // console.log('watchlist mounted')
-      // this.$socket.connect()
-      // this.$socket.emit('ping', 'PING')
-      // this.$socket.emit('page', 'BTC')
-      // this.$socket.onopen(() => {
-      //   console.log('opening soecket')
-      // })
     }
   }
 </script>
