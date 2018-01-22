@@ -1,10 +1,10 @@
 <template>
-  <div class="section tw-h-screen">
+  <div class="section tw-h-full">
 
-    <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins.length">
-        <div class="watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">
+    <section class="grid tw-w-full" v-if="watchedCoins.length">
+        <div class="grid-item watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">
             <div :id="coin.market" class="watchlist-card">
-                <div class="tw-clearfix">
+                <div class="">
                     <div class="watchlist-card-thumb">
                         <div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>
                         <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
@@ -79,6 +79,7 @@
   import store from '../store'
   import TheHero from './TheHero'
   import { TweenLite } from 'gsap'
+  import Masonry from 'masonry-layout'
 
   export default {
     name: 'watch-list-page',
@@ -95,7 +96,8 @@
           coinSymbol: '',
           market: '',
           coinQty: 0
-        }
+        },
+        msnry: null
       }
     },
     methods: {
@@ -181,6 +183,11 @@
       }
     },
     mounted: function () {
+      // see https://masonry.desandro.com/#initialize-with-vanilla-javascript
+      this.msnry = new Masonry('.grid', {
+        gutter: 5,
+        fitWidth: true
+      })
       // this.qtyModal = {
       //   isOpen: false,
       //   coinName: '',
