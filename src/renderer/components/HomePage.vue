@@ -4,39 +4,43 @@
 
       <h6>Dashboard</h6>
 
+      <div>Total USD value: ${{ portfolioSummary.totalUSDValue }}</div>
+
     </section>
   </div>
 </template>
 
 <script>
   import store from '../store'
-  import TheHero from './TheHero'
 
   export default {
     name: 'home-page',
-    components: { TheHero },
     data: function () {
       return {
         pageTitle: 'Home',
-        pageSubTitle: 'Home subtitle',
-        map: {
-          size: 0,
-          lastSynced: '',
-          data: {}
-        }
+        pageSubTitle: 'Home subtitle'
       }
     },
     computed: {
-      mapSize: {
-        get: function () {
-          return store.state.Map.mapSize
-        },
-        set: function (newValue) {
-          store.commit('SET_MAP_SIZE', newValue)
+      portfolioSummary: function () {
+        // portfolio = coins for which I have an amount > 0
+        const portfolio = store.getters.coins.filter(coin => parseFloat(coin.qty) > 0)
+        let totalBTCValue = 0
+        let totalUSDValue = 0
+
+        portfolio.forEach(function (coin) {
+          totalUSDValue += parseFloat(coin.qty) * parseFloat(coin.lastTrade.details.price)
+        })
+        console.log({
+          totalCoinsWatched: portfolio.length,
+          totalBTCValue: totalBTCValue,
+          totalUSDValue: totalUSDValue
+        })
+        return {
+          totalCoinsWatched: portfolio.length,
+          totalBTCValue: totalBTCValue,
+          totalUSDValue: totalUSDValue
         }
-      },
-      watchedCoinsCount: function () {
-        return store.getters.watchedCoins.length
       }
     },
     mounted: function () {
