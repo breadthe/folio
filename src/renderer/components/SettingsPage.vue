@@ -16,7 +16,7 @@
           <h6 class="settings">Exchanges</h6>
           <ul>
             <li v-for="exchange in exchanges" :key="exchange.name" class="tw-p-1">
-              <input type="checkbox" :checked="exchange.watch" @change="toggleWatchedExchange(exchange.name)">
+              <input type="checkbox" :checked="exchange.watch" @change="toggleWatchedExchange(exchange.name)" disabled="disabled">
               {{ exchange.name }}
             </li>
           </ul>
