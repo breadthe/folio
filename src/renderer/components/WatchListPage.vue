@@ -4,7 +4,7 @@
     <section class="grid tw-w-full" v-if="watchedCoins.length">
         <div class="grid-item watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">
             <div :id="coin.market" class="watchlist-card">
-                <div class="">
+                <div class="tw-h-full">
                     <div class="watchlist-card-thumb">
                         <div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>
                         <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
@@ -56,12 +56,12 @@
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <div class="coin-sprite tw-mt-1 tw-mr-1" :class="qtyModal.coinSymbol"></div>
+          <div class="coin-sprite tw-mr-2" :class="qtyModal.coinSymbol"></div>
           <p class="modal-card-title">{{qtyModal.coinName}}</p>
           <button class="delete" aria-label="close" @click="closeQtyModal"></button>
         </header>
         <section class="modal-card-body">
-          <input class="input" type="text" v-model="qtyModal.coinQty" placeholder="Asset quantity">
+          <input class="input" type="text" v-model="qtyModal.coinQty" @keyup.enter="saveQty" placeholder="Asset quantity">
         </section>
         <footer class="modal-card-foot">
           <button class="button is-success" @click="saveQty">Save</button>
@@ -124,12 +124,35 @@
         // TODO: validate qty
         store.dispatch('updateQty', {'market': this.qtyModal.market, 'qty': this.qtyModal.coinQty})
         this.closeQtyModal()
+        // console.log(this.msnry)
+        // this.msnry = new Masonry('.grid', {
+        //   gutter: 5,
+        //   fitWidth: true
+        // })
+        // const self = this
+        // this.msnry.on('layoutComplete', function () {
+          // console.log('layoutComplete')
+          // this.layout()
+        // })
+        // this.msnry.reloadItems()
+        // this.msnry.layoutItems()
+        // msnry.()
+        this.initMasonry()
       },
       closeQtyModal: function () {
         this.qtyModal.isOpen = false
       },
       totalUSD: function (price, qty) {
         return (price > 0 && qty > 0) ? this.formatCurrency(price * qty) : 0
+      },
+      initMasonry: function () {
+        // see https://masonry.desandro.com/#initialize-with-vanilla-javascript
+        // this.msnry = new Masonry(document.querySelector('.grid'), {
+        const msnry = new Masonry(document.querySelector('.grid'), {
+          gutter: 5,
+          fitWidth: true
+        })
+        msnry.layout()
       }
     },
     computed: {
@@ -183,10 +206,18 @@
       }
     },
     mounted: function () {
+      this.initMasonry()
       // see https://masonry.desandro.com/#initialize-with-vanilla-javascript
-      this.msnry = new Masonry('.grid', {
-        gutter: 5,
-        fitWidth: true
+      // this.msnry = new Masonry(document.querySelector('.grid'), {
+      //   gutter: 5,
+      //   fitWidth: true
+      // })
+
+      // Close qty window on ESC
+      document.addEventListener('keydown', (e) => {
+        if (this.qtyModal.isOpen && e.keyCode === 27) {
+          this.closeQtyModal()
+        }
       })
     }
   }
