@@ -21,7 +21,7 @@
 - (v0.0.13) ~~Move socket status to bottom of left-side menu~~
 
 #### Watchlist
-
+- Save amount on ENTER
 - Format coin price up to 8 decimals, but trimming trailing zeros
 - List/Grid view with icons to switch between them. Save view state in Vuex/localStorage
 - Separate coin details (price, etc) by exchange
@@ -50,6 +50,7 @@
 - Show history entries (later replaced or augmented by charts), tracked since, last price, low, high, trend
 
 #### BUGS
+- Reflow Masonry when making changes to coin amount in Watchlist (when an amount is zeroed or new amt added, the size of the box grows/shrinks, overlapping box underneath)
 - Refactor `watchedCoins`/`unwatchedCoins` to work off of `filteredCoins` ??
 - (v0.0.19) ~~.../folio/node_modules/gsap/TweenMax.js:6907 Uncaught Cannot tween a null target. Seemed to occur right after watching a new coin when it started ticking.~~
 - (v0.0.19) ~~Un-watching coins should remove them from the Watchlist~~
