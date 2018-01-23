@@ -97,12 +97,18 @@
                     td {
                         border-color: $grey;
                     }
-                    &:not(.is-selected):nth-child(even) {
-                        background-color: $grey-darker;
-                    }
-                    &:hover {
-                        td {
-                            background-color: $grey;
+                }
+            }
+            &.is-striped {
+                tbody {
+                    tr {
+                        &:not(.is-selected):nth-child(even) {
+                            background-color: $grey-darker;
+                        }
+                        &:hover {
+                            td {
+                                background-color: $grey;
+                            }
                         }
                     }
                 }
