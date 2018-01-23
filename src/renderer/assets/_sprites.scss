@@ -13,7 +13,8 @@
     &.XRP,
     &.ZEC,
     &.ZCL,
-    &.DOGE {
+    &.DOGE,
+    &.DCR {
         background-image: url('./assets/sprites/coins_0.png');
         background-size: 176px 158px;
     }
@@ -28,6 +29,7 @@
     &.ZEC { background-position: -16px 0; }
     &.ZCL { background-position: 0 -14px; }
     &.DOGE { background-position: -46px -126px; }
+    &.DCR { background-position: -144px 0; }
 
     &.ZEN {
         background-image: url('./assets/sprites/coins_1.png');

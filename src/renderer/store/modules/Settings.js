@@ -25,7 +25,8 @@ const state = {
       { market: 'BTC_XRP', symbol: 'XRP', name: 'Ripple', watch: true, lastTrade: null, qty: 0, order: 9 },
       { market: 'BTC_ZEC', symbol: 'ZEC', name: 'Zcash', watch: true, lastTrade: null, qty: 0, order: 10 },
       { market: 'BTC_ZCL', symbol: 'ZCL', name: 'ZClassic', watch: true, lastTrade: null, qty: 0, order: 11 },
-      { market: 'BTC_DOGE', symbol: 'DOGE', name: 'Dogecoin', watch: true, lastTrade: null, qty: 0, order: 12 }
+      { market: 'BTC_DOGE', symbol: 'DOGE', name: 'Dogecoin', watch: true, lastTrade: null, qty: 0, order: 12 },
+      { market: 'BTC_DCR', symbol: 'DCR', name: 'Decred', watch: true, lastTrade: null, qty: 0, order: 13 }
     ]
   },
   theme: 'light',
