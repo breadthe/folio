@@ -1,29 +1,29 @@
 <template>
-  <div class="section">
-    <section class="container tw-h-full">
+  <div class="section tw-h-screen">
+    <section class="container">
 
-      <table class="table is-fullwidth">
-          <thead>
-            <tr>
-                <th>coin</th>
-                <th>qty</th>
-                <th>total</th>
-            </tr>
-            <tr>
-                <th colspan="3" class="tw-bg-black">
-                  <p class="tw-text-right"><span class="tw-text-xl">${{ formatCurrency(portfolioSummary.totalUSDValue) }}</span></p>
-                </th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr v-for="coin in portfolio" :key="coin.market">
-                  <td><div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>&nbsp;{{ coin.name }}</td>
-                  <td>{{ coin.qty }}</td>
-                  <td class="tw-text-right">${{ formatCurrency(USDValue(coin.qty, coin.lastTrade.details.price)) }}</td>
+      <div v-if="portfolioSummary.totalCoinsWatched">
+        <table class="table is-fullwidth">
+            <thead>
+              <tr>
+                  <th colspan="3">
+                    <p class="tw-text-right"><span class="tw-text-xl">${{ formatCurrency(portfolioSummary.totalUSDValue) }}</span></p>
+                  </th>
               </tr>
-          </tbody>
-      </table>
+            </thead>
+            <tbody>
+                <tr v-for="coin in portfolio" :key="coin.market">
+                    <td><div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>&nbsp;{{ coin.name }}</td>
+                    <td>{{ coin.qty }}</td>
+                    <td class="tw-text-right">${{ formatCurrency(USDValue(coin.qty, coin.lastTrade.details.price)) }}</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
 
+      <div v-else>
+        Your portfolio is empty. To see statistics, fill in amounts for your tracked coins.
+      </div>
 
     </section>
   </div>
