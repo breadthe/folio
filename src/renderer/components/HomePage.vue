@@ -31,6 +31,7 @@
 
 <script>
   import store from '../store'
+  import _ from 'lodash'
 
   export default {
     name: 'home-page',
@@ -50,7 +51,11 @@
     },
     computed: {
       portfolio: function () {
-        return store.getters.coins.filter(coin => parseFloat(coin.qty) > 0)
+        const self = this
+        const portfolio = store.getters.coins.filter(coin => parseFloat(coin.qty) > 0)
+        return _.sortBy(portfolio, function (coin) {
+          return self.USDValue(coin.qty, coin.lastTrade.details.price)
+        }).reverse()
       },
       portfolioSummary: function () {
         const self = this
