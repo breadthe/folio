@@ -2,7 +2,7 @@
   <div class="section tw-h-screen">
     <section class="container">
 
-      <p>This app is build with love and:
+      <p>This app is built with love and:
         <ul>
           <li><a @click="open('https://vuejs.org/')">Vue.js</a></li>
           <li><a @click="open('https://electronjs.org/')">Electron</a></li>
