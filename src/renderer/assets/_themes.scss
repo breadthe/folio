@@ -134,5 +134,41 @@
                 }
             }
         }
+        .modal {
+            .modal-card-head,
+            .modal-card-foot {
+                background-color: $grey-dark;
+                .modal-card-title {
+                    color: $white;
+                }
+                button {
+                    &.button {
+                        background-color: $grey-lighter;
+                        &.is-success {
+                            background-color: $green;
+                        }
+                        &.delete {
+                            color: $white;
+                            background: rgba(10, 10, 10, 0.8);
+                        }
+                    }
+                    &:hover {
+                        border-color: $grey-darkest;
+                    }
+                }
+            }
+            .modal-card-body {
+                color: $grey-lightest;
+                background-color: $grey;
+                label {
+                    color: $grey-lightest;
+                }
+                input {
+                    .input {
+                        background-color: $grey-lightest;
+                    }
+                }
+            }
+        }
     }
 }
