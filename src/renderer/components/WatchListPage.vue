@@ -1,10 +1,10 @@
 <template>
-  <div class="section tw-h-full">
+  <div class="section tw-h-screen">
 
     <section class="grid tw-w-full" v-if="watchedCoins.length">
         <div class="grid-item watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">
             <div :id="coin.market" class="watchlist-card">
-                <div class="tw-h-full">
+                <div class="tw-h-full tw-clearfix">
                     <div class="watchlist-card-thumb">
                         <div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>
                         <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
