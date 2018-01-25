@@ -26,7 +26,7 @@
         <section class="tw-container tw-clearfix tw-w-full">
           <h6 class="settings">Coins</h6>
 
-          <p class="tw-text-grey-light">Choose which coins to track. Prices for tracked coins will update in real time as trades happen.</p>
+          <p>Choose which coins to track. Prices for tracked coins will update in real time as trades happen.</p>
           <table class="table is-striped is-hoverable is-fullwidth">
               <thead>
               <tr>
