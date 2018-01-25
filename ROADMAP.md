@@ -1,33 +1,32 @@
 # Roadmap / wishlist
 
 #### Priorities
-1. Asset quantity
-2. Dashboard summary & pie chart
+1. ~~Asset quantity~~
+2. ~~Dashboard summary~~ & pie chart
 3. List/Grid layout for watchlist
 
 #### App
 - Socket connection and sync should start when the app boots, not just the Watchlist page
 
 #### Dashboard
-- Show total $ value of portfolio, total BTC value, and pie chart for entire portfolio. Update this only when dashboard is entered.
+- (v0.1.3) ~~Show total $ value of portfolio, total BTC value, and pie chart for entire portfolio. Update this only when dashboard is entered.~~
 
 #### Layout
-- Pin the title/hero/menu/toolbar to the top of each page
 - (NICE TO HAVE) Collapse left nav down to icons only. Put an arrow "<<" button pinned to the bottom of the nav that collapses/expands the menu.
 - (IF ABOVE) Tooltips for icons in collapsed nav
 - (v0.1.2) ~~Switch to TailwindCSS, or at the very least strip everything Bulma out, except for the layout stuff~~
 - (v0.0.16) ~~Pin left nav and let content area scroll independently~~
-- (v0.0.12) ~~Improve layout for Watchlist coin cards~~
 - (v0.0.13) ~~Move socket status to bottom of left-side menu~~
+- (v0.0.12) ~~Improve layout for Watchlist coin cards~~
 
 #### Watchlist
-- Save amount on ENTER
 - Format coin price up to 8 decimals, but trimming trailing zeros
 - List/Grid view with icons to switch between them. Save view state in Vuex/localStorage
 - Separate coin details (price, etc) by exchange
 - Compare current trade tick with history and color price green/red depending on +/- or black if no previous history
 - Alphabetic sorting of coins/markets
 - (NICE TO HAVE) Drag-sorting watched coins
+- (v0.1.3) ~~Save amount on ENTER~~
 - (v0.1.2) ~~Display "bubbles" for each market (eg. BTC-USD, BTC-ETH, ETH-XMR, etc) instead of just the coins~~
 - (v0.0.14) ~~Animate coin bubble when a trade updates (green/red depending on +/- then fade back to gray)~~
 - (v0.0.13) ~~Retrieve last coin details from localStorage when mounting the app~~
