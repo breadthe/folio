@@ -1,8 +1,18 @@
 <template>
   <div class="section tw-h-screen">
 
-    <section class="grid tw-w-full" v-if="watchedCoins.length">
-        <div class="grid-item watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">
+    <div>
+      <button @click="sortCoins('qty', 'asc')">Qty ASC</button>
+      <button @click="sortCoins('qty', 'desc')">Qty DESC</button>
+    </div>
+
+    <div>
+      <button @click="sortCoins('name', 'asc')">Name ASC</button>
+      <button @click="sortCoins('name', 'desc')">Name DESC</button>
+    </div>
+
+    <section class="grid tw-w-full" v-if="sortedCoins.length">
+        <div class="grid-item watchlist-card-wrapper" v-for="coin in sortedCoins" :key="coin.market">
             <div :id="coin.market" class="watchlist-card">
                 <div class="tw-h-full tw-clearfix">
                     <div class="watchlist-card-thumb">
@@ -98,6 +108,7 @@
           market: '',
           coinQty: 0
         },
+        sortedCoins: [],
         msnry: null
       }
     },
@@ -132,6 +143,13 @@
       },
       totalUSD: function (price, qty) {
         return (price > 0 && qty > 0) ? this.formatCurrency(price * qty) : 0
+      },
+      sortCoins: function (by, direction) {
+        // const thisby = this[by]
+        const sorted = _.sortBy(this.watchedCoins, function (coin) {
+          return coin.by
+        })
+        this.sortedCoins = direction === 'asc' ? sorted.reverse() : sorted
       }
     },
     computed: {
@@ -141,8 +159,17 @@
       watchedCoins: function () {
         // TODO: change this to getters.watchedCoins later
         // TODO: sort by order
-        return store.getters.coins.filter(coin => coin.watch)
+        this.sortedCoins = store.getters.coins.filter(coin => coin.watch)
+        // return store.getters.coins.filter(coin => coin.watch)
+        return this.sortedCoins
       }
+      // ,
+      // coinsSortByQty: function (dir = 'asc') {
+      //   const sorted = _.sortBy(this.watchedCoins, function (coin) {
+      //     return coin.qty > 0
+      //   })
+      //   return dir === 'asc' ? sorted.reverse() : sorted
+      // }
     },
     sockets: {
       // Fired when the socket connects.
@@ -185,6 +212,8 @@
       }
     },
     mounted: function () {
+      // this.sortedCoins = this.watchedCoins
+
       // see https://masonry.desandro.com/#initialize-with-vanilla-javascript
       this.msnry = new Masonry(document.querySelector('.grid'), {
         gutter: 5,
