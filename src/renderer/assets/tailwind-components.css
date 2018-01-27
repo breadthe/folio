@@ -5,6 +5,9 @@
     @apply .tw-pin-b .tw-fixed .tw-w-full .tw-ml-2 .tw-mb-1 .tw-text-xs;
 }
 
+.watchlist-card-wrapper {
+    @apply .tw-w-1/2 .tw-float-left .tw-p-1;
+}
 .watchlist-card {
     @apply .tw-overflow-hidden .tw-shadow .tw-border .tw-rounded-sm .tw-text-xs;
 }

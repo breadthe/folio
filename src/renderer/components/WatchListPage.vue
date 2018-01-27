@@ -1,18 +1,19 @@
 <template>
   <div class="section tw-h-screen">
 
-    <section class="grid tw-w-full" v-if="watchedCoins.length">
-        <div class="grid-item watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">
+    <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins.length">
+        <div class="watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">
             <div :id="coin.market" class="watchlist-card">
-                <div class="tw-h-full tw-clearfix">
+
                     <div class="watchlist-card-thumb">
-                        <div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>
+                        <div class="coin-sprite tw-mt-1 tw-mr-2" :class="coin.symbol"></div>
                         <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
                         <div v-if="coin.qty && coin.qty > 0" title="My quantity">{{ coin.qty }}</div>
                         <div v-if="coin.lastTrade && coin.qty && coin.qty > 0" title="Total USD value">${{ totalUSD(coin.lastTrade.details.price, coin.qty) }}</div>
                     </div>
+
                     <div class="watchlist-card-details tw-relative">
-                        <div class="coin-price tw-text-lg" v-if="coin.lastTrade">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
+                        <div class="coin-price tw-text-lg" v-if="coin.lastTrade" :title="lastTradeString(coin.lastTrade)">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
                         <div class="coin-price tw-text-lg" v-else>$--</div>
 
                         <i class="fa fa-gear edit-quantity" aria-hidden="true" title="Edit quantity" @click="openQtyModal(coin.market)"></i>
@@ -28,23 +29,8 @@
                               {{ coin.lastTrade.details.cap24hrChange }}%
                             </span>
                         </div>
-
-                    </div>
-                </div>
-                <div class="last-trade tw-px-1">
-                    <div class="tw-float-right tw-mr-1" title="Last trade" v-if="coin.lastTrade">
-                      <span>{{ coin.lastTrade.timestamp.date }}</span>
-                      &nbsp;
-                      <span>{{ coin.lastTrade.timestamp.time }}</span>
-                    </div>
-                    <div class="tw-float-right tw-mr-1" title="Last trade" v-else>
-                      <span>--.--.----</span>
-                      &nbsp;
-                      <span>--:--:--</span>
                     </div>
 
-                    <div class="tw-float-left tw-ml-1" title="Exchange" v-if="coin.lastTrade">{{ coin.lastTrade.exchange }}</div>
-                </div>
             </div>
         </div>
     </section>
@@ -80,7 +66,6 @@
   import store from '../store'
   import TheHero from './TheHero'
   import { TweenLite } from 'gsap'
-  import Masonry from 'masonry-layout'
 
   export default {
     name: 'watch-list-page',
@@ -97,8 +82,7 @@
           coinSymbol: '',
           market: '',
           coinQty: 0
-        },
-        msnry: null
+        }
       }
     },
     methods: {
@@ -125,13 +109,15 @@
         // TODO: validate qty
         store.dispatch('updateQty', {'market': this.qtyModal.market, 'qty': this.qtyModal.coinQty})
         this.closeQtyModal()
-        this.msnry.reloadItems()
       },
       closeQtyModal: function () {
         this.qtyModal.isOpen = false
       },
       totalUSD: function (price, qty) {
         return (price > 0 && qty > 0) ? this.formatCurrency(price * qty) : 0
+      },
+      lastTradeString: function (lastTrade) {
+        return lastTrade ? lastTrade.exchange + ' | ' + lastTrade.timestamp.date + ' | ' + lastTrade.timestamp.time : ''
       }
     },
     computed: {
@@ -178,19 +164,13 @@
         if (marketId) {
           // If this proves to be buggy (stuck blue border), might want to try TimelineLite to create a sequence
           TweenLite.to(marketId, 0, { borderColor: blueBorderColor })
-          TweenLite.to(marketId, 2, { borderColor: store.getters.theme === 'light' ? originalBorderColorLight : originalBorderColorDark })
+          TweenLite.to(marketId, 5, { borderColor: store.getters.theme === 'light' ? originalBorderColorLight : originalBorderColorDark })
         }
         // set trades to Vuex
         store.dispatch('setTrade', newTrade)
       }
     },
     mounted: function () {
-      // see https://masonry.desandro.com/#initialize-with-vanilla-javascript
-      this.msnry = new Masonry(document.querySelector('.grid'), {
-        gutter: 5,
-        fitWidth: true
-      })
-
       // Close qty window on ESC
       document.addEventListener('keydown', (e) => {
         if (this.qtyModal.isOpen && e.keyCode === 27) {
