@@ -71,4 +71,8 @@
     background: -webkit-linear-gradient(150deg, #4292d3 10%, #1c67c9 70%, #1c67c9 94%);
     background: linear-gradient(150deg, #4292d3 10%, #1c67c9 70%, #1c67c9 94%);
   }
+  &:disabled {
+    background-color: $grey;
+    background: $grey;
+  }
 }

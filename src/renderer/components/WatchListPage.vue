@@ -1,38 +1,16 @@
 <template>
-  <div class="section tw-h-screen">
+  <div class="section tw-h-full">
+
+    <div class="tw-mb-2">
+      <button class="storyblok-button teal" :disabled="view === 'grid'" @click="changeView('grid')"><i class="fa fa-th-large" aria-hidden="true"></i>
+&nbsp;Grid</button>
+      <button class="storyblok-button teal" :disabled="view === 'list'" @click="changeView('list')"><i class="fa fa-list" aria-hidden="true"></i>
+&nbsp;List</button>
+    </div>
 
     <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins.length">
-        <div class="watchlist-card-wrapper" v-for="coin in watchedCoins" :key="coin.market">
-            <div :id="coin.market" class="watchlist-card">
-
-                    <div class="watchlist-card-thumb">
-                        <div class="coin-sprite tw-mt-1 tw-mr-2" :class="coin.symbol"></div>
-                        <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
-                        <div v-if="coin.qty && coin.qty > 0" title="My quantity">{{ coin.qty }}</div>
-                        <div v-if="coin.lastTrade && coin.qty && coin.qty > 0" title="Total USD value">${{ totalUSD(coin.lastTrade.details.price, coin.qty) }}</div>
-                    </div>
-
-                    <div class="watchlist-card-details tw-relative">
-                        <div class="coin-price tw-text-lg" v-if="coin.lastTrade" :title="lastTradeString(coin.lastTrade)">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
-                        <div class="coin-price tw-text-lg" v-else>$--</div>
-
-                        <i class="fa fa-gear edit-quantity" aria-hidden="true" title="Edit quantity" @click="openQtyModal(coin.market)"></i>
-
-                        <div v-if="coin.lastTrade">
-                            <strong>24h:</strong>&nbsp;
-                            <span
-                                :class="{
-                                    'has-text-danger': (coin.lastTrade.details.cap24hrChange < 0),
-                                    'has-text-success': (coin.lastTrade.details.cap24hrChange > 0),
-                                    'has-text-primary': (coin.lastTrade.details.cap24hrChange === 0)
-                                }">
-                              {{ coin.lastTrade.details.cap24hrChange }}%
-                            </span>
-                        </div>
-                    </div>
-
-            </div>
-        </div>
+        <grid-view :watched-coins="watchedCoins" v-if="view === 'grid'" @openQtyModal="openQtyModal($event)"></grid-view>
+        <list-view :watched-coins="watchedCoins" v-if="view === 'list'" @openQtyModal="openQtyModal($event)"></list-view>
     </section>
     <section class="section" v-else>
         Watchlist is empty
@@ -64,15 +42,17 @@
   import _ from 'lodash'
   import moment from 'moment'
   import store from '../store'
-  import TheHero from './TheHero'
   import { TweenLite } from 'gsap'
+  import GridView from './GridView'
+  import ListView from './ListView'
 
   export default {
     name: 'watch-list-page',
-    components: { TheHero },
+    components: { GridView, ListView },
     data: function () {
       return {
         pageTitle: 'Watchlist',
+        view: 'grid',
         socketMessage: '',
         message: '',
         filterStr: '',
@@ -113,11 +93,8 @@
       closeQtyModal: function () {
         this.qtyModal.isOpen = false
       },
-      totalUSD: function (price, qty) {
-        return (price > 0 && qty > 0) ? this.formatCurrency(price * qty) : 0
-      },
-      lastTradeString: function (lastTrade) {
-        return lastTrade ? lastTrade.exchange + ' | ' + lastTrade.timestamp.date + ' | ' + lastTrade.timestamp.time : ''
+      changeView: function (view) {
+        this.view = view === 'grid' ? 'grid' : 'list'
       }
     },
     computed: {

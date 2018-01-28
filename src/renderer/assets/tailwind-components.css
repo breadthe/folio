@@ -6,7 +6,7 @@
 }
 
 .watchlist-card-wrapper {
-    @apply .tw-w-1/2 .tw-float-left .tw-p-1;
+    @apply .tw-p-1;
 }
 .watchlist-card {
     @apply .tw-overflow-hidden .tw-shadow .tw-border .tw-rounded-sm .tw-text-xs;
