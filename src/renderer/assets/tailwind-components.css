@@ -22,7 +22,6 @@ h6.settings {
     @apply .tw-mt-2 .tw-p-2 .tw-font-semibold;
 }
 
-.edit-quantity {
-    cursor: pointer;
+.edit-quantity.grid-view {
     @apply .tw-absolute .tw-pin-t .tw-pin-r .tw-mt-1 .tw-mr-1;
 }

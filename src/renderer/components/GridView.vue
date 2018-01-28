@@ -7,14 +7,14 @@
                         <div class="coin-sprite tw-mt-1 tw-mr-2" :class="coin.symbol"></div>
                         <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
                         <div v-if="coin.qty && coin.qty > 0" title="My quantity">{{ coin.qty }}</div>
-                        <div v-if="coin.lastTrade && coin.qty && coin.qty > 0" title="Total USD value">${{ totalUSD(coin.lastTrade.details.price, coin.qty) }}</div>
+                        <div v-if="coin.lastTrade && coin.qty && coin.qty > 0" title="Total USD value">${{ formatCurrency(USDValue(coin.qty, coin.lastTrade.details.price)) }}</div>
                     </div>
 
-                    <div class="watchlist-card-details">
+                    <div class="watchlist-card-details tw-relative">
                         <div class="coin-price tw-text-lg" v-if="coin.lastTrade" :title="lastTradeString(coin.lastTrade)">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
                         <div class="coin-price tw-text-lg" v-else>$--</div>
 
-                        <i class="fa fa-gear edit-quantity" aria-hidden="true" title="Edit quantity" @click="openQtyModal(coin.market)"></i>
+                        <i class="fa fa-gear edit-quantity grid-view" aria-hidden="true" title="Edit quantity" @click="openQtyModal(coin.market)"></i>
 
                         <div v-if="coin.lastTrade">
                             <strong>24h:</strong>&nbsp;
@@ -45,8 +45,8 @@
       openQtyModal: function (coinMarket) {
         this.$emit('openQtyModal', coinMarket)
       },
-      totalUSD: function (price, qty) {
-        return (price > 0 && qty > 0) ? this.formatCurrency(price * qty) : 0
+      USDValue: function (qty, price) {
+        return parseFloat(qty) * parseFloat(price)
       },
       lastTradeString: function (lastTrade) {
         return lastTrade ? lastTrade.exchange + ' | ' + lastTrade.timestamp.date + ' | ' + lastTrade.timestamp.time : ''
