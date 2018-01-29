@@ -28,6 +28,36 @@
     }
   }
 
+  .views-wrapper {
+    position: relative;
+    margin-top: 10px;
+    border-bottom: 1px solid $grey;
+    div {
+      position: absolute;
+      margin-bottom: 2px;
+      bottom: 0;
+      a {
+        padding: 10px 10px 5px 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid $grey;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+        color: $grey;
+        &:hover {
+          color: $grey-light;
+        }
+        &.active {
+          color: $white;
+          border: 1px solid $grey;
+          border-bottom: 1px solid $grey-dark;
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+
   .watchlist-card {
     height: 5rem;
   }

@@ -1,11 +1,13 @@
 <template>
   <div class="section tw-h-full">
 
-    <div class="tw-mb-2">
-      <button class="storyblok-button teal" :disabled="view === 'grid'" @click="changeView('grid')"><i class="fa fa-th-large" aria-hidden="true"></i>
-&nbsp;Grid</button>
-      <button class="storyblok-button teal" :disabled="view === 'list'" @click="changeView('list')"><i class="fa fa-list" aria-hidden="true"></i>
-&nbsp;List</button>
+    <div class="views-wrapper tw-mb-2">
+      <div>
+        <a :class="{'active': view === 'grid'}" @click="changeView('grid')"><i class="fa fa-th-large" aria-hidden="true"></i>
+  &nbsp;<span class="tw-text-xl">Grid</span></a>
+        <a :class="{'active': view === 'list'}" @click="changeView('list')"><i class="fa fa-list" aria-hidden="true"></i>
+  &nbsp;<span class="tw-text-xl">List</span></a>
+      </div>
     </div>
 
     <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins.length">
