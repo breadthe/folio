@@ -3,16 +3,16 @@
 
     <div class="views-wrapper tw-mb-2">
       <div>
-        <a :class="{'active': view === 'grid'}" @click="changeView('grid')"><i class="fa fa-th-large" aria-hidden="true"></i>
+        <a :class="{'active': watchlistView === 'grid'}" @click="changeView('grid')"><i class="fa fa-th-large" aria-hidden="true"></i>
   &nbsp;<span class="tw-text-xl">Grid</span></a>
-        <a :class="{'active': view === 'list'}" @click="changeView('list')"><i class="fa fa-list" aria-hidden="true"></i>
+        <a :class="{'active': watchlistView === 'list'}" @click="changeView('list')"><i class="fa fa-list" aria-hidden="true"></i>
   &nbsp;<span class="tw-text-xl">List</span></a>
       </div>
     </div>
 
     <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins.length">
-        <grid-view :watched-coins="watchedCoins" v-if="view === 'grid'" @openQtyModal="openQtyModal($event)"></grid-view>
-        <list-view :watched-coins="watchedCoins" v-if="view === 'list'" @openQtyModal="openQtyModal($event)"></list-view>
+        <grid-view :watched-coins="watchedCoins" v-if="watchlistView === 'grid'" @openQtyModal="openQtyModal($event)"></grid-view>
+        <list-view :watched-coins="watchedCoins" v-if="watchlistView === 'list'" @openQtyModal="openQtyModal($event)"></list-view>
     </section>
     <section class="section" v-else>
         Watchlist is empty
@@ -54,7 +54,6 @@
     data: function () {
       return {
         pageTitle: 'Watchlist',
-        view: 'grid',
         socketMessage: '',
         message: '',
         filterStr: '',
@@ -96,7 +95,7 @@
         this.qtyModal.isOpen = false
       },
       changeView: function (view) {
-        this.view = view === 'grid' ? 'grid' : 'list'
+        store.commit('SET_VIEW', view)
       }
     },
     computed: {
@@ -107,6 +106,9 @@
         // TODO: change this to getters.watchedCoins later
         // TODO: sort by order
         return store.getters.coins.filter(coin => coin.watch)
+      },
+      watchlistView: function () {
+        return store.getters.watchlistView
       }
     },
     sockets: {

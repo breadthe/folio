@@ -31,7 +31,8 @@ const state = {
   },
   theme: 'light',
   exchanges: [],
-  coins: []
+  coins: [],
+  view: 'grid'
 }
 
 const mutations = {
@@ -92,6 +93,9 @@ const mutations = {
 
     // save to localStorage
     localStorage.coins.set(state.coins)
+  },
+  SET_VIEW: (state, view) => {
+    state.view = view === 'grid' ? 'grid' : 'list'
   }
 }
 
@@ -134,7 +138,8 @@ const getters = {
   theme: (state) => { return state.theme || 'light' },
   exchanges: (state) => { return state.exchanges || [] },
   coins: (state) => { return state.coins || [] },
-  defaultCoins: (state) => { return state.default.coins || [] }
+  defaultCoins: (state) => { return state.default.coins || [] },
+  watchlistView: (state) => { return state.view || 'grid' }
 }
 
 export default {
