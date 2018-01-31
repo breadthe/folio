@@ -29,6 +29,15 @@
                 }
             }
         }
+        .sort-wrapper {
+            button {
+                color: $blue;
+                border-bottom: 1px dotted $blue;
+                &:disabled {
+                    color: $black;
+                }
+            }
+        }
         .views-wrapper {
             border-bottom: 1px solid $grey-lighter;
             div {
@@ -134,6 +143,15 @@
                             }
                         }
                     }
+                }
+            }
+        }
+        .sort-wrapper {
+            button {
+                color: $blue-light;
+                border-bottom: 1px dotted $blue-light;
+                &:disabled {
+                    color: $white;
                 }
             }
         }

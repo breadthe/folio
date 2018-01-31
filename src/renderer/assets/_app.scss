@@ -28,6 +28,19 @@
     }
   }
 
+  .sort-wrapper {
+    button {
+      border: none;
+      padding: 0;
+      margin: 0 5px;
+      &:disabled {
+          border-bottom: none;
+          font-weight: bold;
+          cursor: default;
+      }
+    }
+  }
+
   .views-wrapper {
     position: relative;
     margin-top: 10px;
