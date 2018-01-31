@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="tw-h-screen">
 
         <table class="table is-fullwidth">
             <thead>

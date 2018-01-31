@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="tw-h-screen">
+
         <div class="watchlist-card-wrapper tw-w-1/2 tw-float-left" v-for="coin in watchedCoins" :key="coin.market">
             <div :id="coin.market" class="watchlist-card">
 
@@ -31,6 +32,7 @@
 
             </div>
         </div>
+
     </div>
 </template>
 
