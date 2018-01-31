@@ -2,7 +2,9 @@ import localStorage from '../localStorage'
 
 const state = {
   trades: [],
-  connect: false
+  connect: false,
+  sort: 'name-asc',
+  sortOptions: ['name-asc', 'name-desc', 'qty-asc', 'qty-desc']
 }
 
 const mutations = {
@@ -16,6 +18,9 @@ const mutations = {
     localStorage.trades.set(trades)
 
     state.trades = localStorage.trades.get()
+  },
+  SET_SORT: (state, sort) => {
+    state.sort = state.sortOptions.find(function (el) { return el === sort }) ? sort : 'name-asc'
   }
 }
 
@@ -25,12 +30,16 @@ const actions = {
   },
   setTrades ({ commit }, trades) {
     commit('SET_TRADES', trades)
+  },
+  setSort ({ commit }, sort) {
+    commit('SET_SORT', sort)
   }
 }
 
 const getters = {
   trades: (state) => { return state.trades || [] },
-  connect: (state) => { return state.connect }
+  connect: (state) => { return state.connect },
+  sortBy: (state) => { return state.sort }
 }
 
 export default {

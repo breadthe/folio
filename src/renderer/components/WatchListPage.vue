@@ -10,6 +10,8 @@
       </div>
     </div>
 
+    <order-by></order-by>
+
     <section class="tw-container tw-clearfix tw-w-full" v-if="watchedCoins.length">
         <grid-view :watched-coins="watchedCoins" v-if="watchlistView === 'grid'" @openQtyModal="openQtyModal($event)"></grid-view>
         <list-view :watched-coins="watchedCoins" v-if="watchlistView === 'list'" @openQtyModal="openQtyModal($event)"></list-view>
@@ -47,10 +49,12 @@
   import { TweenLite } from 'gsap'
   import GridView from './GridView'
   import ListView from './ListView'
+  import OrderBy from './OrderBy'
+  import { byNameAsc, byNameDesc, byQtyAsc, byQtyDesc } from '@/utils/sorting'
 
   export default {
     name: 'watch-list-page',
-    components: { GridView, ListView },
+    components: { GridView, ListView, OrderBy },
     data: function () {
       return {
         pageTitle: 'Watchlist',
@@ -105,10 +109,24 @@
       watchedCoins: function () {
         // TODO: change this to getters.watchedCoins later
         // TODO: sort by order
-        return store.getters.coins.filter(coin => coin.watch)
+        const coins = store.getters.coins.filter(coin => coin.watch)
+        switch (this.sortBy) {
+          case 'name-asc':
+            return coins.sort(byNameAsc)
+          case 'name-desc':
+            return coins.sort(byNameDesc)
+          case 'qty-asc':
+            return coins.sort(byQtyAsc)
+          case 'qty-desc':
+            return coins.sort(byQtyDesc)
+        }
+        return coins
       },
       watchlistView: function () {
         return store.getters.watchlistView
+      },
+      sortBy: function () {
+        return store.getters.sortBy
       }
     },
     sockets: {
