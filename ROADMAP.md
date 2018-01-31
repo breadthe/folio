@@ -49,7 +49,9 @@
 - Show history entries (later replaced or augmented by charts), tracked since, last price, low, high, trend
 
 #### BUGS
-- Reflow Masonry when making changes to coin amount in Watchlist (when an amount is zeroed or new amt added, the size of the box grows/shrinks, overlapping box underneath)
+- Grid/List tabs on the Light theme have the wrong styling
+- When there's no price history (first boot, no socket), the List view is blank
+- When I have asset qty but there's no price data yet (for example app is booted for the first time and there's no trade data yet for any coin), the dashboard is blank
 - Refactor `watchedCoins`/`unwatchedCoins` to work off of `filteredCoins` ??
 - (v0.0.19) ~~.../folio/node_modules/gsap/TweenMax.js:6907 Uncaught Cannot tween a null target. Seemed to occur right after watching a new coin when it started ticking.~~
 - (v0.0.19) ~~Un-watching coins should remove them from the Watchlist~~
@@ -59,14 +61,15 @@
 - (v0.0.4) ~~Desktop app build - routes don't work~~
 - (v0.0.6) ~~Desktop app build - Vuex storage doesn't persist thru closing/reopening app~~
 - (v0.0.5) ~~Match Case isn't working~~
+- N/A ~~Reflow Masonry when making changes to coin amount in Watchlist (when an amount is zeroed or new amt added, the size of the box grows/shrinks, overlapping box underneath)~~
 
 ~~#### Map syncing~~
-- N/A ~~Add "My Asset" amount to watched coins~~
 - (v0.1.1) ~~Allow other markets than USD (BTC-x, ETH-x, etc)~~
 - (v0.0.17) ~~Store only diff between existing map in storage and new map (i.e. new coins only), don't touch existing items. This should preserve watched coins.~~
 - (v0.0.2) ~~Use Vuex store instead of localStorage~~
 - (v0.0.7) ~~Use localStorage to persist data, Vuex is for state management only~~
 - (v0.0.3) ~~2-way binding between watch view <-> storage using computed getter/setter~~
+- N/A ~~Add "My Asset" amount to watched coins~~
 
 ~~#### Map view~~
 - N/A ~~Messages for map sync should integrate better with the UI and disappear after a few seconds~~
