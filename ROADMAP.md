@@ -1,12 +1,14 @@
 # Roadmap / wishlist
 
 #### Priorities
-1. ~~Asset quantity~~
 2. ~~Dashboard summary~~ & pie chart
-3. List/Grid layout for watchlist
+1. ~~Asset quantity~~
+3. ~~List/Grid layout for watchlist~~
 
 #### App
 - Socket connection and sync should start when the app boots, not just the Watchlist page
+- Export saved data as json
+- Import previously saved json data (with warning that it will overwrite existing data)
 
 #### Dashboard
 - (v0.1.3) ~~Show total $ value of portfolio, total BTC value, and pie chart for entire portfolio. Update this only when dashboard is entered.~~
@@ -21,11 +23,11 @@
 
 #### Watchlist
 - Format coin price up to 8 decimals, but trimming trailing zeros
-- List/Grid view with icons to switch between them. Save view state in Vuex/localStorage
 - Separate coin details (price, etc) by exchange
 - Compare current trade tick with history and color price green/red depending on +/- or black if no previous history
-- Alphabetic sorting of coins/markets
 - (NICE TO HAVE) Drag-sorting watched coins
+- (v0.1.4) ~~Alphabetic sorting of coins/markets~~
+- (v0.1.4) ~~List/Grid view with icons to switch between them. Save view state in Vuex/localStorage~~
 - (v0.1.3) ~~Save amount on ENTER~~
 - (v0.1.2) ~~Display "bubbles" for each market (eg. BTC-USD, BTC-ETH, ETH-XMR, etc) instead of just the coins~~
 - (v0.0.14) ~~Animate coin bubble when a trade updates (green/red depending on +/- then fade back to gray)~~
@@ -49,10 +51,11 @@
 - Show history entries (later replaced or augmented by charts), tracked since, last price, low, high, trend
 
 #### BUGS
-- Grid/List tabs on the Light theme have the wrong styling
+- Background color is still buggy for watchList
 - When there's no price history (first boot, no socket), the List view is blank
 - When I have asset qty but there's no price data yet (for example app is booted for the first time and there's no trade data yet for any coin), the dashboard is blank
 - Refactor `watchedCoins`/`unwatchedCoins` to work off of `filteredCoins` ??
+- (v0.1.4) ~~Grid/List tabs on the Light theme have the wrong styling~~
 - (v0.0.19) ~~.../folio/node_modules/gsap/TweenMax.js:6907 Uncaught Cannot tween a null target. Seemed to occur right after watching a new coin when it started ticking.~~
 - (v0.0.19) ~~Un-watching coins should remove them from the Watchlist~~
 - (v0.0.18) ~~Regression introduced when preserving watched coins while syncing the map~~
