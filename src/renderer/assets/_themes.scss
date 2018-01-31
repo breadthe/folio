@@ -1,4 +1,5 @@
 .folio {
+    /***** Light theme *****/
     &.light {
         // color: $grey-dark;
         background: $white;
@@ -28,6 +29,26 @@
                 }
             }
         }
+        .views-wrapper {
+            border-bottom: 1px solid $grey-lighter;
+            div {
+                a {
+                    border-bottom: 1px solid $grey-lighter;
+                    color: $grey-lighter;
+                    &:hover {
+                        color: $grey-light;
+                    }
+                    &.active {
+                        color: $grey-dark;
+                        border: 1px solid $grey-lighter;
+                        border-bottom: 1px solid $white;
+                        &:hover {
+                            color: $grey-dark;
+                        }
+                    }
+                }
+            }
+        }
         .watchlist-card-wrapper {
             .watchlist-card {
                 .last-trade {
@@ -36,6 +57,8 @@
             }
         }
     }
+
+    /***** Dark theme *****/
     &.dark {
         color: $grey-lightest;
         background: $grey-dark;
@@ -109,6 +132,26 @@
                             td {
                                 background-color: $grey;
                             }
+                        }
+                    }
+                }
+            }
+        }
+        .views-wrapper {
+            border-bottom: 1px solid $grey;
+            div {
+                a {
+                    border-bottom: 1px solid $grey;
+                    color: $grey;
+                    &:hover {
+                        color: $grey-light;
+                    }
+                    &.active {
+                        color: $white;
+                        border: 1px solid $grey;
+                        border-bottom: 1px solid $grey-dark;
+                        &:hover {
+                            color: $white;
                         }
                     }
                 }
