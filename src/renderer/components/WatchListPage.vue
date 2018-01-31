@@ -43,7 +43,7 @@
 <script>
   import _ from 'lodash'
   import moment from 'moment'
-  import store from '../store'
+  import store from '@/store'
   import { TweenLite } from 'gsap'
   import GridView from './GridView'
   import ListView from './ListView'
