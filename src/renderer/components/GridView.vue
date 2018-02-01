@@ -37,12 +37,14 @@
 </template>
 
 <script>
+  import numeral from 'numeral'
+
   export default {
     name: 'grid-view',
     props: ['watchedCoins'],
     methods: {
       formatCurrency: function (amount) {
-        return amount.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+        return numeral(amount).format('0[,].00[00]')
       },
       openQtyModal: function (coinMarket) {
         this.$emit('openQtyModal', coinMarket)

@@ -32,6 +32,7 @@
 <script>
   import store from '../store'
   import _ from 'lodash'
+  import numeral from 'numeral'
 
   export default {
     name: 'home-page',
@@ -43,7 +44,7 @@
     },
     methods: {
       formatCurrency: function (amount) {
-        return amount.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
+        return numeral(amount).format('0[,].00')
       },
       USDValue: function (qty, price) {
         return parseFloat(qty) * parseFloat(price)
