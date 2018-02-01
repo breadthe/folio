@@ -1,8 +1,13 @@
 <template>
-  <div class="section tw-h-screen">
+  <div class="section tw-h-full">
+    <!-- <canvas id="piechart" width="200" height="200"></canvas> -->
+
     <section class="container">
 
+      <pie-chart></pie-chart>
+
       <div v-if="portfolioSummary.totalCoinsWatched">
+
         <table class="table is-fullwidth">
             <thead>
               <tr>
@@ -33,13 +38,17 @@
   import store from '../store'
   import _ from 'lodash'
   import numeral from 'numeral'
+  // import Chart from 'chart.js'
+  import { Pie } from 'vue-chartjs'
 
   export default {
     name: 'home-page',
+    extends: Pie,
     data: function () {
       return {
         pageTitle: 'Home',
-        pageSubTitle: 'Home subtitle'
+        pageSubTitle: 'Home subtitle',
+        chartData: [12, 19, 3, 5, 2, 3]
       }
     },
     methods: {
@@ -77,6 +86,33 @@
       }
     },
     mounted: function () {
+      const data = {
+        labels: ['January', 'February'],
+        datasets: [
+          {
+            label: 'GitHub Commits',
+            backgroundColor: '#f87979',
+            data: [40, 20]
+          }
+        ]
+      }
+
+      this.renderChart(data, [])
+      // const ctx = document.getElementById('piechart')
+      // // const myChart =
+      // /* eslint-disable no-new */
+      // const myChart = new Chart(ctx, {
+      //   type: 'doughnut',
+      //   // data: this.chartData,
+      //   data: [12, 19, 3, 5, 2, 3],
+      //   options: [],
+      //   labels: [
+      //     'Red',
+      //     'Yellow',
+      //     'Blue'
+      //   ]
+      // })
+      // console.log(myChart)
     }
   }
 </script>
