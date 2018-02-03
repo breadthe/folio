@@ -1,5 +1,5 @@
 <template>
-  <div class="section tw-h-full">
+  <div class="section tw-h-full tw-min-h-screen">
 
     <div class="views-wrapper tw-mb-2">
       <div>
