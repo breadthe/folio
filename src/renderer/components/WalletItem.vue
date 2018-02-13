@@ -11,7 +11,7 @@
             </div>
 
             <!-- Delete Confirmation -->
-            <nav v-show="showDeleteConfirmation" class="level tw-absolute tw-bg-grey-dark tw-pin-r tw-py-1 tw-px-2 tw-w-64 tw-shadow-lg">
+            <nav v-show="showDeleteConfirmation" class="level delete-wallet-confirmation">
               <div class="level-left">
                 <div class="level-item">
                   Are you sure?
@@ -20,9 +20,9 @@
 
               <div class="level-right">
                 <div class="level-item">
-                  <a @click="deleteWallet(wallet.address)">YES</a>
+                  <a @click="deleteWallet(wallet.address)" class="button is-small is-success">YES</a>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <a @click="showDeleteConfirmation = false">NO</a>
+                  <a @click="showDeleteConfirmation = false" class="button is-small is-danger">NO</a>
                 </div>
               </div>
             </nav>

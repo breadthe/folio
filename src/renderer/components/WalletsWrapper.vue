@@ -2,7 +2,7 @@
   <div class="wallets-wrapper">
     <div v-if="coinWallet.length" v-for="(coinWallet, symbol) in wallets" :key="symbol" class="wallet-wrapper">
 
-        <div class="coin-wallet-header tw-py-1 tw-px-3">
+        <div class="coin-wallet-header">
           <div class="coin-sprite tw-mt-1" :class="symbol"></div>
           <span class="tw-ml-2 tw-text-lg">{{ symbol }}</span>
         </div>
@@ -27,7 +27,6 @@
 
 <script>
   import store from '../store'
-  // import _ from 'lodash'
   import WalletItem from './WalletItem'
 
   export default {

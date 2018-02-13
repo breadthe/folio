@@ -25,3 +25,10 @@ h6.settings {
 .edit-quantity.grid-view {
     @apply .tw-absolute .tw-pin-t .tw-pin-r .tw-mt-1 .tw-mr-1;
 }
+
+.coin-wallet-header {
+    @apply .tw-py-1 .tw-px-3 .tw-mb-2 .tw-shadow-md .tw-rounded-sm
+}
+.delete-wallet-confirmation {
+    @apply .tw-absolute .tw-pin-r .tw-py-1 .tw-px-2 .tw-w-64 .tw-shadow-md
+}

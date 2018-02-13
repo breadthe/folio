@@ -69,7 +69,10 @@
             .coin-wallet-header {
                 color: $black;
                 background: $grey-lightest;
-                border: 1px solid $grey-light;
+                border: 1px solid $grey-lighter;
+            }
+            .delete-wallet-confirmation {
+                background-color: $grey-lightest;
             }
         }
     }
@@ -204,7 +207,10 @@
         .wallets-wrapper {
             .coin-wallet-header {
                 background: $grey-darker;
-                border: 1px solid $grey;
+                border: 1px solid $grey-dark;
+            }
+            .delete-wallet-confirmation {
+                background-color: $grey;
             }
         }
         .modal {
