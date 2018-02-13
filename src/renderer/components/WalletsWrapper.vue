@@ -7,7 +7,19 @@
           <span class="tw-ml-2 tw-text-lg">{{ symbol }}</span>
         </div>
 
-        <wallet-item :symbol="symbol" :coin-wallet="coinWallet"></wallet-item>
+        <table class="table is-fullwidth">
+            <!-- <thead>
+              <tr>
+                  <th colspan="5" class="tw-text-right">
+                    $total_USD_value
+                    <p class="tw-text-right"><span class="tw-text-xl">${{ formatCurrency(portfolioSummary.totalUSDValue) }}</span></p>
+                  </th>
+              </tr>
+            </thead> -->
+            <tbody v-if="coinWallet.length" v-for="wallet in coinWallet" :key="wallet.address">
+              <wallet-item :symbol="symbol" :wallet="wallet"></wallet-item>
+            </tbody>
+        </table>
 
     </div>
   </div>
@@ -23,44 +35,14 @@
     components: { WalletItem },
     data: function () {
       return {
-        // showAddWallet: false,
-        // newWallet: {
-        //   name: '',
-        //   address: '',
-        //   amount: 0
-        // }
       }
     },
     methods: {
-      // openAddWallet: function () {
-      //   this.showAddWallet = !this.showAddWallet
-      // },
-      // saveWallet: function () {
-      //   console.log(this.newWallet)
-      //   this.showAddWallet = false
-      // }
     },
     computed: {
       wallets: function () {
         return store.getters.wallets
       }
-      // ,
-      // unwatchedCoins: function () {
-      //   const unwatchedCoins = this.coins.filter(coin => !coin.watch)
-      //   if (this.filterStr.length) {
-      //     // Regex case sensitive/insensitive depending on the Match Case checkbox
-      //     const params = this.button.filter.matchCase ? 'g' : 'ig'
-      //     const re = new RegExp(this.filterStr, params)
-      //     return unwatchedCoins.filter(coin => {
-      //       if (typeof coin.name !== 'undefined') {
-      //         return coin.name.match(re) || coin.symbol.match(re)
-      //       } else {
-      //         return coin.symbol.match(re)
-      //       }
-      //     })
-      //   }
-      //   return unwatchedCoins
-      // }
     }
   }
 </script>
