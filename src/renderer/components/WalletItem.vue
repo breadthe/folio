@@ -2,14 +2,14 @@
   <section>
 
     <table class="table is-fullwidth">
-        <thead>
+        <!-- <thead>
           <tr>
               <th colspan="5" class="tw-text-right">
                 $total_USD_value
-                <!-- <p class="tw-text-right"><span class="tw-text-xl">${{ formatCurrency(portfolioSummary.totalUSDValue) }}</span></p> -->
+                <p class="tw-text-right"><span class="tw-text-xl">${{ formatCurrency(portfolioSummary.totalUSDValue) }}</span></p>
               </th>
           </tr>
-        </thead>
+        </thead> -->
         <tbody>
             <tr v-if="coinWallet.length" v-for="wallet in coinWallet" :key="wallet.address">
                 <td>{{wallet.name}}</td>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  // import store from '../store'
+  import store from '../store'
   // import _ from 'lodash'
   import WalletItem from './WalletItem'
 
@@ -41,10 +41,10 @@
       }
     },
     methods: {
-      editWallet: function (walletAddress) {
-        console.log(this.symbol, walletAddress)
-      },
       deleteWallet: function (walletAddress) {
+        store.dispatch('deleteWallet', { 'symbol': this.symbol, 'address': walletAddress })
+      },
+      editWallet: function (walletAddress) {
         console.log(this.symbol, walletAddress)
       }
     },

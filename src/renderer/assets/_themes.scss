@@ -65,6 +65,13 @@
                 }
             }
         }
+        .wallets-wrapper {
+            .coin-wallet-header {
+                color: $black;
+                background: $grey-lightest;
+                border: 1px solid $grey-light;
+            }
+        }
     }
 
     /***** Dark theme *****/
@@ -192,6 +199,12 @@
                 .coin-name {
                     color: $white;
                 }
+            }
+        }
+        .wallets-wrapper {
+            .coin-wallet-header {
+                background: $grey-darker;
+                border: 1px solid $grey;
             }
         }
         .modal {

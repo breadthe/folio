@@ -69,6 +69,24 @@ const mutations = {
     localStorage.wallets.set(wallets)
     state.wallets = localStorage.wallets.get()
   },
+  DELETE_WALLET: (state, obj) => {
+    // Locate the wallet for the corresponding coin
+    const wallets = state.wallets
+    const coinWallet = wallets[obj.symbol]
+    if (coinWallet) {
+      // Locate the wallet inside the array by wallet address
+      const itemIndex = _.findIndex(coinWallet, wallet => wallet.address === obj.address)
+      if (itemIndex > -1) {
+        coinWallet.splice(itemIndex, 1) // Remove the wallet
+
+        wallets[obj.symbol] = coinWallet // Assign the new array back
+
+        // save to localStorage
+        localStorage.wallets.set(wallets)
+        state.wallets = localStorage.wallets.get()
+      }
+    }
+  },
   UPDATE_WALLET: (state, obj) => {
     // const itemIndex = _.findIndex(state.coins, entry => entry.market === obj.market)
     // state.coins[itemIndex].qty = obj.qty
@@ -85,6 +103,12 @@ const actions = {
   addWallet ({ commit }, wallet) {
     commit('ADD_WALLET', wallet)
   },
+  deleteWallet ({ commit }, obj) {
+    commit('DELETE_WALLET', obj)
+  },
+  updateWallet ({ commit }, obj) {
+    commit('UPDATE_WALLET', obj)
+  },
   updateAmount ({ commit }, obj) {
     /**
      * obj =
@@ -96,7 +120,7 @@ const actions = {
      * }
      */
     // do this async
-    commit('UPDATE_WALLET', obj)
+    commit('UPDATE_AMOUNT', obj)
   }
 }
 

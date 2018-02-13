@@ -87,10 +87,18 @@
   }
 
   .wallets-wrapper {
-    margin-top: 20px;
+    .coin-wallet-header {
+      border-radius: 2px;
+    }
     .wallet-wrapper {
       padding: 5px 2px;
-      border-bottom: 1px solid $grey;
+      margin-bottom: 10px;
+      table {
+        margin: 0;
+        td {
+          padding: 0.1em;
+        }
+      }
       a {
         &.add-wallet {
           float: right;

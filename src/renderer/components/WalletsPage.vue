@@ -5,11 +5,23 @@
 
         <section class="tw-container tw-clearfix tw-w-full">
 
-          <h6 class="settings">
-            Wallets
-            &nbsp;
-            <a class="add-wallet" @click="openAddWallet"><i class="fa fa-plus fa-lg tw-text-green-dark" aria-hidden="true" title="Add wallet"></i></a>
-          </h6>
+          <!-- Main container -->
+          <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+              <div class="level-item">
+                <h6 class="tw-font-bold">Wallets</h6>
+              </div>
+              <div class="level-item">
+                <a class="add-wallet" @click="openAddWallet"><i class="fa fa-plus tw-text-green-dark" aria-hidden="true" title="Add wallet"></i></a>
+              </div>
+            </div>
+
+            <!-- Right side -->
+            <!-- <div class="level-right">
+              <a class="add-wallet" @click="openAddWallet"><i class="fa fa-plus tw-text-green-dark" aria-hidden="true" title="Add wallet"></i></a>
+            </div> -->
+          </nav>
 
           <!-- <p>Here you will see your watched coins. You can add multiple wallets for each coin. If you don't see a coin, start watching it in <a href="#/settings">Settings</a>.</p> -->
           <!-- <button class="button" @click="openAddWallet"><i class="fa fa-plus fa-lg tw-text-green-dark" aria-hidden="true" title="Add wallet"></i>&nbsp;Add Wallet</button> -->
@@ -38,15 +50,15 @@
                 </div>
                 <div class="field">
                   <div class="control">
-                    <button class="button is-primary" @click="saveWallet">Save</button>
+                    <button class="button is-success" @click="saveWallet">Save</button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="tw-text-red" v-show="msg">
+            <!-- <div class="tw-text-red" v-show="msg">
               {{ msg }}
-            </div>
+            </div> -->
 
           </div>
 

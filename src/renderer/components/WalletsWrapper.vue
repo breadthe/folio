@@ -1,9 +1,11 @@
 <template>
   <div class="wallets-wrapper">
-    <div v-for="(coinWallet, symbol) in wallets" :key="symbol" class="wallet-wrapper">
+    <div v-if="coinWallet.length" v-for="(coinWallet, symbol) in wallets" :key="symbol" class="wallet-wrapper">
 
-        <div class="coin-sprite tw-mt-1" :class="symbol"></div>
-        <span class="tw-ml-2 tw-text-sm">{{ symbol }}</span>
+        <div class="coin-wallet-header tw-py-1 tw-px-3">
+          <div class="coin-sprite tw-mt-1" :class="symbol"></div>
+          <span class="tw-ml-2 tw-text-lg">{{ symbol }}</span>
+        </div>
 
         <wallet-item :symbol="symbol" :coin-wallet="coinWallet"></wallet-item>
 
