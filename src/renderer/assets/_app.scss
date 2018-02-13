@@ -85,6 +85,23 @@
   .edit-quantity {
     cursor: pointer;
   }
+
+  .wallets-wrapper {
+    margin-top: 20px;
+    .wallet-wrapper {
+      padding: 5px 2px;
+      border-bottom: 1px solid $grey;
+      a {
+        &.add-wallet {
+          float: right;
+          line-height: 30px;
+        }
+      }
+      .wallet {
+        padding: 2px 0;
+      }
+    }
+  }
 }
 
 

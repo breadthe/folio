@@ -56,6 +56,13 @@
       const exchanges = localStorage.exchanges.get()
       store.dispatch('setExchanges', exchanges)
 
+      // 1. Read wallets from localStorage
+      // 2. If it exists, update the store
+      // 3. If it doesn't, read default wallets from store, write to localStorage
+      // 2 & 3 are done in the store
+      const wallets = localStorage.wallets.get()
+      store.dispatch('setWallets', wallets)
+
       // 1. Read coins from localStorage
       // 2. If it exists, update the store
       // 3. If it doesn't, read default coins from store, write to localStorage

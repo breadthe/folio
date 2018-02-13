@@ -21,6 +21,11 @@ export default new Router({
       component: require('@/components/CoinMapPage')
     },
     {
+      path: '/wallets',
+      name: 'wallets-page',
+      component: require('@/components/WalletsPage')
+    },
+    {
       path: '/settings',
       name: 'settings-page',
       component: require('@/components/SettingsPage')
