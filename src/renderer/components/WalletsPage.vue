@@ -56,10 +56,6 @@
               </div>
             </div>
 
-            <!-- <div class="tw-text-red" v-show="msg">
-              {{ msg }}
-            </div> -->
-
           </div>
 
           <wallets-wrapper></wallets-wrapper>
@@ -90,8 +86,7 @@
           address: '',
           amount: 0
         },
-        formError: {},
-        msg: ''
+        formError: {}
       }
     },
     methods: {

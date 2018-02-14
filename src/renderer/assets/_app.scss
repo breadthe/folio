@@ -99,11 +99,13 @@
       a {
         &.add-wallet {
           float: right;
-          line-height: 30px;
         }
       }
       .wallet {
         padding: 2px 0;
+        .edit-wallet-address {
+          width: 64em;
+        }
       }
     }
   }

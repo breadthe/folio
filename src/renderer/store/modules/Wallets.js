@@ -88,12 +88,31 @@ const mutations = {
     }
   },
   UPDATE_WALLET: (state, obj) => {
-    // const itemIndex = _.findIndex(state.coins, entry => entry.market === obj.market)
-    // state.coins[itemIndex].qty = obj.qty
+    // Check if amount is a valid float
+    if (isNaN(parseFloat(obj.amount))) {
+      throw new WalletAmountException('Amount is not a floating number')
+    }
 
-    // save to localStorage
-    // localStorage.coins.set(state.coins)
+    // Locate the wallet for the corresponding coin
+    const wallets = state.wallets
+    const coinWallet = wallets[obj.symbol]
+    if (coinWallet) {
+      // Locate the wallet inside the array by wallet address
+      const itemIndex = _.findIndex(coinWallet, wallet => wallet.address === obj.address)
+      if (itemIndex > -1) {
+        // coinWallet[itemIndex].name = obj.amount // TODO: Update the wallet name
+        // coinWallet[itemIndex].address = obj.amount // TODO: Update the wallet address
+        coinWallet[itemIndex].amount = parseFloat(obj.amount) // Update the amount
+
+        wallets[obj.symbol] = coinWallet // Assign the new array back
+
+        // save to localStorage
+        localStorage.wallets.set(wallets)
+        state.wallets = localStorage.wallets.get()
+      }
+    }
   }
+
 }
 
 const actions = {

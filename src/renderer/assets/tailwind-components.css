@@ -32,3 +32,6 @@ h6.settings {
 .delete-wallet-confirmation {
     @apply .tw-absolute .tw-pin-r .tw-py-1 .tw-px-2 .tw-w-64 .tw-shadow-md
 }
+.edit-wallet-address {
+    @apply .tw-absolute .tw-pin-r .tw-py-1 .tw-px-2 .tw-shadow-md
+}

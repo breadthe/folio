@@ -1,13 +1,34 @@
 <template>
-    <tr>
-        <td>{{wallet.name}}</td>
-        <td><a>{{wallet.address}}</a></td>
-        <td class="tw-text-right">{{wallet.amount}}</td>
-        <td><a class="add-wallet" @click="editWallet(wallet.address)"><i class="fa fa-pencil-square-o tw-text-blue" aria-hidden="true" title="Add wallet"></i></a></td>
-        <td>
+    <tr class="tw-h-10">
+        <td class="tw-w-64">{{wallet.name}}</td>
+        <td class="tw-w-48"><a>{{wallet.address}}</a></td>
+        <td class="tw-w-48 tw-text-right">
+
+          <!-- Edit Amount -->
+          <div v-if="showEditAmount" class="level tw-text-right">
+            <div class="field has-addons">
+              <div class="control">
+                <input class="input is-small" :class="{'is-danger': formError.amount}" type="text" placeholder="Amount" v-model="amount">
+              </div>
+              <div class="control">
+                <button class="button is-small is-success" @click="saveAmount(wallet.address)">Save</button>
+              </div>
+            </div>
+            <p class="help is-danger" v-show="formError.amount">{{ formError.amount }}</p>
+          </div>
+
+          <div v-else>
+            {{wallet.amount}}
+          </div>
+
+        </td>
+        <td class="tw-w-16">
           <div class="tw-relative">
-            <div class="tw-block">
-              <a class="add-wallet" @click="confirmDeleteWallet(wallet.address)"><i class="fa fa-times tw-text-red" aria-hidden="true" title="Add wallet"></i></a>
+            <div>
+              <a class="add-wallet" @click="confirmDeleteWallet(wallet.address)"><i class="fa fa-times tw-text-red" aria-hidden="true" title="Edit amount"></i></a>
+            </div>
+            <div class="tw-mr-6">
+              <a class="add-wallet" @click="editWallet(wallet.address)"><i class="fa fa-pencil-square-o tw-text-blue" aria-hidden="true" title="Delete wallet"></i></a>
             </div>
 
             <!-- Delete Confirmation -->
@@ -21,7 +42,7 @@
               <div class="level-right">
                 <div class="level-item">
                   <a @click="deleteWallet(wallet.address)" class="button is-small is-success">YES</a>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;
                   <a @click="showDeleteConfirmation = false" class="button is-small is-danger">NO</a>
                 </div>
               </div>
@@ -40,7 +61,10 @@
     props: ['symbol', 'wallet'],
     data: function () {
       return {
-        showDeleteConfirmation: false
+        showDeleteConfirmation: false,
+        showEditAmount: false,
+        amount: 0,
+        formError: {}
       }
     },
     methods: {
@@ -52,7 +76,13 @@
         this.showDeleteConfirmation = false
       },
       editWallet: function (walletAddress) {
-        console.log(this.symbol, walletAddress)
+        this.amount = parseFloat(this.wallet.amount)
+        this.showEditAmount = true
+      },
+      saveAmount: function (walletAddress) {
+        store.dispatch('updateWallet', { 'symbol': this.symbol, 'address': walletAddress, 'amount': parseFloat(this.amount) })
+        this.amount = 0
+        this.showEditAmount = false
       }
     },
     computed: {
