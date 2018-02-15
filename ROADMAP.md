@@ -6,7 +6,8 @@
 3. ~~List/Grid layout for watchlist~~
 
 #### App
-- Add vue-bootstrap library to make use of tooltips
+- New paradigm (14 Feb 2018): calculate and display portfolio depending on positive amount in wallets, but watch coins individually (or maybe even watch coins with positive balance automatically, without being able to remove them). For coins that are not watched (moot if positive balance coins are watched automatically), simply don't show total USD.
+- (MAYBE, NOT WORKING WELL WITH BULMA) Add vue-bootstrap library to make use of tooltips
 - Socket connection and sync should start when the app boots, not just the Watchlist page
 - Export saved data as json
 - Import previously saved json data (with warning that it will overwrite existing data)
