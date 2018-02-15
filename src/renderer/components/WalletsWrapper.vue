@@ -5,20 +5,13 @@
         <div class="coin-wallet-header">
           <div class="coin-sprite tw-mt-1" :class="symbol"></div>
           <span class="tw-ml-2 tw-text-lg">{{ symbol }}</span>
+          <span class="tw-text-lg tw-float-right" :title="walletSubtotal(coinWallet) || ''">{{ formatCurrency(walletSubtotal(coinWallet) || '') }}</span>
         </div>
 
         <table class="table is-fullwidth">
-            <!-- <thead>
-              <tr>
-                  <th colspan="5" class="tw-text-right">
-                    $total_USD_value
-                    <p class="tw-text-right"><span class="tw-text-xl">${{ formatCurrency(portfolioSummary.totalUSDValue) }}</span></p>
-                  </th>
-              </tr>
-            </thead> -->
-            <tbody v-if="coinWallet.length" v-for="wallet in coinWallet" :key="wallet.address">
-              <wallet-item :symbol="symbol" :wallet="wallet"></wallet-item>
-            </tbody>
+          <tbody v-if="coinWallet.length" v-for="wallet in coinWallet" :key="wallet.address">
+            <wallet-item :symbol="symbol" :wallet="wallet"></wallet-item>
+          </tbody>
         </table>
 
     </div>
@@ -28,6 +21,7 @@
 <script>
   import store from '../store'
   import WalletItem from './WalletItem'
+  import numeral from 'numeral'
 
   export default {
     name: 'wallets-wrapper',
@@ -37,6 +31,22 @@
       }
     },
     methods: {
+      formatCurrency: function (amount) {
+        return amount ? numeral(amount).format('0[,].[00000000]') : ''
+      },
+      walletSubtotal: function (coinWallet) {
+        // let totalBTCValue = 0
+        // let totalUSDValue = 0
+        let totalWalletAmount = 0
+
+        coinWallet.forEach(function (wallet) {
+          if (wallet.amount > 0) {
+            totalWalletAmount += parseFloat(wallet.amount)
+          }
+        })
+
+        return parseFloat(totalWalletAmount)
+      }
     },
     computed: {
       wallets: function () {

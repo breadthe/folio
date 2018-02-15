@@ -23,9 +23,7 @@
             </div> -->
           </nav>
 
-          <!-- <p>Here you will see your watched coins. You can add multiple wallets for each coin. If you don't see a coin, start watching it in <a href="#/settings">Settings</a>.</p> -->
-          <!-- <button class="button" @click="openAddWallet"><i class="fa fa-plus fa-lg tw-text-green-dark" aria-hidden="true" title="Add wallet"></i>&nbsp;Add Wallet</button> -->
-
+          <!-- TODO: Make this a component -->
           <div class="add-wallet-wrapper" v-if="showAddWallet">
             <div class="field is-horizontal">
               <div class="field-body">
@@ -37,15 +35,15 @@
                     </div>
                 </div>
                 <div class="field">
-                    <input class="input" :class="{'is-danger': formError.name}" type="text" placeholder="Name" v-model="newWallet.name">
+                    <input class="input" :class="{'is-danger': formError.name}" type="text" placeholder="Name" v-model="newWallet.name" @keyup.enter="saveWallet">
                     <p class="help is-danger" v-show="formError.name">{{ formError.name }}</p>
                 </div>
                 <div class="field">
-                    <input class="input" :class="{'is-danger': formError.address}" type="text" placeholder="Address" v-model="newWallet.address">
+                    <input class="input" :class="{'is-danger': formError.address}" type="text" placeholder="Address" v-model="newWallet.address" @keyup.enter="saveWallet">
                     <p class="help is-danger" v-show="formError.address">{{ formError.address }}</p>
                 </div>
                 <div class="field">
-                    <input class="input" :class="{'is-danger': formError.amount}" type="text" placeholder="Amount" v-model="amount">
+                    <input class="input" :class="{'is-danger': formError.amount}" type="text" placeholder="Amount" v-model="amount" @keyup.enter="saveWallet">
                     <p class="help is-danger" v-show="formError.amount">{{ formError.amount }}</p>
                 </div>
                 <div class="field">
@@ -55,7 +53,6 @@
                 </div>
               </div>
             </div>
-
           </div>
 
           <wallets-wrapper></wallets-wrapper>
@@ -70,7 +67,6 @@
 <script>
   import store from '../store'
   import localStorage from '../store/localStorage'
-  // import _ from 'lodash'
   import WalletsWrapper from './WalletsWrapper'
 
   export default {

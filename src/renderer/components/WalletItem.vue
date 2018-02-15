@@ -5,16 +5,16 @@
         <td class="tw-w-48 tw-text-right">
 
           <!-- Edit Amount -->
-          <div v-if="showEditAmount" class="level tw-text-right">
+          <div v-if="showEditAmount">
             <div class="field has-addons">
               <div class="control">
-                <input class="input is-small" :class="{'is-danger': formError.amount}" type="text" placeholder="Amount" v-model="amount">
+                <input class="input is-small" :class="{'is-danger': formError.amount}" type="text" placeholder="Amount" v-model="amount" v-focus @keyup.enter="saveAmount(wallet.address)">
               </div>
               <div class="control">
                 <button class="button is-small is-success" @click="saveAmount(wallet.address)">Save</button>
               </div>
             </div>
-            <p class="help is-danger" v-show="formError.amount">{{ formError.amount }}</p>
+            <p class="help is-danger tw-text-left" v-show="formError.amount">{{ formError.amount }}</p>
           </div>
 
           <div v-else>
@@ -80,12 +80,43 @@
         this.showEditAmount = true
       },
       saveAmount: function (walletAddress) {
-        store.dispatch('updateWallet', { 'symbol': this.symbol, 'address': walletAddress, 'amount': parseFloat(this.amount) })
-        this.amount = 0
-        this.showEditAmount = false
+        this.formError = {
+          name: null,
+          address: null,
+          amount: null
+        }
+        try {
+          store.dispatch('updateWallet', { 'symbol': this.symbol, 'address': walletAddress, 'amount': parseFloat(this.amount) })
+
+          this.amount = 0
+          this.showEditAmount = false
+        } catch (e) {
+          switch (e.name) {
+            // TODO
+            // case 'WalletNameException':
+              // this.formError.name = e.message
+              // break
+            // TODO
+            // case 'WalletAddressException':
+              // this.formError.address = e.message
+              // break
+            case 'WalletAmountException':
+              this.formError.amount = e.message
+              break
+            default:
+              break
+          }
+        }
       }
     },
     computed: {
+    },
+    directives: {
+      focus: {
+        inserted: function (el) {
+          el.focus()
+        }
+      }
     }
   }
 </script>

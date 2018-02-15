@@ -6,6 +6,7 @@
 3. ~~List/Grid layout for watchlist~~
 
 #### App
+- Add vue-bootstrap library to make use of tooltips
 - Socket connection and sync should start when the app boots, not just the Watchlist page
 - Export saved data as json
 - Import previously saved json data (with warning that it will overwrite existing data)
@@ -22,10 +23,13 @@
 - (v0.0.12) ~~Improve layout for Watchlist coin cards~~
 
 #### Watchlist
-- Format coin price up to 8 decimals, but trimming trailing zeros
+- Remove amount from config
+- Allow assignment of different background colors (or borders) for watched coins in config
+- Move over coin selection/watching from Settings
 - Separate coin details (price, etc) by exchange
 - Compare current trade tick with history and color price green/red depending on +/- or black if no previous history
 - (NICE TO HAVE) Drag-sorting watched coins
+- (v0.1.4) ~~Format coin price up to 8 decimals, but trimming trailing zeros~~
 - (v0.1.4) ~~Alphabetic sorting of coins/markets~~
 - (v0.1.4) ~~List/Grid view with icons to switch between them. Save view state in Vuex/localStorage~~
 - (v0.1.3) ~~Save amount on ENTER~~
@@ -40,8 +44,8 @@
 - (NICE TO HAVE) Button to connect to socket (disconnected by default -- not sure about this)
 
 #### Settings
+- Move coin selection/watching to Watchlist
 - Option to switch between using the socket connection or the regular API for updating prices. API would update every X minutes.
-- Allow assignment of different background colors (or borders) for watched coins
 - (v0.1.2) ~~Save settings in an object in localStorage and retrieve them when booting the app~~
 - (v0.1.1) ~~When new coins are added to the default coins array, they should automatically be synced with the store/localStorage~~
 
@@ -51,10 +55,10 @@
 - Show history entries (later replaced or augmented by charts), tracked since, last price, low, high, trend
 
 #### BUGS
-- Background color is still buggy for watchList
-- When there's no price history (first boot, no socket), the List view is blank
 - When I have asset qty but there's no price data yet (for example app is booted for the first time and there's no trade data yet for any coin), the dashboard is blank
 - Refactor `watchedCoins`/`unwatchedCoins` to work off of `filteredCoins` ??
+- (v0.1.4) ~~When there's no price history (first boot, no socket), the List view is blank~~
+- (v0.1.4) ~~Background color is still buggy for watchList~~
 - (v0.1.4) ~~Grid/List tabs on the Light theme have the wrong styling~~
 - (v0.0.19) ~~.../folio/node_modules/gsap/TweenMax.js:6907 Uncaught Cannot tween a null target. Seemed to occur right after watching a new coin when it started ticking.~~
 - (v0.0.19) ~~Un-watching coins should remove them from the Watchlist~~
