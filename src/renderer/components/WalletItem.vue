@@ -25,10 +25,10 @@
         <td class="tw-w-16">
           <div class="tw-relative">
             <div>
-              <a class="add-wallet" @click="confirmDeleteWallet(wallet.address)"><i class="fa fa-times tw-text-red" aria-hidden="true" title="Edit amount"></i></a>
+              <a class="add-wallet" @click="confirmDeleteWallet(wallet.address)"><i class="fa fa-times tw-text-red" aria-hidden="true" title="Delete wallet"></i></a>
             </div>
             <div class="tw-mr-6">
-              <a class="add-wallet" @click="editWallet(wallet.address)"><i class="fa fa-pencil-square-o tw-text-blue" aria-hidden="true" title="Delete wallet"></i></a>
+              <a class="add-wallet" @click="editWallet(wallet.address)"><i class="fa fa-pencil-square-o tw-text-blue" aria-hidden="true" title="Edit amount"></i></a>
             </div>
 
             <!-- Delete Confirmation -->
