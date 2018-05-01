@@ -20,7 +20,8 @@ const coinNameFromSymbol = function (symbol) {
 }
 
 const priceByCoin = function (symbol) {
-  return 17
+  const coin = store.getters.coins.filter(coin => coin.symbol === symbol)[0]
+  return coin.lastTrade.details.price
 }
 
 export {

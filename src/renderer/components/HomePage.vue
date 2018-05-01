@@ -12,16 +12,11 @@
               </tr>
             </thead>
             <tbody>
-                <!-- <tr v-for="coin in portfolio" :key="coin.market">
-                    <td><div class="coin-sprite tw-mt-1 tw-mr-1" :class="coin.symbol"></div>&nbsp;{{ coin.name }}</td>
-                    <td>{{ totalAmountByCoin(coin) }}</td>
-                    <td class="tw-text-right">${{ formatCurrency(USDValue(coin.qty, coin.lastTrade.details.price)) }}</td>
-                </tr> -->
                 <tr v-for="(coinWallet, symbol) in wallets" :key="symbol">
                     <td><div class="coin-sprite tw-mt-1 tw-mr-1" :class="symbol"></div>&nbsp;{{ coinNameFromSymbol(symbol) }}</td>
                     <td>{{ totalAmountByCoin(coinWallet) }}</td>
                     <td class="tw-text-right">
-                      <!-- ${{ formatCurrency(USDValue(coin.qty, coin.lastTrade.details.price)) }} -->
+                      ${{ formatCurrency(USDValue(totalAmountByCoin(coinWallet), priceByCoin(symbol))) }}
                     </td>
                 </tr>
             </tbody>
@@ -53,6 +48,7 @@
     methods: {
       totalAmountByCoin: functions.totalAmountByCoin,
       coinNameFromSymbol: functions.coinNameFromSymbol,
+      priceByCoin: functions.priceByCoin,
       formatCurrency: function (amount) {
         return numeral(amount).format('0[,].00')
       },

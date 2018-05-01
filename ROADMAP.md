@@ -42,7 +42,7 @@
 - (v0.0.10) ~~Socket connectivity status~~
 
 #### Menu / Sidebar
-- (NICE TO HAVE) Button to connect to socket (disconnected by default -- not sure about this)
+- Change menu tabs to Exodus style (large icon, text below, narrow but tall tab)
 
 #### Settings
 - Move coin selection/watching to Watchlist
