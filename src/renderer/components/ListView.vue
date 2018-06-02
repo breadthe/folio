@@ -26,7 +26,7 @@
                       <div class="coin-price tw-text-lg" v-else>$--</div>
                     </td>
                     <td class="tw-text-sm">
-                      <span
+                      <span v-if="coin.lastTrade"
                             :class="{
                                 'has-text-danger': (coin.lastTrade.details.cap24hrChange < 0),
                                 'has-text-success': (coin.lastTrade.details.cap24hrChange > 0),
