@@ -10,7 +10,7 @@
                   <th>24h</th>
                   <th>my amount</th>
                   <th>my total USD</th>
-                  <th>settings</th>
+                  <!-- <th>settings</th> -->
               </tr>
             </thead>
             <tbody>
@@ -41,9 +41,9 @@
                     <td class="tw-text-right tw-text-sm">
                       <span v-if="coin.qty && coin.qty > 0">${{ formatCurrency(USDValue(coin.qty, coin.lastTrade.details.price)) }}</span>
                     </td>
-                    <td class="tw-text-right">
-                      <i class="fa fa-gear edit-quantity" aria-hidden="true" title="Edit quantity" @click="openQtyModal(coin.market)"></i>
-                    </td>
+                    <!-- <td class="tw-text-right">
+                      <i class="fa fa-gear edit-quantity" aria-hidden="true" title="Edit quantity" @click="$emit('openQtyModal', coin.market)"></i>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
@@ -53,16 +53,15 @@
 
 <script>
   import numeral from 'numeral'
+  import * as functions from '../utils/functions'
 
   export default {
     name: 'list-view',
     props: ['watchedCoins'],
     methods: {
+      totalAmountBySymbol: functions.totalAmountBySymbol,
       formatCurrency: function (amount) {
-        return numeral(amount).format('0[,].00[00]')
-      },
-      openQtyModal: function (coinMarket) {
-        this.$emit('openQtyModal', coinMarket)
+        return numeral(amount).format('0[,].00') // 0[,].00[00]
       },
       USDValue: function (qty, price) {
         return parseFloat(qty) * parseFloat(price)
@@ -72,6 +71,7 @@
       }
     },
     computed: {
+      consolidatedWalletAmounts: functions.consolidatedWalletAmounts
     },
     mounted: function () {
     }

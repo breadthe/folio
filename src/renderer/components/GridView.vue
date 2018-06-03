@@ -7,15 +7,15 @@
                     <div class="watchlist-card-thumb">
                         <div class="coin-sprite tw-mt-1 tw-mr-2" :class="coin.symbol"></div>
                         <div :title="coin.symbol" class="coin-name tw-text-base tw-float-left"><strong>{{ coin.name }}</strong></div>
-                        <div v-if="coin.qty && coin.qty > 0" title="My quantity">{{ coin.qty }}</div>
-                        <div v-if="coin.lastTrade && coin.qty && coin.qty > 0" title="Total USD value">${{ formatCurrency(USDValue(coin.qty, coin.lastTrade.details.price)) }}</div>
+                        <div v-if="coin.lastTrade && consolidatedWalletAmounts[coin.symbol]" title="My quantity">{{ totalAmountBySymbol(coin.symbol) }}</div>
+                        <div v-if="coin.lastTrade && consolidatedWalletAmounts[coin.symbol]" title="Total USD value">${{ formatCurrency(USDValue(totalAmountBySymbol(coin.symbol), coin.lastTrade.details.price)) }}</div>
                     </div>
 
                     <div class="watchlist-card-details tw-relative">
                         <div class="coin-price tw-text-lg" v-if="coin.lastTrade" :title="lastTradeString(coin.lastTrade)">${{ formatCurrency(coin.lastTrade.details.price) }}</div>
                         <div class="coin-price tw-text-lg" v-else>$--</div>
 
-                        <i class="fa fa-gear edit-quantity grid-view" aria-hidden="true" title="Edit quantity" @click="openQtyModal(coin.market)"></i>
+                        <!-- <i class="fa fa-gear edit-quantity grid-view" aria-hidden="true" title="Edit quantity" @click="$emit('openQtyModal', coin.market)"></i> -->
 
                         <div v-if="coin.lastTrade">
                             <strong>24h:</strong>&nbsp;
@@ -38,16 +38,15 @@
 
 <script>
   import numeral from 'numeral'
+  import * as functions from '../utils/functions'
 
   export default {
     name: 'grid-view',
     props: ['watchedCoins'],
     methods: {
+      totalAmountBySymbol: functions.totalAmountBySymbol,
       formatCurrency: function (amount) {
-        return numeral(amount).format('0[,].00[00]')
-      },
-      openQtyModal: function (coinMarket) {
-        this.$emit('openQtyModal', coinMarket)
+        return numeral(amount).format('0[,].00') // 0[,].00[00]
       },
       USDValue: function (qty, price) {
         return parseFloat(qty) * parseFloat(price)
@@ -57,6 +56,7 @@
       }
     },
     computed: {
+      consolidatedWalletAmounts: functions.consolidatedWalletAmounts
     },
     mounted: function () {
     }
