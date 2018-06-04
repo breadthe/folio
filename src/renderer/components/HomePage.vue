@@ -34,7 +34,6 @@
 <script>
   import store from '../store'
   import _ from 'lodash'
-  import numeral from 'numeral'
   import * as functions from '../utils/functions'
 
   export default {
@@ -49,9 +48,7 @@
       totalAmountByCoin: functions.totalAmountByCoin,
       coinNameFromSymbol: functions.coinNameFromSymbol,
       priceByCoin: functions.priceByCoin,
-      formatCurrency: function (amount) {
-        return numeral(amount).format('0[,].00')
-      },
+      formatCurrency: functions.formatCurrency,
       USDValue: function (qty, price) {
         return parseFloat(qty) * parseFloat(price)
       }

@@ -79,9 +79,6 @@
         // TODO: revisit this and see if it can be done better than with _.filter, maybe _.find
         return _.filter(this.watchedCoins, _.matches({'symbol': symbol})).length
       },
-      formatCurrency: function (amount) {
-        return amount.toFixed(2).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
-      },
       openQtyModal: function (coinMarket) {
         const coin = this.watchedCoins.filter(coin => coin.market === coinMarket)[0]
         this.qtyModal.coinName = coin.name

@@ -37,7 +37,6 @@
 </template>
 
 <script>
-  import numeral from 'numeral'
   import * as functions from '../utils/functions'
 
   export default {
@@ -45,9 +44,7 @@
     props: ['watchedCoins'],
     methods: {
       totalAmountBySymbol: functions.totalAmountBySymbol,
-      formatCurrency: function (amount) {
-        return numeral(amount).format('0[,].00') // 0[,].00[00]
-      },
+      formatCurrency: functions.formatCurrency,
       USDValue: function (qty, price) {
         return parseFloat(qty) * parseFloat(price)
       },

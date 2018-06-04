@@ -36,10 +36,10 @@
                         </span>
                     </td>
                     <td class="tw-text-right tw-text-sm">
-                      <span v-if="coin.qty && coin.qty > 0">{{ coin.qty }}</span>
+                      <span v-if="coin.lastTrade && consolidatedWalletAmounts[coin.symbol]">{{ totalAmountBySymbol(coin.symbol) }}</span>
                     </td>
                     <td class="tw-text-right tw-text-sm">
-                      <span v-if="coin.qty && coin.qty > 0">${{ formatCurrency(USDValue(coin.qty, coin.lastTrade.details.price)) }}</span>
+                      <span v-if="coin.lastTrade && consolidatedWalletAmounts[coin.symbol]">${{ formatCurrency(USDValue(totalAmountBySymbol(coin.symbol), coin.lastTrade.details.price)) }}</span>
                     </td>
                     <!-- <td class="tw-text-right">
                       <i class="fa fa-gear edit-quantity" aria-hidden="true" title="Edit quantity" @click="$emit('openQtyModal', coin.market)"></i>
@@ -52,7 +52,6 @@
 </template>
 
 <script>
-  import numeral from 'numeral'
   import * as functions from '../utils/functions'
 
   export default {
@@ -60,9 +59,7 @@
     props: ['watchedCoins'],
     methods: {
       totalAmountBySymbol: functions.totalAmountBySymbol,
-      formatCurrency: function (amount) {
-        return numeral(amount).format('0[,].00') // 0[,].00[00]
-      },
+      formatCurrency: functions.formatCurrency,
       USDValue: function (qty, price) {
         return parseFloat(qty) * parseFloat(price)
       },

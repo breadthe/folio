@@ -1,4 +1,5 @@
 import store from '../store'
+import numeral from 'numeral'
 
 /**
  * Returns a k-v array of consolidated amounts for each coin
@@ -65,10 +66,15 @@ const priceByCoin = function (symbol) {
   return coin.lastTrade.details.price
 }
 
+const formatCurrency = function (amount) {
+  return numeral(amount).format('0[,].00') // 0[,].00[00]
+}
+
 export {
   consolidatedWalletAmounts,
   totalAmountBySymbol,
   totalAmountByCoin,
   coinNameFromSymbol,
-  priceByCoin
+  priceByCoin,
+  formatCurrency
 }
