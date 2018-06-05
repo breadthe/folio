@@ -1,6 +1,5 @@
 <template>
-  <div class="section tw-h-screen">
-    <section class="container">
+  <section class="section tw-h-screen">
 
       <p>This app is built with love and:
         <ul>
@@ -13,8 +12,7 @@
         </ul>
       </p>
 
-    </section>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,10 +1,7 @@
 <template>
     <div class="app-logo has-text-centered">
         <span class="logo">folio</span>
-        <div class="tags has-addons">
-            <span class="tag">alpha</span>
-            <span class="tag">{{ theVersion }}</span>
-        </div>
+        <span class="tag">{{ theVersion }}</span>
     </div>
 </template>
 
@@ -14,8 +11,7 @@
     props: {
       theVersion: {
         type: String,
-        required: true,
-        default: 'v0.0.0'
+        required: true
       }
     }
   }

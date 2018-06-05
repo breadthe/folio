@@ -28,8 +28,7 @@
     props: {
       theVersion: {
         type: String,
-        required: true,
-        default: 'v0.0.0'
+        required: true
       }
     },
     data: function () {

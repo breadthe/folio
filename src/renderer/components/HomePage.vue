@@ -1,6 +1,6 @@
 <template>
-  <div class="section tw-h-screen">
-    <section class="container">
+  <section class="section tw-h-screen">
+    <section class="tw-container tw-clearfix tw-w-full">
 
       <div v-if="portfolioSummary.totalCoinsWatched">
         <table class="table is-fullwidth">
@@ -28,7 +28,7 @@
       </div>
 
     </section>
-  </div>
+  </section>
 </template>
 
 <script>

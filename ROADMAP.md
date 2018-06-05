@@ -16,8 +16,7 @@
 - (v0.1.3) ~~Show total $ value of portfolio, total BTC value, and pie chart for entire portfolio. Update this only when dashboard is entered.~~
 
 #### Layout
-- (NICE TO HAVE) Collapse left nav down to icons only. Put an arrow "<<" button pinned to the bottom of the nav that collapses/expands the menu.
-- (IF ABOVE) Tooltips for icons in collapsed nav
+- (v0.5) ~~Fully responsive design, allow maximizing and resizing~~
 - (v0.1.2) ~~Switch to TailwindCSS, or at the very least strip everything Bulma out, except for the layout stuff~~
 - (v0.0.16) ~~Pin left nav and let content area scroll independently~~
 - (v0.0.13) ~~Move socket status to bottom of left-side menu~~

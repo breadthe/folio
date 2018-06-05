@@ -1,27 +1,19 @@
 <template>
     <div id="app" class="folio" :class="selectedTheme">
-        <div class="container is-fluid">
 
-            <!--<the-header></the-header>-->
-
-            <div class="columns">
-                <div class="column is-2">
-                    <the-menu :the-version="theVersion"></the-menu>
-                </div>
-                <div class="column is-10">
-                    <router-view></router-view>
-                </div>
+        <div class="columns">
+            <div class="column is-narrow">
+                <the-menu :the-version="theVersion"></the-menu>
             </div>
-
-            <!--<the-footer></the-footer>-->
-
+            <div class="column is-offset-1 is-offset-2-mobile">
+                <router-view></router-view>
+            </div>
         </div>
+
     </div>
 </template>
 
 <script>
-  // import theHeader from './components/TheHeader.vue'
-  // import theFooter from './components/TheFooter.vue'
   import theMenu from './components/TheMenu.vue'
   import store from './store'
   import localStorage from './store/localStorage'
@@ -30,13 +22,11 @@
   export default {
     name: 'folio',
     components: {
-      // 'the-header': theHeader,
-      // 'the-footer': theFooter
       theMenu
     },
     data () {
       return {
-        theVersion: 'v0.4.1'
+        theVersion: 'v0.5'
       }
     },
     mounted () {

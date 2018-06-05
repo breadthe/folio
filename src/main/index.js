@@ -24,12 +24,10 @@ function createWindow () {
 
   mainWindow = new BrowserWindow({
     title: 'Folio',
-    minHeight: 768,
-    maxHeight: 1024,
-    minWidth: 1024,
-    maxWidth: 1280,
-    maximizable: false,
-    resizable: false,
+    minHeight: 600, // 768, 576
+    minWidth: 640, // 1024, 768, 800, 600
+    maximizable: true,
+    resizable: true,
     icon: '../renderer/assets/logo.png'
   })
 

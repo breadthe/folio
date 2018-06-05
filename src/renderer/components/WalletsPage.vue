@@ -1,67 +1,63 @@
 <template>
-  <div class="section tw-h-full tw-min-h-screen">
+  <section class="section tw-h-full tw-min-h-screen">
 
-    <section class="container">
+      <section class="tw-container tw-clearfix tw-w-full">
 
-        <section class="tw-container tw-clearfix tw-w-full">
-
-          <!-- Main container -->
-          <nav class="level">
-            <!-- Left side -->
-            <div class="level-left">
-              <div class="level-item">
-                <h6 class="tw-font-bold">Wallets</h6>
-              </div>
-              <div class="level-item">
-                <a class="add-wallet" @click="openAddWallet"><i class="fa fa-plus tw-text-green-dark" aria-hidden="true" title="Add wallet"></i></a>
-              </div>
+        <!-- Main container -->
+        <nav class="level">
+          <!-- Left side -->
+          <div class="level-left">
+            <div class="level-item">
+              <h6 class="tw-font-bold">Wallets</h6>
             </div>
-
-            <!-- Right side -->
-            <!-- <div class="level-right">
+            <div class="level-item">
               <a class="add-wallet" @click="openAddWallet"><i class="fa fa-plus tw-text-green-dark" aria-hidden="true" title="Add wallet"></i></a>
-            </div> -->
-          </nav>
+            </div>
+          </div>
 
-          <!-- TODO: Make this a component -->
-          <div class="add-wallet-wrapper" v-if="showAddWallet">
-            <div class="field is-horizontal">
-              <div class="field-body">
-                <div class="field">
-                    <div class="select">
-                      <select v-model="newWallet.symbol">
-                        <option v-for="coin in coins" :key="coin.symbol" :selected="newWallet.symbol">{{coin.symbol}}</option>
-                      </select>
-                    </div>
-                </div>
-                <div class="field">
-                    <input class="input" :class="{'is-danger': formError.name}" type="text" placeholder="Name" v-model="newWallet.name" @keyup.enter="saveWallet">
-                    <p class="help is-danger" v-show="formError.name">{{ formError.name }}</p>
-                </div>
-                <div class="field">
-                    <input class="input" :class="{'is-danger': formError.address}" type="text" placeholder="Address" v-model="newWallet.address" @keyup.enter="saveWallet">
-                    <p class="help is-danger" v-show="formError.address">{{ formError.address }}</p>
-                </div>
-                <div class="field">
-                    <input class="input" :class="{'is-danger': formError.amount}" type="text" placeholder="Amount" v-model="amount" @keyup.enter="saveWallet">
-                    <p class="help is-danger" v-show="formError.amount">{{ formError.amount }}</p>
-                </div>
-                <div class="field">
-                  <div class="control">
-                    <button class="button is-success" @click="saveWallet">Save</button>
+          <!-- Right side -->
+          <!-- <div class="level-right">
+            <a class="add-wallet" @click="openAddWallet"><i class="fa fa-plus tw-text-green-dark" aria-hidden="true" title="Add wallet"></i></a>
+          </div> -->
+        </nav>
+
+        <!-- TODO: Make this a component -->
+        <div class="add-wallet-wrapper" v-if="showAddWallet">
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                  <div class="select">
+                    <select v-model="newWallet.symbol">
+                      <option v-for="coin in coins" :key="coin.symbol" :selected="newWallet.symbol">{{coin.symbol}}</option>
+                    </select>
                   </div>
+              </div>
+              <div class="field">
+                  <input class="input" :class="{'is-danger': formError.name}" type="text" placeholder="Name" v-model="newWallet.name" @keyup.enter="saveWallet">
+                  <p class="help is-danger" v-show="formError.name">{{ formError.name }}</p>
+              </div>
+              <div class="field">
+                  <input class="input" :class="{'is-danger': formError.address}" type="text" placeholder="Address" v-model="newWallet.address" @keyup.enter="saveWallet">
+                  <p class="help is-danger" v-show="formError.address">{{ formError.address }}</p>
+              </div>
+              <div class="field">
+                  <input class="input" :class="{'is-danger': formError.amount}" type="text" placeholder="Amount" v-model="amount" @keyup.enter="saveWallet">
+                  <p class="help is-danger" v-show="formError.amount">{{ formError.amount }}</p>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <button class="button is-success" @click="saveWallet">Save</button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <wallets-wrapper></wallets-wrapper>
-
-      </section>
+        <wallets-wrapper></wallets-wrapper>
 
     </section>
 
-  </div>
+  </section>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="section tw-h-full tw-min-h-screen">
+  <section class="section tw-h-full tw-min-h-screen">
 
     <div class="views-wrapper tw-mb-2">
       <div>
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-  </div>
+  </section>
 </template>
 
 <script>
