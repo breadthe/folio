@@ -5,7 +5,7 @@
         <ul class="menu-list" v-if="menuItems.length">
             <li v-for="item in menuItems" :key="item.name">
                 <a :href="item.path" @click="setMenuItemActive(item.name)" :class="item.active ? 'is-active' : ''">
-                    <span><i class="fa fa-3x" :class="['fa-' + item.logo]" aria-hidden="true"></i></span>
+                    <span><i class="fa fa-3x" :class="['fa-' + item.logo + ' ' + item.color]" aria-hidden="true"></i></span>
                     <span>{{ item.name }}</span>
                 </a>
             </li>
@@ -35,11 +35,11 @@
     data: function () {
       return {
         menuItems: [
-          { path: '#/', name: 'Dashboard', logo: 'tachometer', active: false },
-          { path: '#/watch-list', name: 'Watchlist', logo: 'area-chart', active: false },
-          { path: '#/wallets', name: 'Wallets', logo: 'briefcase', active: false },
-          { path: '#/settings', name: 'Settings', logo: 'gear', active: false },
-          { path: '#/about', name: 'About', logo: 'question', active: false }
+          { path: '#/', name: 'Dashboard', logo: 'tachometer', color: 'tw-text-red-dark', active: false },
+          { path: '#/watch-list', name: 'Watchlist', logo: 'area-chart', color: 'tw-text-blue-dark', active: false },
+          { path: '#/wallets', name: 'Wallets', logo: 'briefcase', color: 'tw-text-green-dark', active: false },
+          { path: '#/settings', name: 'Settings', logo: 'gear', color: 'tw-text-purple-dark', active: false },
+          { path: '#/about', name: 'About', logo: 'question', color: 'tw-text-orange-dark', active: false }
         ],
         menuItemIsSelected: true
       }
