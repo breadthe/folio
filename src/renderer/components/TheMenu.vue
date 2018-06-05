@@ -5,7 +5,8 @@
         <ul class="menu-list" v-if="menuItems.length">
             <li v-for="item in menuItems" :key="item.name">
                 <a :href="item.path" @click="setMenuItemActive(item.name)" :class="item.active ? 'is-active' : ''">
-                    <i :class="['fa', 'fa-' + item.logo]" aria-hidden="true"></i>&nbsp;&nbsp;{{ item.name }}
+                    <span><i class="fa fa-3x" :class="['fa-' + item.logo]" aria-hidden="true"></i></span>
+                    <span>{{ item.name }}</span>
                 </a>
             </li>
         </ul>

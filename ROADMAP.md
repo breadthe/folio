@@ -6,11 +6,11 @@
 3. ~~List/Grid layout for watchlist~~
 
 #### App
-- New paradigm (14 Feb 2018): calculate and display portfolio depending on positive amount in wallets, but watch coins individually (or maybe even watch coins with positive balance automatically, without being able to remove them). For coins that are not watched (moot if positive balance coins are watched automatically), simply don't show total USD.
 - (MAYBE, NOT WORKING WELL WITH BULMA) Add vue-bootstrap library to make use of tooltips
 - Socket connection and sync should start when the app boots, not just the Watchlist page
 - Export saved data as json
 - Import previously saved json data (with warning that it will overwrite existing data)
+- (v0.3) ~~New paradigm (14 Feb 2018): calculate and display portfolio depending on positive amount in wallets, but watch coins individually (or maybe even watch coins with positive balance automatically, without being able to remove them). For coins that are not watched (moot if positive balance coins are watched automatically), simply don't show total USD.~~
 
 #### Dashboard
 - (v0.1.3) ~~Show total $ value of portfolio, total BTC value, and pie chart for entire portfolio. Update this only when dashboard is entered.~~
@@ -24,12 +24,11 @@
 - (v0.0.12) ~~Improve layout for Watchlist coin cards~~
 
 #### Watchlist
-- Remove amount from config
 - Allow assignment of different background colors (or borders) for watched coins in config
-- Move over coin selection/watching from Settings
 - Separate coin details (price, etc) by exchange
 - Compare current trade tick with history and color price green/red depending on +/- or black if no previous history
 - (NICE TO HAVE) Drag-sorting watched coins
+- (v0.3) ~~Remove amount from config~~
 - (v0.1.4) ~~Format coin price up to 8 decimals, but trimming trailing zeros~~
 - (v0.1.4) ~~Alphabetic sorting of coins/markets~~
 - (v0.1.4) ~~List/Grid view with icons to switch between them. Save view state in Vuex/localStorage~~
@@ -42,7 +41,7 @@
 - (v0.0.10) ~~Socket connectivity status~~
 
 #### Menu / Sidebar
-- Change menu tabs to Exodus style (large icon, text below, narrow but tall tab)
+- (v0.4) ~~Change menu tabs to Exodus style (large icon, text below, narrow but tall tab)~~
 
 #### Settings
 - Move coin selection/watching to Watchlist
@@ -56,8 +55,6 @@
 - Show history entries (later replaced or augmented by charts), tracked since, last price, low, high, trend
 
 #### BUGS
-- When I have asset qty but there's no price data yet (for example app is booted for the first time and there's no trade data yet for any coin), the dashboard is blank
-- Refactor `watchedCoins`/`unwatchedCoins` to work off of `filteredCoins` ??
 - (v0.1.4) ~~When there's no price history (first boot, no socket), the List view is blank~~
 - (v0.1.4) ~~Background color is still buggy for watchList~~
 - (v0.1.4) ~~Grid/List tabs on the Light theme have the wrong styling~~
@@ -81,7 +78,7 @@
 
 ~~#### Map view~~
 - N/A ~~Messages for map sync should integrate better with the UI and disappear after a few seconds~~
+- (v0.1.4) ~~Alphabetic sorting of coins~~
 - (v0.0.3) ~~Use computed view of watched/unwatched coins to display watched ones at the top by default~~
 - (v0.0.5) ~~Filtering~~
 - (v0.0.8) ~~Show count of filtered coins~~
-- (LOW PRIORITY if filtering is implemented) Alphabetic sorting of coins

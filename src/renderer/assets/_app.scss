@@ -16,14 +16,27 @@
   aside {
     &.menu {
       height: 100%;
-      min-height: $app-height ;
+      min-height: $app-height;
+      .menu-list {
+        line-height: 1.5;
+        li {
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 10px;
+          span {
+            display: block;
+            padding: 5px 0;
+          }
+        }
+      }
     }
   }
 
   .app-logo {
     padding: $panel-heading-padding;
     padding-bottom: 1em;
-    h1 {
+    .logo {
+      font-family: 'Pacifico', cursive;
       font-size: $size-2;
     }
   }

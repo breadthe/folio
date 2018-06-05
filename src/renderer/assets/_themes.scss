@@ -7,7 +7,7 @@
             &.menu {
                 background: $grey-lightest;
                 .app-logo {
-                    color: $grey;
+                    color: $black;
                     .tag {
                         color: $grey;
                         background: $white;
@@ -93,10 +93,10 @@
             &.menu {
                 background: $grey-darker;
                 .app-logo {
-                    color: $grey-light;
+                    color: $white;
                     .tag {
-                        color: $grey-dark;
-                        background: $grey-light;
+                        color: $grey;
+                        background: $grey-dark;
                     }
                 }
                 .menu-list {

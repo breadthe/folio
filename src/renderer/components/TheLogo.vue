@@ -1,6 +1,6 @@
 <template>
     <div class="app-logo has-text-centered">
-        <i class="fa fa-book fa-4x" aria-hidden="true"></i>
+        <span class="logo">folio</span>
         <div class="tags has-addons">
             <span class="tag">alpha</span>
             <span class="tag">{{ theVersion }}</span>
