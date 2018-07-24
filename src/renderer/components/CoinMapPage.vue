@@ -121,7 +121,7 @@
     },
     methods: {
       syncMap: function () {
-        const url = 'http://socket.coincap.io/map'
+        const url = 'https://coincap.io/map'
         this.message = 'Getting data'
         this.button.sync.disabled = true
         this.button.sync.loading = true
