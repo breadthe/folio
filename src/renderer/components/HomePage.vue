@@ -6,14 +6,20 @@
         <table class="table is-fullwidth">
             <thead>
               <tr>
-                  <th colspan="3">
+                  <th>
+                    <p><span class="tw-text-xl">{{ portfolioSummary.totalCoinsWatched }}</span> coins</p>
+                  </th>
+                  <th colspan="2">
                     <p class="tw-text-right"><span class="tw-text-xl">${{ formatCurrency(portfolioSummary.totalUSDValue) }}</span></p>
                   </th>
               </tr>
             </thead>
             <tbody>
                 <tr v-for="(coinWallet, symbol) in wallets" :key="symbol">
-                    <td><div class="coin-sprite tw-mt-1 tw-mr-1" :class="symbol"></div>&nbsp;{{ coinNameFromSymbol(symbol) }}</td>
+                    <td>
+                      <div class="coin-sprite tw-mt-1 tw-mr-1" :class="symbol"></div>
+                      &nbsp;{{ coinNameFromSymbol(symbol) }}
+                    </td>
                     <td>{{ totalAmountByCoin(coinWallet) }}</td>
                     <td class="tw-text-right">
                       ${{ formatCurrency(USDValue(totalAmountByCoin(coinWallet), priceByCoin(symbol))) }}
@@ -24,7 +30,7 @@
       </div>
 
       <div v-else>
-        Your portfolio is empty. To see statistics, fill in amounts for your tracked coins.
+        Your portfolio is empty. To see statistics, add some wallets and fill in amounts.
       </div>
 
     </section>
@@ -57,27 +63,18 @@
       wallets: function () {
         return store.getters.wallets
       },
-      portfolio: function () {
-        const self = this
-        const portfolio = store.getters.coins.filter(coin => parseFloat(coin.qty) > 0)
-        return _.sortBy(portfolio, function (coin) {
-          return self.USDValue(coin.qty, coin.lastTrade.details.price)
-        }).reverse()
-      },
       portfolioSummary: function () {
         const self = this
-        // portfolio = coins for which I have an amount > 0
-        const portfolio = this.portfolio
-        let totalBTCValue = 0
+        let totalCoinsWatched = 0
         let totalUSDValue = 0
 
-        portfolio.forEach(function (coin) {
-          totalUSDValue += self.USDValue(coin.qty, coin.lastTrade.details.price)
+        _.forIn(this.wallets, (wallet, symbol) => {
+          totalCoinsWatched++
+          totalUSDValue += self.USDValue(self.totalAmountByCoin(wallet), self.priceByCoin(symbol))
         })
 
         return {
-          totalCoinsWatched: portfolio.length,
-          totalBTCValue: totalBTCValue,
+          totalCoinsWatched: totalCoinsWatched,
           totalUSDValue: totalUSDValue
         }
       }
