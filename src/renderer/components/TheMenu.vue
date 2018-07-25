@@ -11,8 +11,9 @@
             </li>
         </ul>
         <div class="conn-status">
-            <p v-if="isConnected"><i class="fa fa-circle has-text-success tw-mr-2" aria-hidden="true"></i>Connected</p>
-            <p v-else><i class="fa fa-circle has-text-danger tw-mr-2" aria-hidden="true"></i>Not Connected</p>
+            <p :title="isConnected ? 'Connected' : 'Not Connected'">
+              <i class="fa fa-circle fa-lg tw-mr-2" :class="isConnected ? 'has-text-success' : 'has-text-danger'" aria-hidden="true"></i>
+            </p>
         </div>
     </aside>
 </template>
