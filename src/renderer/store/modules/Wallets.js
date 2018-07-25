@@ -79,7 +79,11 @@ const mutations = {
       if (itemIndex > -1) {
         coinWallet.splice(itemIndex, 1) // Remove the wallet
 
-        wallets[obj.symbol] = coinWallet // Assign the new array back
+        if (coinWallet.length) {
+          wallets[obj.symbol] = coinWallet // Assign the new array back
+        } else { // If there are no wallets for a coin, remove the coin property from the wallets obj
+          _.unset(wallets, obj.symbol)
+        }
 
         // save to localStorage
         localStorage.wallets.set(wallets)

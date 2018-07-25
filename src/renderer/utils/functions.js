@@ -22,8 +22,6 @@ const consolidatedWalletAmounts = function () {
 const totalAmountBySymbol = function (symbol) {
   // Get all the wallets for a coin denoted by the symbol
   const coinWallets = store.getters.wallets[symbol] || null
-  // let totalBTCValue = 0
-  // let totalUSDValue = 0
   let totalWalletAmount = 0
 
   if (coinWallets) {
@@ -39,8 +37,6 @@ const totalAmountBySymbol = function (symbol) {
 }
 
 const totalAmountByCoin = function (coinWallet) {
-  // let totalBTCValue = 0
-  // let totalUSDValue = 0
   let totalWalletAmount = 0
 
   coinWallet.forEach(function (wallet) {
