@@ -32,7 +32,7 @@
             </div>
 
             <!-- Delete Confirmation -->
-            <nav v-show="showDeleteConfirmation" class="level delete-wallet-confirmation">
+            <nav v-show="showDeleteConfirmation" class="level is-mobile delete-wallet-confirmation">
               <div class="level-left">
                 <div class="level-item">
                   Are you sure?
