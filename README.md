@@ -2,6 +2,8 @@
 
 > An electron-vue project
 
+Migrated to GitHub @ v0.5.2b
+
 #### Build Setup
 
 ``` bash
