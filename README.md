@@ -9,6 +9,8 @@
 - Track crypto USD prices for your favorite coins in real time.
 - View a summary of your entire portfolio, with aggregate $ amounts per individual coin, and the total portfolio.
 
+[Issue tracker](https://trello.com/b/bKvQiIrA/folio)
+
 #### Build Setup
 
 ``` bash
