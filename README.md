@@ -1,8 +1,13 @@
 # folio
 
-> An electron-vue project
+*Migrated from GitLab @ v0.5.2b*
 
-Migrated to GitHub @ v0.5.2b
+> An Electron-Vue project
+
+- Manage your crypto portfolio entirely offline.
+- Add multiple wallets for BTC, ETH, LTC and a variety of other popular coins.
+- Track crypto USD prices for your favorite coins in real time.
+- View a summary of your entire portfolio, with aggregate $ amounts per individual coin, and the total portfolio.
 
 #### Build Setup
 
