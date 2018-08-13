@@ -59,7 +59,7 @@ const coinNameFromSymbol = function (symbol) {
  */
 const priceByCoin = function (symbol) {
   const coin = store.getters.coins.filter(coin => coin.symbol === symbol)[0]
-  return coin.lastTrade.details.price
+  return coin.lastTrade ? coin.lastTrade.details.price : null
 }
 
 const formatCurrency = function (amount) {

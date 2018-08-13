@@ -38,7 +38,8 @@
           { path: '#/', name: 'Dashboard', logo: 'tachometer', color: 'tw-text-red-dark', active: false },
           { path: '#/watch-list', name: 'Watchlist', logo: 'area-chart', color: 'tw-text-blue-dark', active: false },
           { path: '#/wallets', name: 'Wallets', logo: 'briefcase', color: 'tw-text-green-dark', active: false },
-          { path: '#/settings', name: 'Settings', logo: 'gear', color: 'tw-text-purple-dark', active: false },
+          { path: '#/settings', name: 'Settings', logo: 'cogs', color: 'tw-text-purple-dark', active: false },
+          { path: '#/backup', name: 'Backup /\nRestore', logo: 'archive', color: 'tw-text-yellow-dark', active: false },
           { path: '#/about', name: 'About', logo: 'question', color: 'tw-text-orange-dark', active: false }
         ],
         menuItemIsSelected: true

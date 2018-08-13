@@ -31,6 +31,11 @@ export default new Router({
       component: require('@/components/SettingsPage')
     },
     {
+      path: '/backup',
+      name: 'backup-page',
+      component: require('@/components/BackupPage')
+    },
+    {
       path: '/about',
       name: 'about-page',
       component: require('@/components/AboutPage')
